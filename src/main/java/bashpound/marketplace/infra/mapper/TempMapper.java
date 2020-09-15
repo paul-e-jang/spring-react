@@ -8,9 +8,9 @@ import bashpound.marketplace.domain.model.Mbtemp;
 
 @Mapper
 public interface TempMapper {
-    Mbtemp selectCityById(Long id);
+    Mbtemp selectById(Long id);
     
-    List<Mbtemp> selectAllCity();
+    List<Mbtemp> selectAll();
     
-    void insertCity(Mbtemp mbTemp);
+    void insert(Mbtemp mbTemp);
 }

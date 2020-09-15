@@ -12,24 +12,24 @@ import bashpound.marketplace.infra.mapper.TempMapper;
 @Service
 @Transactional
 public class MbtempService implements TempMapper{
-	@Autowired
-	Mbtemp mbTemp;
+    @Autowired
+    TempMapper mapper;
 
 	@Override
-	public Mbtemp selectCityById(Long id) {
-		// TODO Auto-generated method stub
+	public Mbtemp selectById(Long id) {
+		mapper.selectById(id);
 		return null;
 	}
 
 	@Override
-	public List<Mbtemp> selectAllCity() {
-		// TODO Auto-generated method stub
+	public List<Mbtemp> selectAll() {
+		mapper.selectAll();
 		return null;
 	}
 
 	@Override
-	public void insertCity(Mbtemp mbTemp) {
-		// TODO Auto-generated method stub
+	public void insert(Mbtemp mbTemp) {
+		mapper.insert(mbTemp);
 		
 	}
 	
