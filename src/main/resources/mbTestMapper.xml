@@ -3,23 +3,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="bashpound.marketplace">
+<mapper namespace="bashpound.marketplace.infra.mapper">
 
-    <select id="selectCityById" resultType="city">
+    <select id="selectById" resultType="city">
         SELECT ID
               ,NAME
-          FROM CITY
+          FROM MBTEST
          WHERE ID = #{id}
     </select>
 
-    <select id="selectAllCity" resultType="city">
+    <select id="selectAll" resultType="city">
         SELECT ID
               ,NAME
-          FROM CITY
+          FROM MBTEST
     </select>
 
-    <insert id="insertCity">
-      INSERT INTO CITY (NAME)
+    <insert id="insert">
+      INSERT INTO MBTEST (NAME)
       VALUES (#{name})
     </insert>
 
