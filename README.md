@@ -1,4 +1,4 @@
-# AmazeMarket: Spring boot와 React를 활용한 반응형 쇼핑몰
+# AmazeMarket: Spring boot/React를 활용한 반응형 쇼핑몰
 ## Blue Dragon Team
 ### 리더: 장은학
 - 아키텍처, 인터페이스 설계
