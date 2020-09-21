@@ -1,9 +1,15 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
-class block extends React.Component {
+class Block extends React.Component {
   render() {
-    return <div className="message-container">Hello world!</div>
+    const name = this.props.name
+    return <div className="message-container">Hello {name} !</div>
   }
 }
 
-export default block
+Block.propTypes = {
+  name: PropTypes.string
+}
+
+export default Block
