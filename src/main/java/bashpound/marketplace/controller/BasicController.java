@@ -15,4 +15,13 @@ public class BasicController {
 		json.addProperty(param1, value1);
 		return json.toString();
 	}
+	
+	@RequestMapping(value="/pullrequest2")
+	public String pullRequest2() {
+		String param1 = "이름";
+		String value1 = "정수민";
+		JsonObject json = new JsonObject();
+		json.addProperty(param1, value1);
+		return json.toString();
+	}
 }
