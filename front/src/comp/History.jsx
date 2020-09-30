@@ -32,4 +32,4 @@ class HistorySample extends Component {
     }
 }
 
-export default HistorySample
+export default History

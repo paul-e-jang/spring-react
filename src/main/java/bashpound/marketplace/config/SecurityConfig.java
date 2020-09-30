@@ -13,58 +13,61 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import bashpound.marketplace.security.filter.AjaxAuthenticationFilter;
-import bashpound.marketplace.security.handler.AjaxAuthenticationDeniedHandler;
-import bashpound.marketplace.security.handler.AjaxAuthenticationFailureHanlder;
-import bashpound.marketplace.security.handler.AjaxAuthenticationSuccessHandler;
-import bashpound.marketplace.security.provider.AjaxAuthenticationProvider;
-import bashpound.marketplace.security.util.AjaxAuthenticationEntryPoint;
+import bashpound.marketplace.config.security.AuthenticationDeniedHandler;
+import bashpound.marketplace.config.security.AuthenticationEntryPointImpl;
+import bashpound.marketplace.config.security.AuthenticationFilter;
+import bashpound.marketplace.config.security.AuthenticationProviderImpl;
+import bashpound.marketplace.config.security.SimpleAuthenticationFailureHanlder;
+import bashpound.marketplace.config.security.SimpleAuthenticationSuccessHandler;
 
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
+	private UserDetailsService userDetailsService;
+	
 	  private static final String[] PUBLIC = new String[]{
 		  "/", "/error", "/loginpage", "/api/logout", "/register", "/api/registrations", "/api/writeReply", "/api/default/articles"};
 	  
-	  @Autowired
-	  private UserDetailsService userDetailsService;
 	  
 	  
+	  
+/*	  
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication().withUser("user").password("1111").roles("USER");
 		auth.userDetailsService(userDetailsService);
 		auth.authenticationProvider(ajaxAuthenticationProvider());
 	}
+*/
 	  
-    @Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
-	  
-    	@Bean
-    	public AjaxAuthenticationProvider ajaxAuthenticationProvider() {
-    		return new AjaxAuthenticationProvider();
-    	}
-    	
-    	@Bean
-    	public AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler() {
-    		return new AjaxAuthenticationSuccessHandler();
-    	}
-    	@Bean
-    	public AjaxAuthenticationFailureHanlder ajaxAuthenticationFailureHandler() {
-    		return new AjaxAuthenticationFailureHanlder();
-    	}
+	    @Override
+		public AuthenticationManager authenticationManagerBean() throws Exception {
+			return super.authenticationManagerBean();
+		}
+		  
+		@Bean
+		public AuthenticationProviderImpl ajaxAuthenticationProvider() {
+			return new AuthenticationProviderImpl();
+		}
+		
+		@Bean
+		public SimpleAuthenticationSuccessHandler SimpleAuthenticationSuccessHandler() {
+			return new SimpleAuthenticationSuccessHandler();
+		}
+		@Bean
+		public SimpleAuthenticationFailureHanlder SimpleAuthenticationFailureHanlder() {
+			return new SimpleAuthenticationFailureHanlder();
+		}
     
 	  @Bean
-	  public AjaxAuthenticationFilter ajaxAuthenticationFilter() throws Exception {
-		  AjaxAuthenticationFilter ajaxAuthenticationFilter = new AjaxAuthenticationFilter();
-		  ajaxAuthenticationFilter.setAuthenticationManager(authenticationManagerBean());
-		  ajaxAuthenticationFilter.setAuthenticationSuccessHandler(ajaxAuthenticationSuccessHandler());
-		  ajaxAuthenticationFilter.setAuthenticationFailureHandler(ajaxAuthenticationFailureHandler());
-		  return ajaxAuthenticationFilter;
+	  public AuthenticationFilter ajaxAuthenticationFilter() throws Exception {
+		  AuthenticationFilter authenticationFilter = new AuthenticationFilter();
+		  authenticationFilter.setAuthenticationManager(authenticationManagerBean());
+		  authenticationFilter.setAuthenticationSuccessHandler(SimpleAuthenticationSuccessHandler());
+		  authenticationFilter.setAuthenticationFailureHandler(SimpleAuthenticationFailureHanlder());
+		  return authenticationFilter;
 	  }
 	  
 	  @Bean
@@ -73,8 +76,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	  }
 	  
 	  @Bean
-	  public AjaxAuthenticationDeniedHandler ajaxAuthenticationDeniedHandler() {
-		  return new AjaxAuthenticationDeniedHandler();
+	  public AuthenticationDeniedHandler ajaxAuthenticationDeniedHandler() {
+		  return new AuthenticationDeniedHandler();
 	  }
 
 	 
@@ -90,7 +93,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		  		.anyRequest().authenticated()
 	  		.and()
 		  		.exceptionHandling()
-	  			.authenticationEntryPoint(new AjaxAuthenticationEntryPoint())
+	  			.authenticationEntryPoint(new AuthenticationEntryPointImpl())
 	  			.accessDeniedHandler(ajaxAuthenticationDeniedHandler())
 		  	.and()
 		     	.addFilterBefore(ajaxAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
