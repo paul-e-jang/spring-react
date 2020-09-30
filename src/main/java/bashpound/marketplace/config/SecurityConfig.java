@@ -3,10 +3,8 @@ package bashpound.marketplace.config;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.access.ExceptionTranslationFilter;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@EnableWebSecurity
+
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	  private static final String[] PUBLIC = new String[]{
@@ -16,7 +14,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	  @Override
 	  public void configure(HttpSecurity http) throws Exception{
 		  http
-		      .exceptionHandling().accessDeniedHandler(accessDeniedHandler())
+		      .exceptionHandling()
 		      .and()
 		      .authorizeRequests()
 		        .antMatchers(PUBLIC).permitAll()
@@ -24,13 +22,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		      .and()
 		      	.formLogin()
 		      	.loginPage("/login")
-		      	.addFilterAt(authenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-		        .addFilterAfter(apiRequestExceptionTranslationFilter(), ExceptionTranslationFilter.class)
 		        .permitAll()
 		      .and()
 		        .logout()
 		        .logoutUrl("/api/logout")
-		        .logoutSuccessHandler(logoutSuccessHandler())
 		      .and()
 		        .csrf().disable();
 	  }
