@@ -22,7 +22,7 @@
 
 ## 활용 모듈
 ### Back-end: Spring
-- Spring Dependencies: Boot, Security, Web(WebMvc, Core, RESTful), Devtools, Mybatis, Batch
+- Spring Dependencies: Boot, Security, Data JPA, Devtools, Mybatis, Batch
 ### Front-end: React.js
 - React Expansion: Redux, React-router
 ### Network
