@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.JsonObject;
 
-@RestController
+//@RestController
 public class BasicController {
 	@RequestMapping(value="/pullrequest")
 	public String pullRequest() {
