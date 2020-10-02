@@ -1,27 +1,13 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
-import About from './comp/About'
-import Home from './comp/Home'
-import History from './comp/History'
+import CounterContainer from './containers/CounterContainer'
+import TodosContainer from './containers/TodosContainer'
 
 function App() {
   return (
     <div>
-      <ul>
-        <li>
-          <Link to ="/">홈</Link>
-        </li>
-        <li>
-          <Link to ="/about">소개</Link>
-        </li>
-        <li>
-          <Link to="/history">History </Link>
-        </li>
-      </ul>
-      <hr />
-      <Route path="/" component={Home} exact={true} />
-      <Route path="/about" component={About} />
-      <Route path="/history" component={History} />
+      <CounterContainer />
+        <hr />
+      <TodosContainer />
     </div>
   )
 }
