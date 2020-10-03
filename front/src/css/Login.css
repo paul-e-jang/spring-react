@@ -1,0 +1,38 @@
+.bp3-card {
+    width: 400px;
+    margin: 30px auto;
+}
+
+input {
+    width: 100%;
+}
+
+.box:before,
+.box:after {
+  content: "";
+  position: absolute;
+  display: block;
+  left: -10px;
+  width: 1px;
+  height: 50%;
+}
+
+.box:before {
+  top: 0;
+  background: linear-gradient(to top, #333 0%, transparent 100%);
+}
+
+.box:after {
+  bottom: 0;
+  background: linear-gradient(to bottom, #333 0%, transparent 100%);
+}
+
+.divider {
+	background-image: radial-gradient(center center, 50% 50%, rgba(0,0,0,.1), transparent);
+	background-repeat: no-repeat;
+	background-position: 0 -10px;
+	background-size: 100% 20px;
+	border-top: 1px solid #dedede;
+	box-shadow: 0 -1px 0 0 white;
+	height: 20px;
+}

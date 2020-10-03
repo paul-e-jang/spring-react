@@ -1,0 +1,55 @@
+
+.flex {
+    display: flex;
+    margin: 0 auto;
+    padding: 0 15px;
+    justify-content: space-between;
+    height: 2vh;
+}
+
+.shade {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+/* end: global style rules */
+
+/* start: header styles */
+header {
+    background-color: #131313;
+    padding: 20px 0;
+    position: relative;
+    border-bottom: 1px solid #FFB320;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0px 0 0;
+}
+
+nav ul li {
+    display: inline-block;
+    font-size: 1em;
+    margin: 0 0px;
+}
+
+nav ul li a {
+    color: #eee;
+    font-weight: 600;
+}
+
+nav ul li a:hover {
+    color: #FFB320;
+}
+
+#login-register-button {
+    background-color: #FFB320;
+    color: #131313;
+    border-radius: 20px;
+    font-weight: 600;
+}

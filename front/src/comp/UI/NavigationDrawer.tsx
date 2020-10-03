@@ -33,23 +33,23 @@ export default class NavigationDrawer extends React.PureComponent<DrawerState> {
 
     public render() {
         return (
-            <>
-                <Button onClick={this.handleOpen}>Show Drawer</Button>
+            <>  
+                <Button icon="list" onClick={this.handleOpen} />
                 <Drawer
-                    icon="info-sign"
+                    icon="user"
                     onClose={this.handleClose}
-                    title="Navigation Drawer"
+                    title="로그인 하세요"
                     {...this.state}
                 >
                     <div className={Classes.DRAWER_BODY}>
                         <div className={Classes.DIALOG_BODY}>
                             <p>
                                 <strong>
-                                    Drawer Subject
+                                    카테고리
                                 </strong>
                             </p>
                             <p>
-                                Drawer Content
+                                내용
                             </p>
                         </div>
                     </div>
