@@ -7,12 +7,14 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './modules';
+import 'normalize.css/normalize.css';
+import '@blueprintjs/core/lib/css/blueprint.css';
 
 const store = createStore(rootReducer, composeWithDevTools())
 
 ReactDOM.render(
     <Provider store = {store}>
-      <App />
+       <App />
     </Provider>,
   document.getElementById('root')
 );
