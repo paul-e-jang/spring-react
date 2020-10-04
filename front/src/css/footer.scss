@@ -1,0 +1,32 @@
+@import 'base.scss';
+
+* {
+    margin:0;
+    padding:0;
+}
+
+#footer {
+    position: relative;
+    bottom:0;
+    width: 100%;
+    text-align:center;
+}
+
+h5 {
+    color:white;
+}
+
+#back-to-top{
+    background: $tc2;
+    padding: 10px;
+}
+
+#about {
+    background: $tc3;
+    padding: 40px;
+}
+
+#sitemap {
+    background: $tc4;
+    padding: 30px;
+}

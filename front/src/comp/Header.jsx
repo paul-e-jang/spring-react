@@ -1,28 +1,35 @@
 import React from 'react'
 import NavigationDrawer from './UI/NavigationDrawer'
-import '../css/Header.css'
+import '../css/header.scss'
+import { Link } from 'react-router-dom'
 
 class Header extends React.Component {
   render() {
     return (
       <>
-        <header>
-            <div class="flex">
-            <NavigationDrawer />
-                <div class="logo">
-                    <a href="/"><img src="../assets/logo.svg" alt="Logo" /></a>
-                </div>
-                <nav>
-                    <input type="text"></input>
-                    <ul id="nav-menu-container">
-                        <li><a href="/">Accounts/Lists</a></li>
-                        <li><a href="/">Returns/Order</a></li>
-                        <li><a href="/">Cart</a></li>
-                    </ul>
-                </nav>
-                
-                <a href="/" id="login-register-button">Login / Register</a>
+        <header id="header">
+          <div id="upper-bar">
+            <div id="drawer">
+              <NavigationDrawer />
             </div>
+            <a href="/"><img src={require('../assets/logo_dark.svg')} alt="Logo" className="Logo" /></a>
+            <input className="search-bar" type="text"></input>
+            <nav>
+              <ul id="nav-menu-container">
+                <li>
+                  <a href="/">Accounts/Lists</a>
+                </li>
+                <li>
+                  <a href="/">Returns/Order</a>
+                </li>
+                <li>
+                  <a href="/">Cart</a>
+                </li>
+              </ul>
+            </nav>
+            <Link to="login">Login / Register</Link>
+          </div>
+          <div id="under-bar"><h3>Our Response to COVID-19</h3></div>
         </header>
       </>
     )

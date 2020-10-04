@@ -1,10 +1,45 @@
+ @import 'base.scss';
 
-.flex {
+* {
+    margin:0;
+    padding:0;
+}
+
+#header {
+    position: relative;
+    top: 0;
+    width:100%;
+    display: true;
+}
+
+#under-bar {
+    background: $tc2;
+    h3 {
+        color:white;
+        text-align: right;
+    }
+    padding: 10px;
+}
+
+#upper-bar {
     display: flex;
-    margin: 0 auto;
-    padding: 0 15px;
+    margin: auto;
+    padding: 10px;
     justify-content: space-between;
-    height: 2vh;
+    background-color: $tc5;
+}
+
+#drawer {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.Logo {
+    height: 40px;
+}
+
+.search-bar {
+    width: 65%;
 }
 
 .shade {
@@ -20,10 +55,8 @@
 
 /* start: header styles */
 header {
-    background-color: #131313;
-    padding: 20px 0;
+    padding: 0;
     position: relative;
-    border-bottom: 1px solid #FFB320;
 }
 
 nav ul {
