@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import bashpound.marketplace.utils.Gender;
 
@@ -36,14 +38,19 @@ public class Member extends AbstractBaseEntity {
 	private Date birth;
 	@Column(name = "phone", nullable = true)
 	private String phone;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "enrollDate", nullable = true)
 	private Date enrollDate;
+	
 	@Column(name = "seller", nullable = true)
 	private boolean seller;
 	@Column(name = "level", nullable = true)
 	private int level;
 	@Column(name = "delFlag", nullable = true)
 	private boolean delFlag;
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "delDate", nullable = true)
 	private Date delDate;
 	@Column(name = "role")
