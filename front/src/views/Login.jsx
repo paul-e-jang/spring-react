@@ -30,11 +30,11 @@ class Login extends React.Component {
               <h1>로그인</h1>
               <Label>
                   <strong>아이디 or Email</strong>
-                  <InputGroup placeholder="아이디 or Email" onChange={e => this.setState({ username: e.target.value})} />
+                  <InputGroup placeholder="아이디 or Email을 입력하세요." onChange={e => this.setState({ username: e.target.value})} />
               </Label>
               <Label>
               <strong>비밀번호</strong>
-                  <InputGroup placeholder="비밀번호" type="password" onChange={e => this.setState({ password: e.target.value})}  />
+                  <InputGroup placeholder="비밀번호를 입력하세요." type="password" onChange={e => this.setState({ password: e.target.value})}  />
               </Label>
               <Button large disabled={!this.SubmitPreventer()} className="bp3-fill"> 로그인 </Button><br/>
               <Link to="/register">회원가입</Link><br />
