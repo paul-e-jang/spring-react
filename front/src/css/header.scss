@@ -5,7 +5,6 @@
     position: relative;
     top: 0;
     width:100%;
-    display: true;
 }
 
 #under-bar {
@@ -53,6 +52,7 @@
 header {
     padding: 0;
     position: relative;
+    box-sizing: border-box;
 }
 
 nav ul {
@@ -69,16 +69,45 @@ nav ul li {
 
 nav ul li a {
     color: #eee;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 nav ul li a:hover {
-    color: #FFB320;
+    border: solid 1px white;
+    text-decoration: none;
+    
 }
 
-#login-register-button {
-    background-color: #FFB320;
-    color: #131313;
-    border-radius: 20px;
-    font-weight: 600;
+#banner {
+    * {
+      color:white;
+    }
+    
+    border: solid 1px rgba(255, 0, 0, .0);
+    padding: 3px;
+    margin-left: 5px;
+    box-sizing: border-box;
+    font-weight: 500;
+  
+    &:hover {
+      border: solid 1px white;
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+#delivery-banner {
+    padding: 0;
+    margin: 0;
+    display:inline-block;
+}
+
+.under-banner {
+    display:inline-block;
+}
+
+.covid {
+    position:fixed;
+    right: 0;
+    padding-right: 10px;
 }

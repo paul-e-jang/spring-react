@@ -37,7 +37,7 @@ class Login extends React.Component {
               <strong>비밀번호</strong>
                   <InputGroup placeholder="비밀번호를 입력하세요." type="password" onChange={e => this.setState({ password: e.target.value})}  />
               </Label>
-              <Button large disabled={!this.SubmitPreventer()} className="bp3-fill"> 로그인 </Button><br/>
+              <Button large id="login-button" disabled={!this.SubmitPreventer()} className="bp3-fill"> 로그인 </Button><br/>
               <Link to="/register">회원가입</Link><br />
               <a href="/help">아이디/비밀번호 찾기</a> 
           </div>

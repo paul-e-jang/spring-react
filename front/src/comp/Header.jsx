@@ -2,6 +2,7 @@ import React from 'react'
 import NavigationDrawer from './UI/NavigationDrawer'
 import '../css/header.scss'
 import { Link } from 'react-router-dom'
+import Banner from './Banner'
 
 class Header extends React.Component {
   render() {
@@ -12,24 +13,42 @@ class Header extends React.Component {
             <div id="drawer">
               <NavigationDrawer />
             </div>
-            <a href="/"><img src={require('../assets/logo_dark.svg')} alt="Logo" className="Logo" /></a>
+            <a href="/">
+              <img id="banner" src={require('../assets/logo_dark.svg')} alt="Logo" className="Logo" />
+            </a>
             <input className="search-bar" type="text"></input>
             <nav>
               <ul id="nav-menu-container">
                 <li>
-                  <a href="/">Accounts/Lists</a>
+                  <Link to="/login">
+                    <Banner main="Hello, Sign in" sub="Accounts & Lists" />
+                  </Link>
                 </li>
                 <li>
-                  <a href="/">Returns/Order</a>
+                  <a href="/">
+                    <Banner main="Returns" sub="& Orders" />{' '}
+                  </a>
                 </li>
                 <li>
-                  <a href="/">Cart</a>
+                  <a href="/">
+                    <Banner main="Cart" />{' '}
+                  </a>
                 </li>
               </ul>
             </nav>
-            <Link to="login">Login / Register</Link>
           </div>
-          <div id="under-bar"><h3>Our Response to COVID-19</h3></div>
+          <div id="under-bar">
+            <div className="under-banner">
+               <Link to="/"><Banner main="Today's Deals" /></Link> 
+            </div>
+            <div className="under-banner">
+            <Link to="/"><Banner main="Customer Service" /></Link> 
+            </div>
+            <div className="under-banner">
+            <Link to="/"><Banner main="Sell" /></Link> 
+            </div>
+              <h3 class="under-banner covid">Our Response to COVID-19</h3>
+          </div>
         </header>
       </>
     )
