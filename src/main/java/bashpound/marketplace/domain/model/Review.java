@@ -1,6 +1,6 @@
 package bashpound.marketplace.domain.model;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Review")
@@ -29,8 +31,9 @@ public class Review extends AbstractBaseEntity {
 	private Member reviewer;
 	@Column(name = "thumbNail")
 	private String thumbNail;
-	@Column(name = "score")
+	@Column(name = "score",columnDefinition = "number(1) default 0")
 	private int score;
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "regDate")
 	private Date regDate;
 	@Column(name = "content")

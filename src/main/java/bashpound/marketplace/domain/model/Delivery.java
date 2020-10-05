@@ -20,19 +20,25 @@ public class Delivery extends AbstractBaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@Column(name = "mainAddress", unique = true)
-	private String mainAddress;
-	@Column(name = "subAddress", unique = true)
-	private String subAddress;
-
+	@Column(name = "zipcode")
+	private String zipcode;
+	@Column(name = "name_of_delivery")
+	private String name_of_delivery;
+	@Column(name = "address1", unique = true)
+	private String address1;
+	@Column(name = "address2", unique = true)
+	private String address2;
+	@Column(name = "is_main_address", columnDefinition = "number(1) default 1")
+	private boolean is_main_address;
 	@OneToOne
 	@JoinColumn(name = "Member_username", unique = true)
 	private Member member;
 
 	@Override
 	public String toString() {
-		return "Delivery [id=" + id + ", mainAddress=" + mainAddress + ", subAddress=" + subAddress + ", member="
-				+ member + "]";
+		return "Delivery [id=" + id + ", zipcode=" + zipcode + ", name_of_delivery=" + name_of_delivery + ", address1="
+				+ address1 + ", address2=" + address2 + ", is_main_address=" + is_main_address + ", member=" + member
+				+ "]";
 	}
 
 	@Override
@@ -42,10 +48,12 @@ public class Delivery extends AbstractBaseEntity {
 
 	@Override
 	public boolean equals(Object o) {
-	    if (this == o) return true;
-	    if (!(o instanceof Complain)) return false;
-	    Delivery o1 = (Delivery) o;
-	    return Objects.equals(id, o1.id);
+		if (this == o)
+			return true;
+		if (!(o instanceof Complain))
+			return false;
+		Delivery o1 = (Delivery) o;
+		return Objects.equals(id, o1.id);
 	}
 
 	public Long getId() {
@@ -56,20 +64,44 @@ public class Delivery extends AbstractBaseEntity {
 		this.id = id;
 	}
 
-	public String getMainAddress() {
-		return mainAddress;
+	public String getZipcode() {
+		return zipcode;
 	}
 
-	public void setMainAddress(String mainAddress) {
-		this.mainAddress = mainAddress;
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
 	}
 
-	public String getSubAddress() {
-		return subAddress;
+	public String getName_of_delivery() {
+		return name_of_delivery;
 	}
 
-	public void setSubAddress(String subAddress) {
-		this.subAddress = subAddress;
+	public void setName_of_delivery(String name_of_delivery) {
+		this.name_of_delivery = name_of_delivery;
+	}
+
+	public String getAddress1() {
+		return address1;
+	}
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+
+	public boolean isIs_main_address() {
+		return is_main_address;
+	}
+
+	public void setIs_main_address(boolean is_main_address) {
+		this.is_main_address = is_main_address;
 	}
 
 	public Member getMember() {

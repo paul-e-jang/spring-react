@@ -29,18 +29,18 @@ public class ShippingInfomartion extends AbstractBaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "Member_username")
 	private Member member;
-	@Column(name = "method")
-	private String method;
-	@Column(name = "duration")
-	private Date duration;
-	@Column(name = "complete")
-	private boolean complete;
+	@Column(name = "Courier")
+	private String Courier;
+	@Column(name = "parcel_number")
+	private Date parcel_number;
+	@Column(name = "delivery_state", columnDefinition = "varchar2(255) default 'shipping'")
+	private String delivery_state;
 
 	@Override
 	public String toString() {
 		return "ShippingInfomartion [id=" + id + ", shppingNumber=" + shppingNumber + ", purchase=" + purchase
-				+ ", member=" + member + ", method=" + method + ", duration=" + duration + ", complete=" + complete
-				+ "]";
+				+ ", member=" + member + ", Courier=" + Courier + ", parcel_number=" + parcel_number
+				+ ", delivery_state=" + delivery_state + "]";
 	}
 
 	@Override
@@ -50,10 +50,12 @@ public class ShippingInfomartion extends AbstractBaseEntity {
 
 	@Override
 	public boolean equals(Object o) {
-	    if (this == o) return true;
-	    if (!(o instanceof ShippingInfomartion)) return false;
-	    ShippingInfomartion o1 = (ShippingInfomartion) o;
-	    return Objects.equals(id, o1.id);
+		if (this == o)
+			return true;
+		if (!(o instanceof ShippingInfomartion))
+			return false;
+		ShippingInfomartion o1 = (ShippingInfomartion) o;
+		return Objects.equals(id, o1.id);
 	}
 
 	public Long getId() {
@@ -88,28 +90,28 @@ public class ShippingInfomartion extends AbstractBaseEntity {
 		this.member = member;
 	}
 
-	public String getMethod() {
-		return method;
+	public String getCourier() {
+		return Courier;
 	}
 
-	public void setMethod(String method) {
-		this.method = method;
+	public void setCourier(String courier) {
+		Courier = courier;
 	}
 
-	public Date getDuration() {
-		return duration;
+	public Date getParcel_number() {
+		return parcel_number;
 	}
 
-	public void setDuration(Date duration) {
-		this.duration = duration;
+	public void setParcel_number(Date parcel_number) {
+		this.parcel_number = parcel_number;
 	}
 
-	public boolean isComplete() {
-		return complete;
+	public String getDelivery_state() {
+		return delivery_state;
 	}
 
-	public void setComplete(boolean complete) {
-		this.complete = complete;
+	public void setDelivery_state(String delivery_state) {
+		this.delivery_state = delivery_state;
 	}
 
 }

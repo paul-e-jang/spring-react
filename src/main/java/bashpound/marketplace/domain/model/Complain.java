@@ -26,23 +26,23 @@ public class Complain extends AbstractBaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "Member_username")
 	private Member member;
-	@Column(name = "complain")
-	private String complain;
+	@Column(name = "subject")
+	private String subject;
+	@Column(name = "context")
+	private String context;
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "regDate")
 	private Date regDate;
 	@Column(name = "answer")
 	private String answer;
-	
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "ansDate")
 	private Date ansDate;
-	@Column(name = "ansFlag")
-	private boolean ansFlag;
 
 	@Override
 	public String toString() {
-		return "Complain [id=" + id + ", member=" + member + ", complain=" + complain + ", regDate=" + regDate
-				+ ", answer=" + answer + ", ansDate=" + ansDate + ", ansFlag=" + ansFlag + "]";
+		return "Complain [id=" + id + ", member=" + member + ", regDate=" + regDate + ", answer=" + answer
+				+ ", ansDate=" + ansDate + "]";
 	}
 
 	@Override
@@ -52,10 +52,12 @@ public class Complain extends AbstractBaseEntity {
 
 	@Override
 	public boolean equals(Object o) {
-	    if (this == o) return true;
-	    if (!(o instanceof Complain)) return false;
-	    Complain o1 = (Complain) o;
-	    return Objects.equals(id, o1.id);
+		if (this == o)
+			return true;
+		if (!(o instanceof Complain))
+			return false;
+		Complain o1 = (Complain) o;
+		return Objects.equals(id, o1.id);
 	}
 
 	public Long getId() {
@@ -74,12 +76,20 @@ public class Complain extends AbstractBaseEntity {
 		this.member = member;
 	}
 
-	public String getComplain() {
-		return complain;
+	public String getSubject() {
+		return subject;
 	}
 
-	public void setComplain(String complain) {
-		this.complain = complain;
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+	public String getContext() {
+		return context;
+	}
+
+	public void setContext(String context) {
+		this.context = context;
 	}
 
 	public Date getRegDate() {
@@ -104,14 +114,6 @@ public class Complain extends AbstractBaseEntity {
 
 	public void setAnsDate(Date ansDate) {
 		this.ansDate = ansDate;
-	}
-
-	public boolean isAnsFlag() {
-		return ansFlag;
-	}
-
-	public void setAnsFlag(boolean ansFlag) {
-		this.ansFlag = ansFlag;
 	}
 
 }
