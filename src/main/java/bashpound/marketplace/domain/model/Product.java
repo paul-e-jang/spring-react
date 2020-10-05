@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Product")
@@ -33,14 +35,15 @@ public class Product extends AbstractBaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "Member_username")
 	private Member seller;
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "regDate")
 	private Date regDate;
-	@Column(name = "stock")
+	@Column(name = "stock", columnDefinition = "number(5) default 0")
 	private int stock;
-	@Column(name = "price")
+	@Column(name = "price", columnDefinition = "number(10) default 0")
 	private String price;
-	@Column(name = "option")
-	private String option;
+	@Column(name = "options")
+	private String options;
 	@OneToMany(mappedBy = "product")
 	private List<Purchase> purchases = new ArrayList<>();
 	@OneToMany(mappedBy = "product")
@@ -49,8 +52,8 @@ public class Product extends AbstractBaseEntity {
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", ProdNumber=" + ProdNumber + ", name=" + name + ", thumbNail=" + thumbNail
-				+ ", seller=" + seller + ", regDate=" + regDate + ", stock=" + stock + ", price=" + price + ", option="
-				+ option + ", purchases=" + purchases + ", reviews=" + reviews + "]";
+				+ ", seller=" + seller + ", regDate=" + regDate + ", stock=" + stock + ", price=" + price + ", options="
+				+ options + ", purchases=" + purchases + ", reviews=" + reviews + "]";
 	}
 
 	@Override
@@ -60,10 +63,12 @@ public class Product extends AbstractBaseEntity {
 
 	@Override
 	public boolean equals(Object o) {
-	    if (this == o) return true;
-	    if (!(o instanceof Product)) return false;
-	    Product o1 = (Product) o;
-	    return Objects.equals(id, o1.id);
+		if (this == o)
+			return true;
+		if (!(o instanceof Product))
+			return false;
+		Product o1 = (Product) o;
+		return Objects.equals(id, o1.id);
 	}
 
 	public Long getId() {
@@ -78,8 +83,8 @@ public class Product extends AbstractBaseEntity {
 		return ProdNumber;
 	}
 
-	public void setProdNumber(String prodNumber) {
-		ProdNumber = prodNumber;
+	public void setProdNumber(String ProdNumber) {
+		this.ProdNumber = ProdNumber;
 	}
 
 	public String getName() {
@@ -130,12 +135,12 @@ public class Product extends AbstractBaseEntity {
 		this.price = price;
 	}
 
-	public String getOption() {
-		return option;
+	public String getOptions() {
+		return options;
 	}
 
-	public void setOption(String option) {
-		this.option = option;
+	public void setOptions(String options) {
+		this.options = options;
 	}
 
 	public List<Purchase> getPurchases() {

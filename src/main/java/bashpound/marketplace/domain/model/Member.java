@@ -1,7 +1,7 @@
 package bashpound.marketplace.domain.model;
 
-import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,23 +38,23 @@ public class Member extends AbstractBaseEntity {
 	private Date birth;
 	@Column(name = "phone", nullable = true)
 	private String phone;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "enrollDate", nullable = true)
 	private Date enrollDate;
-	
-	@Column(name = "seller", nullable = true)
+
+	@Column(name = "is_seller", nullable = true, columnDefinition = "number(1) default 0")
 	private boolean seller;
-	@Column(name = "level", nullable = true)
-	private int level;
-	@Column(name = "delFlag", nullable = true)
+	@Column(name = "levels", nullable = true, columnDefinition = "number(1) default 0")
+	private int levels;
+	@Column(name = "delFlag", nullable = true, columnDefinition = "number(1) default 0")
 	private boolean delFlag;
-	
+	@Column(name = "role", columnDefinition = "char(10) default 'ROLE_USER'")
+	private String role;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "delDate", nullable = true)
 	private Date delDate;
-	@Column(name = "role")
-	private String role;
 	@OneToMany(mappedBy = "seller")
 	private List<Product> products = new ArrayList<>();
 	@OneToMany(mappedBy = "member")
@@ -70,8 +70,8 @@ public class Member extends AbstractBaseEntity {
 	public String toString() {
 		return "Member [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password
 				+ ", gender=" + gender + ", birth=" + birth + ", phone=" + phone + ", enrollDate=" + enrollDate
-				+ ", seller=" + seller + ", level=" + level + ", delFlag=" + delFlag + ", delDate=" + delDate
-				+ ", role=" + role + ", complains=" + complains + "]";
+				+ ", seller=" + seller + ", levels=" + levels + ", delFlag=" + delFlag + ", delDate=" + delDate
+				+ ", complains=" + complains + ", role=" + role + "]";
 	}
 
 	@Override
@@ -165,12 +165,12 @@ public class Member extends AbstractBaseEntity {
 		this.seller = seller;
 	}
 
-	public int getLevel() {
-		return level;
+	public int getLevels() {
+		return levels;
 	}
 
-	public void setLevel(int level) {
-		this.level = level;
+	public void setLevels(int levels) {
+		this.levels = levels;
 	}
 
 	public boolean isDelFlag() {
@@ -181,14 +181,6 @@ public class Member extends AbstractBaseEntity {
 		this.delFlag = delFlag;
 	}
 
-	public Date getDelDate() {
-		return delDate;
-	}
-
-	public void setDelDate(Date delDate) {
-		this.delDate = delDate;
-	}
-
 	public String getRole() {
 		return role;
 	}
@@ -197,12 +189,52 @@ public class Member extends AbstractBaseEntity {
 		this.role = role;
 	}
 
+	public Date getDelDate() {
+		return delDate;
+	}
+
+	public void setDelDate(Date delDate) {
+		this.delDate = delDate;
+	}
+
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
 	public List<Complain> getComplains() {
 		return complains;
 	}
 
 	public void setComplains(List<Complain> complains) {
 		this.complains = complains;
+	}
+
+	public List<Purchase> getPurcahses() {
+		return purcahses;
+	}
+
+	public void setPurcahses(List<Purchase> purcahses) {
+		this.purcahses = purcahses;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public List<ShippingInfomartion> getShippingInformations() {
+		return shippingInformations;
+	}
+
+	public void setShippingInformations(List<ShippingInfomartion> shippingInformations) {
+		this.shippingInformations = shippingInformations;
 	}
 
 }

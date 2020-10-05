@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Purchase")
@@ -32,9 +34,10 @@ public class Purchase extends AbstractBaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "Product_ProdNumber")
 	private Product product;
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "purchaseDate")
 	private Date purchaseDate;
-	@Column(name = "arrive")
+	@Column(name = "arrive",columnDefinition = "number(1) default 0")
 	private boolean arrive;
 	@OneToMany(mappedBy = "purchase")
 	private List<ShippingInfomartion> shippingInformations = new ArrayList<>();
