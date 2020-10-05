@@ -1,5 +1,8 @@
  @import 'base.scss';
 
+a:hover {
+    text-decoration: none !important;
+}
 
 #header {
     position: relative;

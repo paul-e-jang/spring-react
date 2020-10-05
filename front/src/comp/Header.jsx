@@ -39,6 +39,9 @@ class Header extends React.Component {
           </div>
           <div id="under-bar">
             <div className="under-banner">
+               <Link to="/"><Banner sub="Delivery to: Somewhere!" /></Link> 
+            </div>
+            <div className="under-banner">
                <Link to="/"><Banner main="Today's Deals" /></Link> 
             </div>
             <div className="under-banner">
