@@ -42,3 +42,15 @@ input {
 	box-shadow: 0 -1px 0 0 white;
 	height: 20px;
 }
+
+.invalid {
+  display: inline;
+}
+
+.valid {
+  display: none;
+}
+
+.no-val {
+  display: none;
+}
