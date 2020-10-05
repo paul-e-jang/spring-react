@@ -36,3 +36,6 @@
 
 # UseCase Diagram
 ![usecase.png](./diagrams/usecase.png)
+
+# ERD
+![ERD_temp.JPG](https://github.com/soominJung0413/SpringWebProject/blob/master/ERD_temp.JPG)
