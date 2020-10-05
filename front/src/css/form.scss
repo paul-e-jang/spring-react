@@ -1,10 +1,16 @@
 @import 'base.scss';
 
+
 .bp3-card {
     width: 400px;
     margin: 50px auto;
+
     h5 {
-      color: $tc1;
+      color: crimson;
+    }
+
+    #register-button {
+      margin-top:20px;
     }
 }
 

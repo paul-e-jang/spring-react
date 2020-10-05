@@ -1,5 +1,5 @@
 import React from 'react'
-import {Label, Classes, Button} from "@blueprintjs/core"
+import {Label, InputGroup,  Button} from "@blueprintjs/core"
 import {Link} from 'react-router-dom'
 import '../css/form.scss'
 
@@ -8,8 +8,8 @@ class Login extends React.Component {
     constructor(props){
       super()
       this.state = {
-        usernameEntered: '',
-        passwordEntered: ''
+        username: '',
+        password: ''
       }
     }
 
@@ -22,18 +22,21 @@ class Login extends React.Component {
     render() {
       return (
         <section>
+          <div id="logo">
+                    <img src={require('../assets/logo_white_h.svg')} alt="Logo"/>
+          </div>
           <form>
           <div className="bp3-card">
               <h1>로그인</h1>
               <Label>
                   <strong>아이디 or Email</strong>
-                  <input className={Classes.INPUT} placeholder="아이디 or Email" value={this.state.useranme} />
+                  <InputGroup placeholder="아이디 or Email" onChange={e => this.setState({ username: e.target.value})} />
               </Label>
               <Label>
               <strong>비밀번호</strong>
-                  <input className={Classes.INPUT} placeholder="비밀번호" type="password" value={this.state.password} />
+                  <InputGroup placeholder="비밀번호" type="password" onChange={e => this.setState({ password: e.target.value})}  />
               </Label>
-              <Button className="bp3-fill"> 로그인 </Button><br/>
+              <Button large disabled={!this.SubmitPreventer()} className="bp3-fill"> 로그인 </Button><br/>
               <Link to="/register">회원가입</Link><br />
               <a href="/help">아이디/비밀번호 찾기</a> 
           </div>
@@ -42,6 +45,10 @@ class Login extends React.Component {
         </section>
       )
     }
+
+    SubmitPreventer = () => {
+      return this.state.username.length >= 2 && this.state.password.length >= 8
+  }
   }
   
   export default Login
