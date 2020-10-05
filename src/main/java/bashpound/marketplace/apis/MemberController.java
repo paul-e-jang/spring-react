@@ -15,11 +15,4 @@ public class MemberController {
 		this.memberService = memberService;
 	}
 	
-	@GetMapping("/getMember")
-	public Member getMember() {
-		Member member = memberService.loadUserByUsername(username);
-		return member;
-	
-	}
-
 }
