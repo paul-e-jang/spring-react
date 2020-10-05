@@ -1,5 +1,5 @@
 import React from 'react'
-import {Label, InputGroup,  Button} from "@blueprintjs/core"
+import {FormGroup, Label, InputGroup,  Button} from "@blueprintjs/core"
 import {Link} from 'react-router-dom'
 import '../css/form.scss'
 
@@ -22,10 +22,11 @@ class Login extends React.Component {
     render() {
       return (
         <section>
+          
           <div id="logo">
                     <img src={require('../assets/logo_white_h.svg')} alt="Logo"/>
           </div>
-          <form>
+          <FormGroup>
           <div className="bp3-card">
               <h1>로그인</h1>
               <Label>
@@ -41,7 +42,7 @@ class Login extends React.Component {
               <a href="/help">아이디/비밀번호 찾기</a> 
           </div>
           <div className="divider"><br /><br /><br /><br /></div>
-          </form>
+          </FormGroup>
         </section>
       )
     }
