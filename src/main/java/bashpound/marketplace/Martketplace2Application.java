@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = "bashpound.marketplace.infra.mapper")
+@MapperScan(basePackages = "bashpound.marketplace")
 public class Martketplace2Application {
 
 	public static void main(String[] args) {

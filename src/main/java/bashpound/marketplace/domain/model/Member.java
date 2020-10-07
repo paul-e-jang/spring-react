@@ -7,8 +7,6 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,7 +33,6 @@ public class Member extends AbstractBaseEntity {
 	@Column(name = "password")
 	private String password;
 	@Column(name = "gender", nullable = true)
-	@Enumerated(EnumType.STRING)
 	private Gender gender;
 	@Column(name = "birth", nullable = true)
 	private Date birth;
