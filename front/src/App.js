@@ -6,8 +6,8 @@ import Footer from './comp/Footer'
 import IntroRedux from './test/IntroRedux'
 import Main from './views/Main'
 import './App.css'
-
 import { Route } from 'react-router-dom'
+
 
 function App() {
   return (
@@ -21,5 +21,6 @@ function App() {
     </div>
   )
 }
+
 
 export default App

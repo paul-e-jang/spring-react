@@ -5,9 +5,14 @@
   margin-top: 20px;
 }
 
+
+.input-wrapper {
+  padding-bottom: 5px;
+}
+
 .bp3-card {
     width: 400px;
-    margin: 50px auto;
+    margin: 40px auto;
 
     h5 {
       color: crimson;
@@ -23,25 +28,6 @@ input {
     text-align: left;
 }
 
-.box:before,
-.box:after {
-  content: "";
-  position: absolute;
-  display: block;
-  left: -10px;
-  width: 1px;
-  height: 50%;
-}
-
-.box:before {
-  top: 0;
-  background: linear-gradient(to top, #333 0%, transparent 100%);
-}
-
-.box:after {
-  bottom: 0;
-  background: linear-gradient(to bottom, #333 0%, transparent 100%);
-}
 
 .divider {
 	background-image: radial-gradient(center center, 50% 50%, rgba(0,0,0,.1), transparent);
@@ -63,4 +49,11 @@ input {
 
 .no-val {
   display: none;
+}
+
+.center-fix {
+  margin-bottom: 5px;
+  padding: auto; 
+  justify-content: center;
+  vertical-align: middle;
 }

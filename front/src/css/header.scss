@@ -110,7 +110,12 @@ nav ul li a:hover {
 }
 
 .covid {
-    position:fixed;
+    position:relative;
+    float:right;
     right: 0;
     padding-right: 10px;
+}
+
+.upper-bar-right {
+    float: right;
 }

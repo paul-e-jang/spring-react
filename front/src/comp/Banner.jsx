@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+
 const banner = ({main, sub}) => {
     return (
         <div id="banner">

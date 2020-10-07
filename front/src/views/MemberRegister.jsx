@@ -20,14 +20,14 @@ export default class MemberRegister extends React.Component {
 
     render() {
         return (
-            <section id="login">
+            <section id="MemberRegister">
                 <div id="logo">
                     <img src={require('../assets/logo_white_h.svg')} alt="Logo"/>
                 </div>
                 <FormGroup>
                     <div className="bp3-card">
                         <h1>회원 가입</h1>
-                        <Label>
+                        <Label className="input-wrapper">
                             <strong>아이디</strong>
                             <InputGroup name="username" placeholder="영대/소문자/숫자 2~20자" intent={this.IntentParser(this.state.isUsernameValid)}
                             onChange={e => this.setState({ username: e.target.value, isUsernameValid: usernameRegex.test(e.target.value) ? 'valid' : 'invalid' })} />
@@ -35,7 +35,7 @@ export default class MemberRegister extends React.Component {
                                 <h5 className={`${this.state.isUsernameValid}`}>아이디는 영대/소문자 or 숫자 포함 2~20글자 입니다.</h5>
                             </Label>
                         </Label>
-                        <Label>
+                        <Label className="input-wrapper">
                             <strong>이메일</strong>
                             <InputGroup name="emailAddress" placeholder="Email" intent={this.IntentParser(this.state.isEmailAddressValid)}
                             onChange={e => this.setState({ emailAddress: e.target.value, isEmailAddressValid: emailRegex.test(e.target.value) ? 'valid' : 'invalid' })} />
@@ -43,7 +43,7 @@ export default class MemberRegister extends React.Component {
                                 <h5 className={`${this.state.isEmailAddressValid}`}>유효하지 않은 이메일 형식 입니다.</h5>
                             </Label>
                         </Label>
-                        <Label>
+                        <Label className="input-wrapper">
                             <strong>비밀번호</strong>
                             <InputGroup name="password" placeholder="대/소문자 ,숫자 특수문자 하나 이상 포함 8자 이상" type="password"
                             intent={this.IntentParser(this.state.isPasswordValid)}
@@ -53,7 +53,7 @@ export default class MemberRegister extends React.Component {
                             </Label>
                         </Label>
 
-                        <Label>
+                        <Label className="input-wrapper">
                             <strong>비밀번호 재입력</strong>
                             <InputGroup name="password2" placeholder="비밀번호 재입력" type="password" intent={this.IntentParser(this.state.isPassword2Valid)}
                             onChange={e => this.setState({ password2: e.target.value, isPassword2Valid: this.state.password === e.target.value ? 'valid' : 'invalid' })} />

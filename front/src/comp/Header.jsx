@@ -17,7 +17,7 @@ class Header extends React.Component {
               <img id="banner" src={require('../assets/logo_dark.svg')} alt="Logo" className="Logo" />
             </a>
             <input className="search-bar" type="text"></input>
-            <nav>
+            <nav className="upper-bar-right">
               <ul id="nav-menu-container">
                 <li>
                   <Link to="/login">
@@ -26,12 +26,12 @@ class Header extends React.Component {
                 </li>
                 <li>
                   <a href="/">
-                    <Banner main="Returns" sub="& Orders" />{' '}
+                    <Banner main="Returns" sub="& Orders" />
                   </a>
                 </li>
                 <li>
                   <a href="/">
-                    <Banner main="Cart" />{' '}
+                    <Banner main="Cart" />
                   </a>
                 </li>
               </ul>
@@ -39,7 +39,7 @@ class Header extends React.Component {
           </div>
           <div id="under-bar">
             <div className="under-banner">
-               <Link to="/"><Banner sub="Delivery to: Somewhere!" /></Link> 
+               <Link to="/"><Banner sub="Delivery to: Somewhere!"/></Link> 
             </div>
             <div className="under-banner">
                <Link to="/"><Banner main="Today's Deals" /></Link> 
@@ -50,7 +50,7 @@ class Header extends React.Component {
             <div className="under-banner">
             <Link to="/"><Banner main="Sell" /></Link> 
             </div>
-              <h3 class="under-banner covid">Our Response to COVID-19</h3>
+              <h3 className="under-banner covid">Our Response to COVID-19</h3>
           </div>
         </header>
       </>
