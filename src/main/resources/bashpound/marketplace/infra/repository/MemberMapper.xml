@@ -3,13 +3,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="bashpound.marketplace.infra.repository.MemberMapper">
+
+	<resultMap type="bashpound.marketplace.domain.model.Member" id="memberResult">
+		<id property="username" column="username" />
+		<result property="email" column="email" />
+		<result property="password" column="password" />
+		<result property="gender" column="gender"/>
+		<result property="birth" column="birth" javaType="Date" />
+		<result property="phone" column="phone" />
+		<result property="enrollDate" column="enrollDate" />
+		<result property="seller" column="is_seller" />
+		<result property="levels" column="levels" />
+		<result property="delFlag" column="delFlag" />
+		<result property="deleteDate" column="deleteDate" />
+		<result property="role" column="role" />
+	</resultMap>
 	
-	<select id="getNow" resultMap="String">
+	<select id="getNow" resultType="String" >
 		select sysdate from dual
 	</select>
 	
-	<select id="selectByUsername" resultType="bashpound.marketplace.domain.model.Member">
+	<select id="selectByUsername" resultMap="memberResult">
 		select * from member where username = #{username}
 	</select>
+	
+	<insert id="insert">
+		insert into member (
+		    username, email, password, gender, birth, phone, enrolldate
+		)values (
+		    'doli0413','doli0413@daum.net','doli0612@','0',sysdate, '010-2401-9435',sysdate
+		)
+	</insert>
 
 </mapper>

@@ -22,7 +22,20 @@ create TABLE member (
   deleteDate DATE,
   PRIMARY KEY (username),
 CONSTRAINT chk_gender CHECK (gender in ('MALE','FEMALE')));
+alter table member add role char(10) default 'ROLE_USER';
+ALTER TABLE member MODIFY(IS_SELLER number);
+ALTER TABLE member add (IS_SELLER number(1));
+ALTER TABLE member MODIFY(is_seller number(1) default 0);
+ALTER TABLE member DROP COLUMN delflag;
+ALTER TABLE member MODIFY(delflag number(1) default 0);
+ALTER TABLE member add (delflag number(1));
+insert into member values();
 
+insert into member (
+    username, email, password, gender, birth, phone, enrolldate
+)values (
+    'doli0413','doli0413@daum.net','doli0612@','MALE',sysdate, '010-2401-9435',sysdate
+);
 
 
 CREATE TABLE delivery (

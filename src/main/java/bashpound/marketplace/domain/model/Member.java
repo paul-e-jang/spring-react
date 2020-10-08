@@ -8,11 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import bashpound.marketplace.utils.Gender;
-
 public class Member {
-	
-	private Long id;
 	@NotBlank
 	private String username;
 	@Email
@@ -21,7 +17,7 @@ public class Member {
 	@Size(min = 8, max = 20)
 	@NotNull
 	private String password;
-	private Gender gender;
+	private String gender;
 	private Date birth;
 	@Pattern(regexp = "^\\d{3}-\\d{3,4}-\\d{4}$")
 	@NotNull
@@ -32,14 +28,6 @@ public class Member {
 	private boolean delFlag;
 	private String role;
 	private Date delDate;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getUsername() {
 		return username;
@@ -65,11 +53,11 @@ public class Member {
 		this.password = password;
 	}
 
-	public Gender getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(Gender gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
@@ -139,7 +127,7 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password
+		return "Member [  username=" + username + ", email=" + email + ", password=" + password
 				+ ", gender=" + gender + ", birth=" + birth + ", phone=" + phone + ", enrollDate=" + enrollDate
 				+ ", seller=" + seller + ", levels=" + levels + ", delFlag=" + delFlag + ", role=" + role + ", delDate="
 				+ delDate + "]";

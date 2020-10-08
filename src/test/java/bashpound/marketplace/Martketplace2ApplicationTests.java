@@ -9,13 +9,13 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import bashpound.marketplace.domain.model.Member;
 import bashpound.marketplace.infra.repository.MemberMapper;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT,classes = Martketplace2Application.class)
 @RunWith(SpringRunner.class)
-@Transactional
 class Martketplace2ApplicationTests {
 	
 	@Autowired
@@ -23,5 +23,19 @@ class Martketplace2ApplicationTests {
 	
 	@Test
 	public void testRepository() {
+		try {
+		Member member  = memberMapper.selectByUsername("doli0413");
+		System.out.println("================================\n"+member);
+		System.out.println("================================");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+//	@Test
+	public void testInsert() {
+		int result = memberMapper.insert();
+		System.out.println("================="+result);
+		
 	}
 }
