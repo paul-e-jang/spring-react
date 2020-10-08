@@ -1,100 +1,37 @@
 package bashpound.marketplace.domain.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import bashpound.marketplace.utils.Gender;
 
-@Entity
-@Table(name = "Member")
-public class Member extends AbstractBaseEntity {
-
-	private static final long serialVersionUID = -6918840496309520343L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+public class Member {
+	
 	private Long id;
-	@Column(name = "username", unique = true)
+	@NotBlank
 	private String username;
-	@Column(name = "email", nullable = true)
+	@Email
+	@NotNull
 	private String email;
-	@Column(name = "password")
+	@Size(min = 8, max = 20)
+	@NotNull
 	private String password;
-	@Column(name = "gender", nullable = true)
-	@Enumerated(EnumType.STRING)
 	private Gender gender;
-	@Column(name = "birth", nullable = true)
 	private Date birth;
-	@Column(name = "phone", nullable = true)
+	@Pattern(regexp = "^\\d{3}-\\d{3,4}-\\d{4}$")
+	@NotNull
 	private String phone;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "enrollDate", nullable = true)
 	private Date enrollDate;
-
-	@Column(name = "is_seller", nullable = true, columnDefinition = "number(1) default 0")
 	private boolean seller;
-	@Column(name = "levels", nullable = true, columnDefinition = "number(1) default 0")
 	private int levels;
-	@Column(name = "delFlag", nullable = true, columnDefinition = "number(1) default 0")
 	private boolean delFlag;
-	@Column(name = "role", columnDefinition = "char(10) default 'ROLE_USER'")
 	private String role;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "delDate", nullable = true)
 	private Date delDate;
-	@OneToMany(mappedBy = "seller")
-	private List<Product> products = new ArrayList<>();
-	@OneToMany(mappedBy = "member")
-	private List<Complain> complains = new ArrayList<>();
-	@OneToMany(mappedBy = "member")
-	private List<Purchase> purcahses = new ArrayList<>();
-	@OneToMany(mappedBy = "reviewer")
-	private List<Review> reviews = new ArrayList<>();
-	@OneToMany(mappedBy = "member")
-	private List<ShippingInfomartion> shippingInformations = new ArrayList<>();
-
-	@Override
-	public String toString() {
-		return "Member [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password
-				+ ", gender=" + gender + ", birth=" + birth + ", phone=" + phone + ", enrollDate=" + enrollDate
-				+ ", seller=" + seller + ", levels=" + levels + ", delFlag=" + delFlag + ", delDate=" + delDate
-				+ ", complains=" + complains + ", role=" + role + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Member other = (Member) obj;
-		if (id != other.id)
-			return false;
-		return true;
-	}
 
 	public Long getId() {
 		return id;
@@ -200,44 +137,12 @@ public class Member extends AbstractBaseEntity {
 		this.delDate = delDate;
 	}
 
-	public List<Product> getProducts() {
-		return products;
-	}
-
-	public void setProducts(List<Product> products) {
-		this.products = products;
-	}
-
-	public List<Complain> getComplains() {
-		return complains;
-	}
-
-	public void setComplains(List<Complain> complains) {
-		this.complains = complains;
-	}
-
-	public List<Purchase> getPurcahses() {
-		return purcahses;
-	}
-
-	public void setPurcahses(List<Purchase> purcahses) {
-		this.purcahses = purcahses;
-	}
-
-	public List<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
-	}
-
-	public List<ShippingInfomartion> getShippingInformations() {
-		return shippingInformations;
-	}
-
-	public void setShippingInformations(List<ShippingInfomartion> shippingInformations) {
-		this.shippingInformations = shippingInformations;
+	@Override
+	public String toString() {
+		return "Member [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password
+				+ ", gender=" + gender + ", birth=" + birth + ", phone=" + phone + ", enrollDate=" + enrollDate
+				+ ", seller=" + seller + ", levels=" + levels + ", delFlag=" + delFlag + ", role=" + role + ", delDate="
+				+ delDate + "]";
 	}
 
 }

@@ -1,34 +1,27 @@
 package bashpound.marketplace;
 
 
-import java.util.List;
-import java.util.Optional;
-
-import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import bashpound.marketplace.domain.model.Member;
-import bashpound.marketplace.infra.repository.MemberRepository;
+import bashpound.marketplace.infra.repository.MemberMapper;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@SpringBootTest
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT,classes = Martketplace2Application.class)
 @RunWith(SpringRunner.class)
 @Transactional
 class Martketplace2ApplicationTests {
 	
 	@Autowired
-	private MemberRepository memberRepository;
+	private MemberMapper memberMapper;
 	
 	@Test
 	public void testRepository() {
-		Optional<Member> member = memberRepository.findByUsername("doli0413");
-		System.out.println(member.get());
 	}
 }

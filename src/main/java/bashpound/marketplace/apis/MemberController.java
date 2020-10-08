@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import bashpound.marketplace.domain.model.mybatis.Member;
+
+import bashpound.marketplace.domain.model.Member;
 import bashpound.marketplace.services.member.MemberService;
 
 @Controller
@@ -33,7 +34,7 @@ public class MemberController {
 			errors.getFieldErrors().forEach(err -> System.out.println(err));
 			return null;
 		}
-		bashpound.marketplace.domain.model.mybatis.Member member = memberService.processRegister(memberDto);
+		Member member = memberService.processRegister(memberDto);
 		
 		
 		return null;

@@ -13,13 +13,10 @@ import org.springframework.stereotype.Service;
 
 import bashpound.marketplace.domain.model.Member;
 import bashpound.marketplace.domain.model.MemberDetails;
-import bashpound.marketplace.infra.mapper.MemberMapper;
-import bashpound.marketplace.infra.repository.MemberRepository;
+import bashpound.marketplace.infra.repository.MemberMapper;
 
 @Service
 public class MemberDetailsServiceImpl implements MemberService{
-	
-	private MemberRepository memberRepository;
 	
 	@Autowired
 	private MemberMapper memberMapper;
@@ -27,9 +24,8 @@ public class MemberDetailsServiceImpl implements MemberService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		Member member = memberRepository
-						.findByUsername(username)
-						.orElseThrow(() -> new UsernameNotFoundException("No user found with username: " + username));
+		Member member = memberMapper
+						.selectByUsername(username);
 		
 		List<GrantedAuthority> roles = new ArrayList<>();
 		roles.add(new SimpleGrantedAuthority(member.getRole()));
@@ -39,12 +35,13 @@ public class MemberDetailsServiceImpl implements MemberService{
 	}
 
 	@Override
-	public bashpound.marketplace.domain.model.mybatis.Member processRegister(
-			bashpound.marketplace.domain.model.mybatis.Member memberDto) {
-		bashpound.marketplace.domain.model.mybatis.Member member = memberMapper.selectByUsername(memberDto.getUsername());
-		System.out.println(member);
+	public Member processRegister(Member memberDto) {
+
+		System.err.println(memberDto);
 		return null;
 	}
+
+
 
 	
 

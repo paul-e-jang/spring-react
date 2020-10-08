@@ -7,8 +7,7 @@ import org.springframework.security.core.userdetails.User;
 
 public class MemberDetails extends User {
 
-
-	private static final long serialVersionUID = -6737031506498286571L;
+private static final long serialVersionUID = -6737031506498286571L;
 	
 	private Member member;
 
