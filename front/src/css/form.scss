@@ -6,6 +6,15 @@
 }
 
 
+#image-wrapper{
+  max-width: 400px;
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 .input-wrapper {
   padding-bottom: 5px;
 }
@@ -30,13 +39,8 @@ input {
 
 
 .divider {
-	background-image: radial-gradient(center center, 50% 50%, rgba(0,0,0,.1), transparent);
-	background-repeat: no-repeat;
-	background-position: 0 -10px;
-	background-size: 100% 20px;
-	border-top: 1px solid #dedede;
-	box-shadow: 0 -1px 0 0 white;
-	height: 20px;
+  background: rgb(223,223,223);
+  background: radial-gradient(circle, rgba(223,223,223,1) 0%, rgba(196,196,196,0) 100%);
 }
 
 .invalid {
@@ -49,11 +53,4 @@ input {
 
 .no-val {
   display: none;
-}
-
-.center-fix {
-  margin-bottom: 5px;
-  padding: auto; 
-  justify-content: center;
-  vertical-align: middle;
 }

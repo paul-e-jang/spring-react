@@ -2,6 +2,9 @@ import React from 'react'
 import {FormGroup, Label, InputGroup,  Button, Tooltip, Intent} from "@blueprintjs/core"
 import {Link} from 'react-router-dom'
 import '../css/form.scss'
+import eventBus from '../utils/eventBus'
+import AuthenticationService from '../services/authentication'
+import history from '../utils/history'
 
 interface LoginGroupState {
   username: string;
@@ -12,14 +15,12 @@ interface LoginGroupState {
 
 
 class Login extends React.PureComponent<LoginGroupState> {
-  
-  public state: LoginGroupState = {
-    username: '',
-    password: '',
-    showPassword: false,
-    disabled: false,
-  }
-
+    public state: LoginGroupState = {
+      username: '',
+      password: '',
+      showPassword: false,
+      disabled: false
+    }
     render() {
 
       const { showPassword, disabled } = this.state;
@@ -37,9 +38,9 @@ class Login extends React.PureComponent<LoginGroupState> {
     )
       return (
         
-        <section>
+        <section className="login-register">
           <div id="logo">
-                    <img src={require('../assets/logo_white_h.svg')} alt="Logo"/>
+              <Link to="/"><img src={require('../assets/logo_white_h.svg')} alt="Logo"/></Link>
           </div>
           <FormGroup>
           <div className="bp3-card">
@@ -59,14 +60,33 @@ class Login extends React.PureComponent<LoginGroupState> {
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({ password: e.target.value})}
                 />
               </Label>
-              <Button large id="login-button" disabled={!this.SubmitPreventer()} className="bp3-fill"> 로그인 </Button><br/>
+              <Button large id="login-button" onClick={this.handleAuthenticate} disabled={!this.SubmitPreventer()} className="bp3-fill"> 로그인 </Button><br/>
               <Link to="/register">회원가입</Link><br />
               <a href="/help">아이디/비밀번호 찾기</a> 
           </div>
-          <div className="divider"><br /><br /><br /><br /></div>
           </FormGroup>
         </section>
       )
+    }
+    
+    handleAuthenticate = () => {
+      const f = new FormData()
+      f.append('username', this.state.username)
+      f.append('password', this.state.password)
+      AuthenticationService.authenticate(f).then(() => {
+        alert('로그인 성공')
+        history.push('/')
+      }).catch((error) => {
+        alert(error.message)
+      })
+    }
+
+    componentDidMount = () => {
+      eventBus.dispatch('headerFooter', { message: false })
+    }
+
+    componentWillUnmount = () => {
+      eventBus.dispatch('headerFooter', { message: true })
     }
 
     SubmitPreventer = () => {

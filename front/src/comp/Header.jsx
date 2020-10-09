@@ -3,12 +3,22 @@ import NavigationDrawer from './UI/NavigationDrawer'
 import '../css/header.scss'
 import { Link } from 'react-router-dom'
 import Banner from './Banner'
+import eventBus from '../utils/eventBus'
 
 class Header extends React.Component {
+
+  constructor(props) {
+    super()
+    this.state = {
+      headerOn: true
+    }
+}
+
   render() {
+    const {headerOn} = this.state
+
     return (
-      <>
-        <header id="header">
+        <header id="header" className={headerOn? 'headerfooter-on': 'headerfooter-off'}>
           <div id="upper-bar">
             <div id="drawer">
               <NavigationDrawer />
@@ -53,7 +63,12 @@ class Header extends React.Component {
               <h3 className="under-banner covid">Our Response to COVID-19</h3>
           </div>
         </header>
-      </>
+    )
+  }
+
+  componentDidMount() {
+    eventBus.on("headerFooter", (data) =>
+      this.setState({ headerOn: data.message })
     )
   }
 }

@@ -1,6 +1,12 @@
 import React from 'react'
 import { Intent, InputGroup, FormGroup, Label, Button } from "@blueprintjs/core"
 import { usernameRegex, emailRegex, passwordRegex } from '../utils/regex'
+import eventBus from '../utils/eventBus'
+import { Link } from 'react-router-dom'
+import '../css/form.scss'
+import RegistrationService from '../services/RegistrationService'
+import history from '../utils/history'
+
 
 export default class MemberRegister extends React.Component {
 
@@ -20,9 +26,9 @@ export default class MemberRegister extends React.Component {
 
     render() {
         return (
-            <section id="MemberRegister">
+            <section id="member-register">
                 <div id="logo">
-                    <img src={require('../assets/logo_white_h.svg')} alt="Logo"/>
+                    <Link to="/"><img src={require('../assets/logo_white_h.svg')} alt="Logo"/></Link>
                 </div>
                 <FormGroup>
                     <div className="bp3-card">
@@ -61,9 +67,8 @@ export default class MemberRegister extends React.Component {
                                 <h5 className={`${this.state.isPassword2Valid}`}>비밀번호가 일치하지 않습니다.</h5>
                             </Label>
                         </Label>
-                        <Button large className="bp3-fill" id="register-button" disabled={!this.SubmitPreventer()}> 회원 가입 </Button>
+                        <Button large className="bp3-fill" id="register-button" onClick={this.handleRegister}disabled={!this.SubmitPreventer()}> 회원 가입 </Button>
                     </div>
-                    <div className="divider"><br /><br /><br /><br /></div>
                 </FormGroup>
             </section>
         )
@@ -89,4 +94,24 @@ export default class MemberRegister extends React.Component {
         this.state.isEmailAddressValid ==='valid'
     }
 
+    componentDidMount = () => {
+    eventBus.dispatch('headerFooter', { message: false })
+    }
+
+    componentWillUnmount = () => {
+    eventBus.dispatch('headerFooter', { message: true })
+    }
+
+    handleRegister = () => {
+        const f = new FormData()
+        f.append('username', this.state.username)
+        f.append('password', this.state.password)
+        f.append('emailAddress', this.state.emailAddress)
+        RegistrationService.MemberRegister(f).then(() => {
+          alert('등록 성공')
+          history.push('/')
+        }).catch((error) => {
+            alert('등록 실패'+error.message)
+        })
+      }
 }
