@@ -5,7 +5,7 @@ drop table member;
 drop table product;
 drop table purchase;
 drop table review;
-drop table shipping_infomartion;
+drop table shipping_information;
 
 
 create TABLE member (
@@ -13,22 +13,17 @@ create TABLE member (
   email VARCHAR(200) not NULL unique,
   password VARCHAR(200) not NULL,
   gender char(6), 
-  birth VARCHAR(300) NOT NULL,
+  birth Date not null,
   phone VARCHAR(200) NOT NULL,
   enrollDate DATE DEFAULT sysdate,
-  is_seller CHAR(10) default 'ROLE_USER',
+  is_seller number(1) default 0,
   levels number(1) default 0,
-  delFlag char(1) DEFAULT 'F',
+  delFlag number(1) DEFAULT 0,
+  role char(10) default 'ROLE_USER',
   deleteDate DATE,
   PRIMARY KEY (username),
-CONSTRAINT chk_gender CHECK (gender in ('MALE','FEMALE')));
-alter table member add role char(10) default 'ROLE_USER';
-ALTER TABLE member MODIFY(IS_SELLER number);
-ALTER TABLE member add (IS_SELLER number(1));
-ALTER TABLE member MODIFY(is_seller number(1) default 0);
-ALTER TABLE member DROP COLUMN delflag;
-ALTER TABLE member MODIFY(delflag number(1) default 0);
-ALTER TABLE member add (delflag number(1));
+  CONSTRAINT chk_gender CHECK (gender in ('MALE','FEMALE')));
+  
 insert into member values();
 
 insert into member (
@@ -94,6 +89,7 @@ CREATE TABLE product (
   stock number DEFAULT 0,
   price VARCHAR(1000) DEFAULT 0,
   options VARCHAR(200) NULL,
+  category varchar(255),
   PRIMARY KEY (ProdNumber),
   CONSTRAINT fk_member_product
     FOREIGN KEY (seller)
@@ -157,6 +153,6 @@ CREATE TABLE shipping_information (
   CONSTRAINT fk_shipping_information_member
     FOREIGN KEY (username)
     REFERENCES member (username));
-
-create index shipping_index_username on member(username);
-create index shipping_index_purchase on purchase(ORDERNUMBER);
+    
+create index shipping_index_username on shipping_information(username);
+create index shipping_index_purchase on shipping_information(ORDERNUMBER);

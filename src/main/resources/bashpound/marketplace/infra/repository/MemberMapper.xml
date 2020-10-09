@@ -9,7 +9,7 @@
 		<result property="email" column="email" />
 		<result property="password" column="password" />
 		<result property="gender" column="gender"/>
-		<result property="birth" column="birth" javaType="Date" />
+		<result property="birth" column="BIRTH" />
 		<result property="phone" column="phone" />
 		<result property="enrollDate" column="enrollDate" />
 		<result property="seller" column="is_seller" />
