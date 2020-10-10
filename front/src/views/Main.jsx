@@ -1,9 +1,8 @@
 import React from 'react'
-import { HTMLSelect, InputGroup, FormGroup, Label, Button, FileInput} from "@blueprintjs/core"
+import { NumericInput, HTMLSelect, InputGroup, FormGroup, Label, Button, FileInput} from "@blueprintjs/core"
 import { Link } from 'react-router-dom'
 import '../css/form.scss'
 import RegistrationService from '../services/RegistrationService'
-import history from '../utils/history'
 
 
 export default class MemberRegister extends React.Component {
@@ -46,11 +45,21 @@ export default class MemberRegister extends React.Component {
                         </Label>
                         <Label className="input-wrapper">
                             <strong>재고량</strong>
-                            <InputGroup name="username" placeholder="재고량" onChange={e => this.setState({ stock: e.target.value })} />
+                            <NumericInput
+                                allowNumericCharactersOnly
+                                fill
+                                onValueChange={this.handleStockChange}
+                                placeholder="재고를 입력하세요."
+                            />
                         </Label>
                         <Label className="input-wrapper">
                             <strong>가격</strong>
-                            <InputGroup name="username" placeholder="가격" onChange={e => this.setState({ price: e.target.value })}/>
+                            <NumericInput
+                                allowNumericCharactersOnly
+                                fill
+                                onValueChange={this.handlePriceChange}
+                                placeholder="가격을 입력하세요"
+                            />
                         </Label>
                         <Label className="input-wrapper">
                             <strong>카테고리</strong>
@@ -70,12 +79,22 @@ export default class MemberRegister extends React.Component {
                         price: {price}<br/>
                         category: {category}<br/>
                         
-                        <Button large className="bp3-fill" id="register-button"> 상품 등록 </Button>
+                        <Button large className="bp3-fill" id="register-button" onClick ={this.handleRegister}> 상품 등록 </Button>
                     </div>
                 </FormGroup>
             </section>
         )
     }
+
+    handlePriceChange = (_valueAsNumber, valueAsString) => {
+        this.setState({ price: valueAsString })
+    }
+    
+    handleStockChange = (_valueAsNumber, valueAsString) => {
+        this.setState({ stock: valueAsString })
+    }
+
+
 
     onChangeImages = (e) => {
         const file = e.target.files[0]
@@ -103,7 +122,6 @@ export default class MemberRegister extends React.Component {
         const json = JSON.stringify(Object.fromEntries(f))
         RegistrationService.productRegister(json).then(() => {
           alert('등록 성공')
-          history.push('/')
         }).catch((error) => {
           alert('등록 실패, 이유: '+error.message)
         })
