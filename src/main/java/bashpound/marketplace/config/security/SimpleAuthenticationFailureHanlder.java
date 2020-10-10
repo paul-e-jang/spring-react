@@ -16,6 +16,8 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import bashpound.marketplace.utils.Message;
+
 public class SimpleAuthenticationFailureHanlder implements AuthenticationFailureHandler{
 
 	@Override
@@ -34,7 +36,7 @@ public class SimpleAuthenticationFailureHanlder implements AuthenticationFailure
 			errorMessage = exception.getMessage();
 		}
 		ObjectMapper mapper = new ObjectMapper();
-		mapper.writeValue(response.getWriter(), errorMessage);
+		mapper.writeValue(response.getWriter(), new Message.Builder().message(errorMessage).build());
 	}
 
 }
