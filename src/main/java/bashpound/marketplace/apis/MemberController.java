@@ -1,5 +1,6 @@
 package bashpound.marketplace.apis;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.Valid;
