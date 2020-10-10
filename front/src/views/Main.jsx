@@ -100,7 +100,8 @@ export default class MemberRegister extends React.Component {
         f.append('price', this.state.price)
         f.append('category', this.state.category)
         f.append('username', this.state.username)
-        RegistrationService.productRegister(f).then(() => {
+        const json = JSON.stringify(Object.fromEntries(f))
+        RegistrationService.productRegister(json).then(() => {
           alert('등록 성공')
           history.push('/')
         }).catch((error) => {

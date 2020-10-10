@@ -10,8 +10,19 @@ import * as serviceWorker from './serviceWorker';
 import rootReducer from './modules';
 import 'normalize.css/normalize.css';
 import '@blueprintjs/core/lib/css/blueprint.css';
+import axios from 'axios'
 
 const store = createStore(rootReducer, composeWithDevTools())
+
+axios.defaults.baseURL = '/api'
+axios.defaults.headers.common.Accept = 'application/json'
+axios.defaults.headers.post['Content-Type'] = 'application/json'
+axios.interceptors.response.use(
+  response => response,
+  (error) => {
+    return Promise.reject(error)
+  }
+)
 
 ReactDOM.render(
     <Provider store = {store}>

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import '../css/form.scss'
 import eventBus from '../utils/eventBus'
 import AuthenticationService from '../services/authentication'
-import history from '../utils/history'
+import { RouteComponentProps } from 'react-router-dom'
 
 interface LoginGroupState {
   username: string;
@@ -15,6 +15,7 @@ interface LoginGroupState {
 
 
 class Login extends React.PureComponent<LoginGroupState> {
+
     public state: LoginGroupState = {
       username: '',
       password: '',
@@ -73,13 +74,16 @@ class Login extends React.PureComponent<LoginGroupState> {
       const f = new FormData()
       f.append('username', this.state.username)
       f.append('password', this.state.password)
-      AuthenticationService.authenticate(f).then(() => {
-        alert('로그인 성공')
-        history.push('/')
-      }).catch((error) => {
-        alert(error.message)
-      })
-    }
+      const json = JSON.stringify(Object.fromEntries(f))
+        AuthenticationService.authenticate(json).then((props:RouteComponentProps) => {
+          alert('로그인 성공')
+          props.history.push('/')
+        }).catch((error) => {
+          alert(error.message)
+        })
+      }
+
+      
 
     componentDidMount = () => {
       eventBus.dispatch('headerFooter', { message: false })
