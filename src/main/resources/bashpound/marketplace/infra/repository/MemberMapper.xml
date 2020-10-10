@@ -24,7 +24,13 @@
 	</select>
 	
 	<select id="selectByUsername" resultMap="memberResult">
-		select * from member where username = #{username}
+		select * from member where 
+		<if test='username.contains("@")'>
+		email = #{username}
+		</if>
+		<if test='!username.contains("@")'>
+		username = #{username}
+		</if>
 	</select>
 	
 	<insert id="insert">

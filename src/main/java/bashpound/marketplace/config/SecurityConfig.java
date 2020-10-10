@@ -23,7 +23,7 @@ import bashpound.marketplace.config.security.SimpleAuthenticationSuccessHandler;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-	
+	@Autowired
 	private UserDetailsService userDetailsService;
 	
 	  private static final String[] PUBLIC = new String[]{
@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		auth.authenticationProvider(ajaxAuthenticationProvider());
 	}
 */
-	  
+		  
 	    @Override
 		public AuthenticationManager authenticationManagerBean() throws Exception {
 			return super.authenticationManagerBean();

@@ -14,7 +14,9 @@ import bashpound.marketplace.domain.model.MemberDetails;
 
 public class AuthenticationProviderImpl implements AuthenticationProvider {
 	
+	@Autowired
 	private UserDetailsService userDetailsService;
+	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@Override
@@ -22,7 +24,6 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		String username = authentication.getName();
 		String password = (String)authentication.getCredentials();
-		
 		MemberDetails memberDetails = (MemberDetails)userDetailsService.loadUserByUsername(username);
 		
 		/*

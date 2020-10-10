@@ -25,6 +25,7 @@ public class MemberDetailsServiceImpl implements MemberService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
+		
 		Member member = memberMapper
 						.selectByUsername(username);
 		
