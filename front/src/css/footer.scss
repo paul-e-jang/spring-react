@@ -11,7 +11,14 @@ h5 {
 
 #back-to-top{
     background: $tc2;
-    padding: 10px;
+    padding: 20px;
+    color: white;
+    font-weight: 400;
+    &:hover{
+        background: $tc2;
+        box-shadow:inset 0 0 0 2000px rgba(117, 134, 172, 0.3);
+        cursor: pointer;
+    }
 }
 
 #about {
@@ -19,9 +26,33 @@ h5 {
     padding: 40px;
 }
 
-#sitemap {
+
+
+#footest {
     background: $tc4;
     padding: 30px;
+    color: white;
+    ul li {
+        display: inline-block;
+        list-style-type: none;
+        margin-right: 20px;
+        a{
+            color: white;
+        }
+
+        &:hover {
+            color: rgb(255, 255, 255);
+            text-shadow:1px 1px 10px #ffffff;
+            -moz-transition: all 0.2s ease-in;
+            -o-transition: all 0.2s ease-in;
+            -webkit-transition: all 0.2s ease-in;
+            transition: all 0.2s ease-in;
+        }
+    }
+
+    
+    
+    
 }
 
 #footer {

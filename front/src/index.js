@@ -9,7 +9,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import rootReducer from './modules';
 import 'normalize.css/normalize.css';
-import '@blueprintjs/core/lib/css/blueprint.css';
+import '@blueprintjs/core/lib/css/blueprint.css'
 import axios from 'axios'
 
 const store = createStore(rootReducer, composeWithDevTools())

@@ -1,8 +1,12 @@
+
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
 $tc1: #FF9C00;
 $tc2: #37475A;
 $tc3: #232F3E;
 $tc4: #131A22;
 $tc5: #131921;
+
 
 #logo {
   width: 250px;
@@ -19,10 +23,30 @@ $tc5: #131921;
   display: none;
 }
 
+
 section {
   background-color: white;
+  width:80%;
+  margin: auto;
+  img {
+    border:none;
+  }
 }
 
-#login-regiser {
-  border-bottom: 1px solid;
+
+main { 
+  background-color: #e9e9e9;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+footer {
+  width: 100%;
 }
