@@ -26,13 +26,10 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 		String password = (String)authentication.getCredentials();
 		MemberDetails memberDetails = (MemberDetails)userDetailsService.loadUserByUsername(username);
 		
-		/*
-		 * if(!passwordEncoder.matches(password, memberDetails.getPassword())) { throw
-		 * new BadCredentialsException("Invalid Password"); }
-		 */
-		if(!password.equals(memberDetails.getPassword())) {
-			throw new BadCredentialsException("Invalid Password");
-		}
+		
+		  if(!passwordEncoder.matches(password, memberDetails.getPassword())) {
+			  throw new BadCredentialsException("Invalid Password"+password); 
+		  }
 		
 		return new AuthenticationToken(memberDetails.getMember(), null, memberDetails.getAuthorities());
 	}

@@ -11,8 +11,8 @@ public class Member {
 	@NotBlank(message = "공백은 허용하지 않습니다.")
 	private String username;
 	@Email(message = "이메일 규격에 맞지 않습니다.")
-	private String email;
-	@Size(min = 8, max = 20,message = "암호는 8자에서 20자 사이입니다.")
+	private String emailAddress;
+	@Size(min = 8, max = 20, message = "암호는 8자에서 20자 사이입니다.")
 	@NotBlank(message = "공백은 허용하지 않습니다.")
 	private String password;
 	private String gender;
@@ -34,12 +34,12 @@ public class Member {
 		this.username = username;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 
 	public String getPassword() {
@@ -124,7 +124,7 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "Member [  username=" + username + ", email=" + email + ", password=" + password
+		return "Member [  username=" + username + ", emailAddress=" + emailAddress + ", password=" + password
 				+ ", gender=" + gender + ", birth=" + birth + ", phone=" + phone + ", enrollDate=" + enrollDate
 				+ ", seller=" + seller + ", levels=" + levels + ", delFlag=" + delFlag + ", role=" + role + ", delDate="
 				+ delDate + "]";

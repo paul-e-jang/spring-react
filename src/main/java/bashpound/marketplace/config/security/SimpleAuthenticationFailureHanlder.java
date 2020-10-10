@@ -27,9 +27,9 @@ public class SimpleAuthenticationFailureHanlder implements AuthenticationFailure
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 		
 		if(exception instanceof UsernameNotFoundException) {
-			errorMessage = "User Not Found";
+			errorMessage = exception.getMessage();
 		} else if(exception instanceof BadCredentialsException) {
-			errorMessage = "Bad Password";
+			errorMessage = exception.getMessage();
 		} else if(exception instanceof AuthenticationServiceException) {
 			errorMessage = exception.getMessage();
 		}

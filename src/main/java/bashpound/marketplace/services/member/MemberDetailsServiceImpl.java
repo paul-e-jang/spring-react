@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import bashpound.marketplace.domain.model.Delivery;
@@ -22,12 +23,19 @@ public class MemberDetailsServiceImpl implements MemberService{
 	@Autowired
 	private MemberMapper memberMapper;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		
 		Member member = memberMapper
 						.selectByUsername(username);
+		
+		if(member == null) {
+			throw new UsernameNotFoundException("User Not Found " +username);
+		}
 		
 		List<GrantedAuthority> roles = new ArrayList<>();
 		roles.add(new SimpleGrantedAuthority(member.getRole()));
@@ -44,6 +52,7 @@ public class MemberDetailsServiceImpl implements MemberService{
 			throw new DuplicateMemberException("이미 존재하는 이름 입니다. "+memberDto.getUsername());
 		}
 		// 계정 등록
+		memberDto.setPassword(passwordEncoder.encode(memberDto.getPassword()));
 		if(memberMapper.insert(memberDto) == 1) {
 			member = memberMapper.selectByUsername(memberDto.getUsername());
 		}
