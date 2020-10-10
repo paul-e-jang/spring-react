@@ -31,11 +31,4 @@ class Martketplace2ApplicationTests {
 			e.printStackTrace();
 		}
 	}
-	
-//	@Test
-	public void testInsert() {
-		int result = memberMapper.insert();
-		System.out.println("================="+result);
-		
-	}
 }
