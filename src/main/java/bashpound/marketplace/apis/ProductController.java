@@ -1,5 +1,6 @@
 package bashpound.marketplace.apis;
 
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
@@ -38,8 +39,8 @@ public class ProductController {
 		Product product = new Product();
 		product.setName((String)param.get("productName"));
 		product.setThumbNail((String)param.get("thumbImage"));
-		product.setStock((Integer)param.get("stock"));
-		product.setPrice((Integer)param.get("price"));
+		product.setStock(Integer.parseInt((String)param.get("stock")));
+		product.setPrice(Integer.parseInt((String)param.get("price")));
 		product.setCategory((String)param.get("category"));
 		Member member = ms.selectByUsername((String)param.get("username"));
 		System.out.println(product);
