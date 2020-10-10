@@ -26,6 +26,8 @@ public class SimpleAuthenticationSuccessHandler implements AuthenticationSuccess
 			Authentication authentication) throws IOException, ServletException {
 		Member member = (Member)authentication.getPrincipal();
 		
+		member.setPassword(null);
+		
 		response.setStatus(HttpStatus.OK.value());
 		
 		RequestCache requestCache = new HttpSessionRequestCache();

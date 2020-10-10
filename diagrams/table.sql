@@ -10,7 +10,7 @@ drop table shipping_information;
 
 create TABLE member (
   username VARCHAR(255) NOT NULL,
-  email VARCHAR(200) not NULL unique,
+  email VARCHAR(200) unique,
   password VARCHAR(200) not NULL,
   gender char(6) default 'NONE', 
   birth Date,
