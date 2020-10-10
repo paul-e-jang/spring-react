@@ -1,6 +1,7 @@
 package bashpound.marketplace.apis;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -11,9 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import bashpound.marketplace.domain.model.Member;
 import bashpound.marketplace.domain.model.Product;
+import bashpound.marketplace.services.member.MemberService;
 import bashpound.marketplace.services.product.ProductService;
 
 //김종찬 작성
@@ -21,12 +26,41 @@ import bashpound.marketplace.services.product.ProductService;
 @RequestMapping("/api")
 public class ProductController {
 	@Autowired
-	@Qualifier("productServiceImpl")
+	@Qualifier("productServiceImpl")	
 	ProductService ps;
 	
+	@Autowired
+	@Qualifier("memberDetailsServiceImpl")
+	MemberService ms;
+	
 	@RequestMapping(value = "/ProductRegister", method=RequestMethod.POST)
-	public void productRegister(@RequestBody Product product) {
+	public void productRegister(@RequestBody Map<String, Object> param) {
+		Product product = new Product();
+		product.setName((String)param.get("productName"));
+		product.setThumbNail((String)param.get("thumbImage"));
+		product.setStock((Integer)param.get("stock"));
+		product.setPrice((Integer)param.get("price"));
+		product.setCategory((String)param.get("category"));
+		Member member = ms.selectByUsername((String)param.get("username"));
+		System.out.println(product);
 		ps.productRegister(product);
+	}
+	
+	@RequestMapping(value = "/fileupload", method=RequestMethod.POST)
+	public void fileupload(MultipartFile file) {
+		String uploadFolder = "classpath:/upload";
+		File uploadPath = new File(uploadFolder, "$username/$product");
+		if (uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+		String fileName = file.getOriginalFilename();
+		try {
+			FileOutputStream fos = new FileOutputStream(new File(uploadPath, fileName));
+			fos.write(file.getBytes());
+			fos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping(value = "/listProductAll", method=RequestMethod.GET)
@@ -43,5 +77,4 @@ public class ProductController {
 	public Map<String, String> productDetail(@PathVariable Long productId) {
 		return ps.productDetail(productId);
 	}
-	
 }
