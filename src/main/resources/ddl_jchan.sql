@@ -8,32 +8,57 @@ drop table delivery;
 drop table member;
 drop table admin;
 
-create table admin (
-	admin_id 				number(19,0) not null,
-	admin_name 				varchar2(255),
-	levels 					varchar2(255),
-	name 					varchar2(255),
-	password 				varchar2(255),
-	role 					char(10) default 'ROLE_ADMIN',
-	primary key (admin_id)
+
+
+
+CREATE TABLE admin (
+  id CHAR(5) DEFAULT 'ADMIN',
+  password VARCHAR(300) NOT NULL,
+  name VARCHAR(200) NOT NULL,
+  levels number(1) default 5,
+  role CHAR(10) DEFAULT 'ROLE_ADMIN',
+  PRIMARY KEY (id));
+  
+
+
+create TABLE member (
+  username VARCHAR(255) NOT NULL,
+  email VARCHAR(200) not NULL unique,
+  password VARCHAR(200) not NULL,
+  gender char(6) default 'NONE', 
+  birth Date,
+  phone VARCHAR(200) ,
+  enrollDate DATE DEFAULT sysdate,
+  is_seller number(1) default 0,
+  levels number(1) default 0,
+  delFlag number(1) DEFAULT 0,
+  role char(10) default 'ROLE_USER',
+  deleteDate DATE,
+  PRIMARY KEY (username),
+  CONSTRAINT chk_gender CHECK (gender in ('MALE','FEMALE','NONE')));
+  
+insert into member values();
+
+insert into member (
+    username, email, password, gender, birth, phone, enrolldate
+)values (
+    'doli0413','doli0413@daum.net','doli0612@','MALE',sysdate, '010-2401-9435',sysdate
 );
 
-create table member (
-	member_id 				number(19,0) not null,
-	birth 					date,
-	delDate 				date,
-	delFlag 				number(1) default 0,
-	email 					varchar2(255),
-	enrolldate 				date,
-	gender 					number(10,0),
-	levels 					number(1) default 0,
-	password 				varchar2(255),
-	phone 					varchar2(255),
-	role 					char(10) default 'ROLE_USER',
-	is_seller 				number(1) default 0,
-	username 				varchar2(255),
-	primary key (member_id)
-);
+
+CREATE TABLE complain (
+	  complain_num number primary key,
+	  username VARCHAR(255) NOT NULL,
+	  subject VARCHAR(255) NULL,
+	  context VARCHAR(255) NULL,
+	  regDate DATE DEFAULT sysdate,
+	  answer VARCHAR(1000) NULL,
+	  ansDate DATE NULL,
+	  CONSTRAINT fk_member_complain
+		FOREIGN KEY (username)
+    REFERENCES member (username));
+    
+    CREATE INDEX complain_INDEX ON complain(username); 
 
 create table delivery (
 	delivery_id				number(19,0) not null,
@@ -46,16 +71,6 @@ create table delivery (
 	primary key (delivery_id)
 );
 
-create table complain (
-	complain_id				number(19,0) not null,
-	ans_date 				date,
-	answer 					varchar2(255),
-	context 				varchar2(255),
-	reg_date 				date,
-	subject 				varchar2(255),
-	member_username 		number(19,0),
-	primary key (complain_id)
-);
 
 create table product (
 	prod_id					number(19,0) not null,
