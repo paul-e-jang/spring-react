@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	private UserDetailsService userDetailsService;
 	
 	  private static final String[] PUBLIC = new String[]{
-		  "/", "/error", "/login", "/api/logout", "/register", "/test", "/api/registrations", "/api/writeReply", "/api/default/articles",
+		  "/", "/error",  "/login", "/api/logout", "/register", "/test", "/api/registrations", "/api/writeReply", "/api/default/articles",
 		  "/api/MemberRegister"};
 /*	  
 	@Override

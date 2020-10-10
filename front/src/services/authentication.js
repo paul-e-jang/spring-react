@@ -9,7 +9,7 @@ export default {
    */
   authenticate (detail) {
     return new Promise((resolve, reject) => {
-      axios.post('/login', detail).then(({ data }) => {
+      axios.post('/api/login', detail).then(({ data }) => {
         resolve(data)
         console.log(data)
       }).catch((error) => {
