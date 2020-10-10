@@ -1,6 +1,6 @@
 package bashpound.marketplace.apis;
 
-import java.util.Optional;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -11,8 +11,10 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import bashpound.marketplace.domain.model.Delivery;
 import bashpound.marketplace.domain.model.Member;
 import bashpound.marketplace.services.member.MemberService;
 
@@ -38,6 +40,30 @@ public class MemberController {
 		
 		
 		return null;
+	}
+	
+	//김종찬 추가
+	@RequestMapping("/api/getMember")
+	@ResponseBody
+	public Member selectByUsername(@RequestParam("username") String username) {
+		System.out.println(username);
+		return memberService.selectByUsername(username);
+	}
+	
+	//김종찬 추가
+	@RequestMapping(value="/api/delivery", method=RequestMethod.POST)
+	@ResponseBody
+	public void regDelivery(@RequestBody Map<String, Object> param) {
+		Member member = memberService.selectByUsername((String)param.get("username"));
+		Delivery delivery = new Delivery();
+		delivery.setMember(member);
+		delivery.setZipcode((String)param.get("zipcode"));
+		delivery.setNameOfDelivery((String)param.get("name_of_delivery"));
+		delivery.setAddress1((String)param.get("address1"));
+		delivery.setAddress2((String)param.get("address2"));
+		delivery.setMainAddress((boolean)param.get("is_main_address"));
+		System.out.println(delivery);
+		memberService.regDelivery(delivery);
 	}
 	
 }
