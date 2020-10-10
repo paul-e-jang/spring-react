@@ -10,6 +10,7 @@ public interface MemberMapper {
 	
 	public String getNow();
 	
+
 	public int insert();
 
 	public void regDelivery(Delivery delivery);

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import bashpound.marketplace.domain.model.Delivery;
 import bashpound.marketplace.domain.model.Member;
 import bashpound.marketplace.services.member.MemberService;
+import bashpound.marketplace.utils.Message;
 
 @Controller
 public class MemberController {
@@ -33,13 +35,25 @@ public class MemberController {
 		System.out.println(memberDto);
 		
 		if(errors.hasErrors()) {
-			errors.getFieldErrors().forEach(err -> System.out.println(err));
-			return null;
+			Map<String,String> errMap = new HashMap<>();
+			 errors.getAllErrors().stream().forEach(err -> {
+				 String errArr =  err.getCodes()[0]; 
+				 String msg =errArr.substring(errArr.lastIndexOf(".")+1,errArr.length());
+				 System.out.println(msg + "/ "+ err.getDefaultMessage());
+				 errMap.put(msg, err.getDefaultMessage());
+			 });
+			return new ResponseEntity<Map>(errMap,HttpStatus.BAD_REQUEST);
 		}
-		Member member = memberService.processRegister(memberDto);
+		Member member;
+		try {
+		member = memberService.processRegister(memberDto);
+		}catch(Exception e) {
+			Message message = new Message.Builder(e.getMessage()).build();
+			return new ResponseEntity<Message>(message,HttpStatus.CONFLICT);
+		}
 		
 		
-		return null;
+		return new ResponseEntity<Member>(member,HttpStatus.OK);
 	}
 	
 	//김종찬 추가

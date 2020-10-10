@@ -29,9 +29,9 @@
 	
 	<insert id="insert">
 		insert into member (
-		    username, email, password, gender, birth, phone, enrolldate
+		    username, email, password
 		)values (
-		    'doli0413','doli0413@daum.net','doli0612@','0',sysdate, '010-2401-9435',sysdate
+		    #{member.username}, #{member.email}, #{member.password}
 		)
 	</insert>
 	

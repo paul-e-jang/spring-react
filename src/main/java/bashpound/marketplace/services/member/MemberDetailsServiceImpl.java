@@ -14,6 +14,7 @@ import bashpound.marketplace.domain.model.Delivery;
 import bashpound.marketplace.domain.model.Member;
 import bashpound.marketplace.domain.model.MemberDetails;
 import bashpound.marketplace.infra.repository.MemberMapper;
+import bashpound.marketplace.services.member.exception.DuplicateMemberException;
 
 @Service
 public class MemberDetailsServiceImpl implements MemberService{
@@ -37,8 +38,15 @@ public class MemberDetailsServiceImpl implements MemberService{
 	@Override
 	public Member processRegister(Member memberDto) {
 
-		System.err.println(memberDto);
-		return null;
+		Member member = memberMapper.selectByUsername(memberDto.getUsername());
+		if(member != null) {
+			throw new DuplicateMemberException("이미 존재하는 이름 입니다. "+memberDto.getUsername());
+		}
+		// 계정 등록
+		if(memberMapper.insert(memberDto) == 1) {
+			member = memberMapper.selectByUsername(memberDto.getUsername());
+		}
+		return member;
 	}
 	
 	@Override

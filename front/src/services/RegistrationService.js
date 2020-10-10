@@ -8,7 +8,7 @@ export default {
    */
   MemberRegister (detail) {
     return new Promise((resolve, reject) => {
-      axios.post('/api/MemberRegister', detail).then(({ data }) => {
+      axios.post('/MemberRegister', detail).then(({ data }) => {
         resolve(data)
       }).catch((error) => {
         reject(errorParser.parse(error))
@@ -18,7 +18,7 @@ export default {
 
   productRegister (detail) {
     return new Promise((resolve, reject) => {
-      axios.post('/api/ProductRegister', detail).then(({ data }) => {
+      axios.post('/ProductRegister', detail).then(({ data }) => {
         resolve(data)
       }).catch((error) => {
         reject(errorParser.parse(error))

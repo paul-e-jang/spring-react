@@ -12,9 +12,9 @@ create TABLE member (
   username VARCHAR(255) NOT NULL,
   email VARCHAR(200) not NULL unique,
   password VARCHAR(200) not NULL,
-  gender char(6), 
-  birth Date not null,
-  phone VARCHAR(200) NOT NULL,
+  gender char(6) default 'NONE', 
+  birth Date,
+  phone VARCHAR(200) ,
   enrollDate DATE DEFAULT sysdate,
   is_seller number(1) default 0,
   levels number(1) default 0,
@@ -22,7 +22,7 @@ create TABLE member (
   role char(10) default 'ROLE_USER',
   deleteDate DATE,
   PRIMARY KEY (username),
-  CONSTRAINT chk_gender CHECK (gender in ('MALE','FEMALE')));
+  CONSTRAINT chk_gender CHECK (gender in ('MALE','FEMALE','NONE')));
   
 insert into member values();
 
