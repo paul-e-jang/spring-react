@@ -1,16 +1,20 @@
 package bashpound.marketplace.apis;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import bashpound.marketplace.domain.model.Product;
 import bashpound.marketplace.services.product.ProductService;
@@ -24,8 +28,25 @@ public class ProductController {
 	ProductService ps;
 	
 	@RequestMapping(value = "/ProductRegister", method=RequestMethod.POST)
-	public void productRegister(Product product) {
+	public void productRegister(@RequestBody Product product) {
 		ps.productRegister(product);
+	}
+	
+	@RequestMapping(value = "/fileupload", method=RequestMethod.POST)
+	public void fileupload(MultipartFile file) {
+		String uploadFolder = "classpath:/upload";
+		File uploadPath = new File(uploadFolder, "$username/$product");
+		if (uploadPath.exists() == false) {
+			uploadPath.mkdirs();
+		}
+		String fileName = file.getOriginalFilename();
+		try {
+			FileOutputStream fos = new FileOutputStream(new File(uploadPath, fileName));
+			fos.write(file.getBytes());
+			fos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping(value = "/listProductAll", method=RequestMethod.GET)

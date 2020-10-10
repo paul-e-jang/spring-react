@@ -3,7 +3,7 @@ package bashpound.marketplace.domain.model;
 import java.util.Objects;
 
 //김종찬 작성
-public class ProductPurchase {
+public class MapPurchaseProd {
 	private Long id;
 	private Long product_id;
 	private Long purchases_id;
@@ -24,9 +24,9 @@ public class ProductPurchase {
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
-		if (!(o instanceof ProductPurchase))
+		if (!(o instanceof MapPurchaseProd))
 			return false;
-		ProductPurchase o1 = (ProductPurchase) o;
+		MapPurchaseProd o1 = (MapPurchaseProd) o;
 		return Objects.equals(id, o1.id);
 	}
 
