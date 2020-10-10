@@ -26,11 +26,7 @@
 	<select id="selectByUsername" resultMap="memberResult">
 		select * from member where 
 		<if test='username.contains("@")'>
-
-		EMAIL_ADDRESS = #{username}
-
 		email_address = #{username}
-
 		</if>
 		<if test='!username.contains("@")'>
 		username = #{username}
@@ -39,9 +35,7 @@
 	
 	<insert id="insert">
 		insert into member (
-
-		    username, EMAIL_ADDRESS, password
-
+		    username, email_address, password
 		)values (
 		    #{member.username}, #{member.emailAddress}, #{member.password}
 		)
