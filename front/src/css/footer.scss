@@ -14,10 +14,13 @@ h5 {
     padding: 20px;
     color: white;
     font-weight: 400;
+    transition: 0.4s ease-in-out;
+
     &:hover{
         background: $tc2;
         box-shadow:inset 0 0 0 2000px rgba(117, 134, 172, 0.3);
         cursor: pointer;
+        transition: 0.4s ease-in-out;
     }
 }
 
