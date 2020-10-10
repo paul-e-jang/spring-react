@@ -4,23 +4,21 @@ import java.util.Date;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class Member {
-	@NotBlank
+	@NotBlank(message = "공백은 허용하지 않습니다.")
 	private String username;
-	@Email
-	@NotNull
+	@Email(message = "이메일 규격에 맞지 않습니다.")
+	@NotBlank(message = "공백은 허용하지 않습니다.")
 	private String email;
-	@Size(min = 8, max = 20)
-	@NotNull
+	@Size(min = 8, max = 20,message = "암호는 8자에서 20자 사이입니다.")
+	@NotBlank(message = "공백은 허용하지 않습니다.")
 	private String password;
 	private String gender;
 	private Date birth;
 	@Pattern(regexp = "^\\d{3}-\\d{3,4}-\\d{4}$")
-	@NotNull
 	private String phone;
 	private Date enrollDate;
 	private boolean seller;

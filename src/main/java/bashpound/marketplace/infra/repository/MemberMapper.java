@@ -9,5 +9,5 @@ public interface MemberMapper {
 	
 	public String getNow();
 	
-	public int insert();
+	public int insert(@Param("member")Member memberDto);
 }
