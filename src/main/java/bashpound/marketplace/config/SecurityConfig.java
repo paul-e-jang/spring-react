@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	  private static final String[] PUBLIC = new String[]{
 		  "/", "/error",  "/login", "/api/logout", "/register", "/test", "/api/registrations", "/api/writeReply", "/api/default/articles",
-		  "/api/MemberRegister"};
+		  "/api/MemberRegister", "api/login"};
 /*	  
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

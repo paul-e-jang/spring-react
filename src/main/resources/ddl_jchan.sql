@@ -23,7 +23,7 @@ CREATE TABLE admin (
 
 create TABLE member (
   username VARCHAR(255) NOT NULL,
-  email VARCHAR(200) not NULL unique,
+  emailAddress VARCHAR(200) not NULL unique,
   password VARCHAR(200) not NULL,
   gender char(6) default 'NONE', 
   birth Date,

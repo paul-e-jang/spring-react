@@ -6,9 +6,7 @@
 
 	<resultMap type="bashpound.marketplace.domain.model.Member" id="memberResult">
 		<id property="username" column="username" />
-		<result property="emailAddress" column="EMAIL_ADDRESS" />
 		<result property="emailAddress" column="email_address" />
-
 		<result property="password" column="password" />
 		<result property="gender" column="gender"/>
 		<result property="birth" column="BIRTH" />

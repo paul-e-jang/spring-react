@@ -79,7 +79,7 @@ class Login extends React.PureComponent<LoginGroupState> {
           alert('로그인 성공')
           props.history.push('/')
         }).catch((error) => {
-          alert('로그인 실패, 이유: error.message')
+          alert('로그인 실패, 이유: '+error.message)
         })
       }
 

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import errorParser from '@/utils/error-parser'
 
+export default {
 fileUpload (detail) {
     return new Promise((resolve, reject) => {
       axios({
@@ -19,4 +20,4 @@ fileUpload (detail) {
     })
 }
 
-export default fileUpload
+}
