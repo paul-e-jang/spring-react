@@ -16,6 +16,6 @@ public interface MemberService extends UserDetailsService {
 	
 	void regDelivery(Delivery delivery);
 
-	int processSellerUpdate(AuthenticationToken authenticationToken);
+	boolean processSellerUpdate(AuthenticationToken authenticationToken);
 
 }
