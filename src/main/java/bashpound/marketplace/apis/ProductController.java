@@ -42,4 +42,5 @@ public class ProductController {
 	public Map<String, String> productDetail(@PathVariable Long productId) {
 		return ps.productDetail(productId);
 	}
+	
 }

@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import bashpound.marketplace.config.security.AuthenticationToken;
 import bashpound.marketplace.domain.model.Delivery;
 import bashpound.marketplace.domain.model.Member;
 import bashpound.marketplace.services.member.MemberService;
@@ -33,7 +35,6 @@ public class MemberController {
 	@RequestMapping(value = "/api/MemberRegister", method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE )
 	@ResponseBody
 	public ResponseEntity Register(@Valid @RequestBody Member memberDto, Errors errors) {
-		System.out.println(memberDto);
 		
 		if(errors.hasErrors()) {
 			Map<String,String> errMap = new HashMap<>();
@@ -55,6 +56,17 @@ public class MemberController {
 		
 		
 		return new ResponseEntity<Member>(member,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/api/registerSeller", method = RequestMethod.POST )
+	public ResponseEntity registerSeller() {
+		AuthenticationToken authenticationToken = (AuthenticationToken)SecurityContextHolder.getContext().getAuthentication();
+		if(authenticationToken == null) {
+			
+		}
+		System.out.println(authenticationToken);// 인증 정보 나오는지 확인
+		int result = memberService.processSellerUpdate(authenticationToken);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	//김종찬 추가
