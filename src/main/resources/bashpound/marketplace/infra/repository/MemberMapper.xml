@@ -6,7 +6,7 @@
 
 	<resultMap type="bashpound.marketplace.domain.model.Member" id="memberResult">
 		<id property="username" column="username" />
-		<result property="email" column="email" />
+		<result property="emailAddress" column="EMAIL_ADDRESS" />
 		<result property="password" column="password" />
 		<result property="gender" column="gender"/>
 		<result property="birth" column="BIRTH" />
@@ -26,7 +26,7 @@
 	<select id="selectByUsername" resultMap="memberResult">
 		select * from member where 
 		<if test='username.contains("@")'>
-		email = #{username}
+		EMAIL_ADDRESS = #{username}
 		</if>
 		<if test='!username.contains("@")'>
 		username = #{username}
@@ -35,11 +35,15 @@
 	
 	<insert id="insert">
 		insert into member (
-		    username, email, password
+		    username, EMAIL_ADDRESS, password
 		)values (
-		    #{member.username}, #{member.email}, #{member.password}
+		    #{member.username}, #{member.emailAddress}, #{member.password}
 		)
 	</insert>
+	
+	<update id="update">
+		update member set is_seller = 1 where username = #{username}
+	</update>
 	
 	<!-- 김종찬 작성 -->
 	<insert id="regDelivery" parameterType="delivery">

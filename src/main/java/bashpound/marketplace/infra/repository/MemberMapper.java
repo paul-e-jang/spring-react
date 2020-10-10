@@ -9,9 +9,10 @@ public interface MemberMapper {
 	public Member selectByUsername(@Param("username") String username);
 	
 	public String getNow();
-	
 
 	public int insert(@Param("member")Member member);
+	
+	public int update(@Param("username") String username);
 
 	public void regDelivery(Delivery delivery);
 }

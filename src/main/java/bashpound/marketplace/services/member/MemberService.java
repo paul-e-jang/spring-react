@@ -3,6 +3,7 @@ package bashpound.marketplace.services.member;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import bashpound.marketplace.config.security.AuthenticationToken;
 import bashpound.marketplace.domain.model.Delivery;
 import bashpound.marketplace.domain.model.Member;
 
@@ -14,5 +15,7 @@ public interface MemberService extends UserDetailsService {
 	Member selectByUsername(String username);
 	
 	void regDelivery(Delivery delivery);
+
+	int processSellerUpdate(AuthenticationToken authenticationToken);
 
 }

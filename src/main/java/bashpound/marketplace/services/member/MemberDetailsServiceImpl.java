@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import bashpound.marketplace.config.security.AuthenticationToken;
 import bashpound.marketplace.domain.model.Delivery;
 import bashpound.marketplace.domain.model.Member;
 import bashpound.marketplace.domain.model.MemberDetails;
@@ -67,5 +68,11 @@ public class MemberDetailsServiceImpl implements MemberService{
 	@Override
 	public void regDelivery(Delivery delivery) {
 		memberMapper.regDelivery(delivery);
+	}
+
+	@Override
+	public int processSellerUpdate(AuthenticationToken authenticationToken) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
