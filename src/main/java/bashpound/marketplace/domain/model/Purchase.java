@@ -13,7 +13,7 @@ public class Purchase {
 	private Product product;
 	private Date purchaseDate;
 	private boolean arrive;
-	private List<MapPurchaseProd> products;
+	private List<ProductPurchase> products;
 	private ShippingInfomartion shippingInformations;
 
 	@Override
@@ -84,11 +84,11 @@ public class Purchase {
 		this.arrive = arrive;
 	}
 
-	public List<MapPurchaseProd> getProducts() {
+	public List<ProductPurchase> getProducts() {
 		return products;
 	}
 
-	public void setProducts(List<MapPurchaseProd> products) {
+	public void setProducts(List<ProductPurchase> products) {
 		this.products = products;
 	}
 
