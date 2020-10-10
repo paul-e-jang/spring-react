@@ -11,7 +11,6 @@ public class Member {
 	@NotBlank(message = "공백은 허용하지 않습니다.")
 	private String username;
 	@Email(message = "이메일 규격에 맞지 않습니다.")
-	@NotBlank(message = "공백은 허용하지 않습니다.")
 	private String email;
 	@Size(min = 8, max = 20,message = "암호는 8자에서 20자 사이입니다.")
 	@NotBlank(message = "공백은 허용하지 않습니다.")
