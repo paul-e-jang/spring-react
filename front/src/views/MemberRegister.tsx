@@ -121,7 +121,7 @@ class MemberRegister extends React.PureComponent<RegisterGroupState> {
           alert('등록 성공')
           props.history.replace('/')
         }).catch((error) => {
-            alert('등록 실패'+error.message)
+            alert('등록 실패, 이유: '+error.message)
         })
       }
 }
