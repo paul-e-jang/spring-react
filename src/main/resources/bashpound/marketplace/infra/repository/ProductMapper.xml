@@ -6,47 +6,48 @@
 	<resultMap id="productResultMap" type="bashpound.marketplace.domain.model.Product">
 		<id property="id" column="prod_id"/>
 		<result property="prodNumber" column="prod_number"/>
-		<result property="name" column="name"/>
-		<result property="thumbNail" column="thumb_nail"/>
+		<result property="name" column="prod_name"/>
+		<result property="thumbNail" column="prod_thumb_nail"/>
 		<result property="regDate" column="prod_reg_date"/>
 		<result property="stock" column="stock"/>
 		<result property="price" column="price"/>
 		<result property="options" column="options"/>
+		<result property="category" column="category"/>
 		<association property="seller" javaType="bashpound.marketplace.domain.model.Member"/>
-		<collection property="purchases" resultMap="prodPurchaseResultMap">
+		<collection property="purchases" resultMap="mPurchaseProdResultMap">
 		</collection>
 		<collection property="reviews" resultMap="reviewResultMap">
 		</collection>
 	</resultMap>
-	<resultMap id="prodPurchaseResultMap" type="bashpound.marketplace.domain.model.ProductPurchase" >
-		<id property="id" column="prod_purchase_id"/>
-		<result property="productId" column="product_id"/>
-		<result property="purchasesId" column="purchases_id"/>
+	<resultMap id="mPurchaseProdResultMap" type="bashpound.marketplace.domain.model.MapPurchaseProd" >
+		<id property="id" column="mpp_id"/>
+		<result property="productId" column="mpp_product_id"/>
+		<result property="purchasesId" column="mpp_purchases_id"/>
 		<result property="quantity" column="quantity"/>
 	</resultMap>
 	<resultMap id="reviewResultMap" type="bashpound.marketplace.domain.model.Review" >
-		<id property="id" column="id"/>
-		<result property="content" column="content"/>
+		<id property="id" column="review_id"/>
+		<result property="content" column="review_content"/>
 		<result property="regDate" column="review_reg_date"/>
 		<result property="score" column="score"/>
-		<result property="thumbNail" column="thumb_nail"/>
+		<result property="thumbNail" column="review_thumb_nail"/>
 	</resultMap>
 	
 	<insert id="productRegister" parameterType="product">
 		<selectKey keyProperty="id" order="BEFORE" resultType="long">
 			select nvl(max(prod_id), 0) + 1 from product
 		</selectKey>
-		insert into product (prod_id, prod_number, name, options, price, prod_reg_date, stock, thumb_nail, member_id, category)
+		insert into product (prod_id, prod_number, prod_name, options, price, prod_reg_date, stock, prod_thumb_nail, member_id, category)
 		 values (#{id}, #{prodNumber}, #{name}, #{options}, #{price, jdbcType=VARCHAR}, sysdate, #{stock, jdbcType=VARCHAR},
 		  #{thumbNail, jdbcType=VARCHAR}, #{seller.memberId, jdbcType=VARCHAR}, #{category, jdbcType=VARCHAR})
 	</insert>
-	
+
 	<select id="listProductAll" resultMap="productResultMap">
 		select * from product
 	</select>
 	
 	<select id="searchProduct" parameterType="string" resultMap="productResultMap">
-		select * from product where concat(name, options) like '%' || #{key} || '%'
+		select * from product where concat(prod_name, options) like '%' || #{key} || '%'
 	</select>
 	
 	<select id="productDetail" parameterType="long" resultType="map">

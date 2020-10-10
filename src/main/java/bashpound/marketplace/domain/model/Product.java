@@ -1,6 +1,5 @@
 package bashpound.marketplace.domain.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +16,7 @@ public class Product {
 	private String price;
 	private String options;
 	private String category;
-	private List<ProductPurchase> purchases;
+	private List<MapPurchaseProd> purchases;
 	private List<Review> reviews;
 
 	@Override
@@ -122,11 +121,11 @@ public class Product {
 		this.category = category;
 	}
 
-	public List<ProductPurchase> getPurchases() {
+	public List<MapPurchaseProd> getPurchases() {
 		return purchases;
 	}
 
-	public void setPurchases(List<ProductPurchase> purchases) {
+	public void setPurchases(List<MapPurchaseProd> purchases) {
 		this.purchases = purchases;
 	}
 
