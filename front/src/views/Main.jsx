@@ -2,6 +2,7 @@ import React from 'react'
 import ProductRegister from '../comp/ProductRegister'
 import Carousel from '../comp/Carousel'
 import '../css/base.scss'
+import Curation from '../comp/Curation'
 
 class Main extends React.Component {
     constructor(props) {
@@ -16,6 +17,7 @@ class Main extends React.Component {
       return (
         <>
         <Carousel />
+        <Curation />
         <ProductRegister />
         </>
       )

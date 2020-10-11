@@ -1,21 +1,90 @@
 @import 'base.scss';
 
+$clr-light: #e0e4fb !default;
+$clr-base: #465798 !default;
+$clr-accent: darkred !default;
+
+$transition-time: 0.4s !default;
+
+$play-btn-color: $clr-base !default;
+$play-btn-size: 32px !default;
+
+#curation {
+  position: relative;
+
+  .item {
+    min-height: 300px;
+    background-color: rgb(121, 177, 177);
+    border: solid 1px;
+  }
+  .alice-carousel__prev-btn,
+  .alice-carousel__next-btn {
+    display: inline-block;
+
+    box-sizing: border-box;
+    width: 50%;
+    padding: 10px 5px;
+
+    [data-area] {
+      &::after {
+        position: relative;
+
+        content: attr(data-area);
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .alice-carousel__prev-btn {
+    text-align: left;
+    vertical-align: middle;
+    position: absolute;
+    top: 40%;
+    font-size: xx-large;
+  }
+
+  .alice-carousel__next-btn {
+    text-align: right;
+    vertical-align: middle;
+    position: absolute;
+    font-size: xx-large;
+    top: 40%;
+    right: 0;
+  }
+
+  .alice-carousel__prev-btn-item,
+  .alice-carousel__next-btn-item {
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0;
+
+    color: $clr-base;
+    &:hover {
+      color: $clr-accent;
+    }
+    &.__inactive {
+      opacity: 0.4;
+    }
+  }
+}
+
 #carousel {
   z-index: 0;
   position: relative;
   margin-bottom: 10vh;
   min-height: 400px;
-  .image-gallery-left-nav, .image-gallery-right-nav {
+  .image-gallery-left-nav,
+  .image-gallery-right-nav {
     top: 18vh;
   }
 
   #carousel-items-wrapper {
-      position: absolute;
-      bottom: 10px;
-      width: 100%;
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
 
     #carousel-items {
-      
       display: flex;
       z-index: 1;
       position: relative;
@@ -42,7 +111,7 @@
         margin-bottom: 10px;
         text-align: center;
         img {
-          display:block;
+          display: block;
           transition: 0.3s ease-in-out;
           width: 100%;
 
@@ -52,15 +121,14 @@
           }
         }
       }
-      .button-wrapper{
+      .button-wrapper {
         width: 100%;
       }
     }
   }
 }
 
-
-.display-on{
+.display-on {
   display: flex;
 }
 
