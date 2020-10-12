@@ -21,7 +21,7 @@ class CarouselItems extends React.PureComponent<ItemsProp> {
         <div id="carousel-items">
           <div className="wrapper">
             <h2>{subject}</h2>
-            <div className="img-wrapper"  >
+            <div className="img-wrapper" >
             <img src={url} alt="API서버를 찾을 수 없습니다."/>
             </div>
             <div>

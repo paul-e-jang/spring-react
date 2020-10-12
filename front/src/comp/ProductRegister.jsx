@@ -24,7 +24,12 @@ export default class MemberRegister extends React.Component {
     
     render() {
       const {productName, thumbImage, thumbUrl, username, stock, price, category} = this.state
-      
+      let preview = null
+      if (thumbUrl !== 'noUrl'){
+        preview = (
+            <img src={thumbUrl} alt="미리보기" /> 
+        )
+      }
         return (
             <section id="product-register">
                 <div id="logo">
@@ -39,7 +44,7 @@ export default class MemberRegister extends React.Component {
                         </Label>
                             <FileInput text="썸네일" onChange={this.onChangeImages} />
                             <div id="image-wrapper">
-                            <img src={thumbUrl} alt="미리보기" className={thumbUrl==='noUrl'? 'no-val': 'invalid'}/>
+                            {preview}
                             </div>
                         <Label className="input-wrapper">
                             <strong>판매자: {username}</strong>
