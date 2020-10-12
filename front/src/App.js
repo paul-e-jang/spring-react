@@ -3,6 +3,9 @@ import Header from './comp/Header'
 import Footer from './comp/Footer'
 import './App.css'
 import Content from './views/Content'
+import { FocusStyleManager } from '@blueprintjs/core'
+ 
+FocusStyleManager.onlyShowFocusOnTabs()
 
 
 function App() {

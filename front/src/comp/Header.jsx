@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import Banner from './Banner'
 import eventBus from '../utils/eventBus'
 import SearchBar from './UI/SearchBar'
+
 // import authentication from '../services/authentication'
 
 class Header extends React.Component {

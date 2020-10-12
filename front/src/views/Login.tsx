@@ -54,6 +54,7 @@ class Login extends React.PureComponent<RouteComponentProps, LoginGroupState> {
               </Label>
               <Label className="input-wrapper">
               <strong>비밀번호</strong>
+              </Label>
                   <InputGroup
                     disabled={disabled}
                     placeholder="비밀번호를 입력하세요."
@@ -61,7 +62,7 @@ class Login extends React.PureComponent<RouteComponentProps, LoginGroupState> {
                     type={showPassword ? "text" : "password"}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({ password: e.target.value})}
                 />
-              </Label>
+              
               <Button large id="login-button" onClick={this.handleAuthenticate} disabled={!this.SubmitPreventer()} className="bp3-fill"> 로그인 </Button><br/>
               <Link to="/register">회원가입</Link><br />
               <a href="/help">아이디/비밀번호 찾기</a> 

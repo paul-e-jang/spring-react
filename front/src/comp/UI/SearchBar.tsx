@@ -1,30 +1,65 @@
-import * as React from "react"
+import React from "react"
 
-import { Button, ControlGroup, HTMLSelect, InputGroup} from "@blueprintjs/core"
+import {
+    Button,
+    InputGroup,
+    Menu,
+    MenuItem,
+    Popover,
+    Position
+} from "@blueprintjs/core"
 
-export interface IControlGroupExampleState {
-    fill: boolean;
-    vertical: boolean;
+export interface InputGroupState {
+    disabled: boolean,
+    selected: string,
+    cat: Array<string>,
+    keyword: string
 }
 
-const FILTER_OPTIONS = ["Category", "Clothes", "Electronics"]
-
-export default class ControlGroupExample extends React.PureComponent<IControlGroupExampleState> {
-    public state: IControlGroupExampleState = {
-        fill: false,
-        vertical: false,
+export default class SearchBar extends React.PureComponent<InputGroupState> {
+    public state: InputGroupState = {
+        disabled: false,
+        selected: 'base',
+        cat: ['Electronics', 'clothes'],
+        keyword: 'base',
     }
 
     public render() {
+        const { cat, disabled, selected } = this.state
 
+        const rightIcon = (
+            <Button icon="search" intent="warning" minimal />
+        )
+
+        const permissionsMenu = (
+            <Popover
+                content={
+                    <Menu>
+                        <MenuItem text={cat[0]} onClick={ (e:any) => this.setState({selected: cat[0]})} />
+                        <MenuItem text={cat[1]} onClick={ (e:any) => this.setState({selected: cat[1]})}/>
+                    </Menu>
+                }
+                disabled={disabled}
+                position={Position.BOTTOM_RIGHT}
+            >
+                <Button disabled={disabled} minimal={true} rightIcon="caret-down">
+                    <h4>{selected === 'base' ? 'Category' : selected }</h4>
+                </Button>
+            </Popover>
+        )
         return (
-        <div className="search-bar">
-          <ControlGroup {...this.state}>
-              <HTMLSelect large options={FILTER_OPTIONS} className="search-bar-content"/>
-              <InputGroup large fill placeholder="Promotions"/>
-              <Button large icon="search" intent="warning" />
-          </ControlGroup>
-        </div>
+            <div className="search-bar">
+                <InputGroup
+                    disabled={disabled}
+                    large
+                    fill
+                    placeholder="Promotions"
+                    leftElement={permissionsMenu}
+                    rightElement={rightIcon}
+                    onChange={(e:React.ChangeEvent<HTMLInputElement>) => this.setState({keyword: e.target.value})}
+                />
+            </div>
         )
     }
+
 }
