@@ -7,7 +7,6 @@ import java.util.Objects;
 //김종찬 작성
 public class Product {
 	private Long id;
-	private String prodNumber;
 	private String name;
 	private String thumbNail;
 	private Member seller;
@@ -21,9 +20,9 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", prodNumber=" + prodNumber + ", name=" + name + ", thumbNail=" + thumbNail
-				+ ", seller=" + seller + ", regDate=" + regDate + ", stock=" + stock + ", price=" + price + ", options="
-				+ options + ", category=" + category + ", purchases=" + purchases + ", reviews=" + reviews + "]";
+		return "Product [id=" + id + ", name=" + name + ", thumbNail=" + thumbNail + ", seller=" + seller + ", regDate="
+				+ regDate + ", stock=" + stock + ", price=" + price + ", options=" + options + ", category=" + category
+				+ ", purchases=" + purchases + ", reviews=" + reviews + "]";
 	}
 
 	@Override
@@ -47,14 +46,6 @@ public class Product {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getProdNumber() {
-		return prodNumber;
-	}
-
-	public void setProdNumber(String prodNumber) {
-		this.prodNumber = prodNumber;
 	}
 
 	public String getName() {

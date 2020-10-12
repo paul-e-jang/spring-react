@@ -8,19 +8,19 @@ import java.util.Objects;
 //김종찬 작성
 public class Purchase {
 	private Long id;
-	private String orderNumber;
 	private Member member;
 	private Product product;
 	private Date purchaseDate;
 	private boolean arrive;
 	private List<MapPurchaseProd> products;
 	private ShippingInfomartion shippingInformations;
+	private boolean isPurchased;
 
 	@Override
 	public String toString() {
-		return "Purchase [id=" + id + ", orderNumber=" + orderNumber + ", member=" + member + ", product=" + product
-				+ ", purchaseDate=" + purchaseDate + ", arrive=" + arrive + ", products=" + products
-				+ ", shippingInformations=" + shippingInformations + "]";
+		return "Purchase [id=" + id + ", member=" + member + ", product=" + product + ", purchaseDate=" + purchaseDate
+				+ ", arrive=" + arrive + ", products=" + products + ", shippingInformations=" + shippingInformations
+				+ ", isPurchased=" + isPurchased + "]";
 	}
 
 	@Override
@@ -42,14 +42,6 @@ public class Purchase {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getOrderNumber() {
-		return orderNumber;
-	}
-
-	public void setOrderNumber(String orderNumber) {
-		this.orderNumber = orderNumber;
 	}
 
 	public Member getMember() {
@@ -98,5 +90,13 @@ public class Purchase {
 
 	public void setShippingInformations(ShippingInfomartion shippingInformations) {
 		this.shippingInformations = shippingInformations;
+	}
+
+	public boolean isPurchased() {
+		return isPurchased;
+	}
+
+	public void setPurchased(boolean isPurchased) {
+		this.isPurchased = isPurchased;
 	}
 }

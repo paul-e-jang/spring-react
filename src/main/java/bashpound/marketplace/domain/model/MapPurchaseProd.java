@@ -4,38 +4,14 @@ import java.util.Objects;
 
 //김종찬 작성
 public class MapPurchaseProd {
-	private Long id;
 	private Long product_id;
 	private Long purchases_id;
 	private Long quantity;
-	
+
 	@Override
 	public String toString() {
-		return "ProdctPurchase [id=" + id + ", product_id=" + product_id + ", purchases_id=" + purchases_id
-				+ ", quantity=" + quantity + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (!(o instanceof MapPurchaseProd))
-			return false;
-		MapPurchaseProd o1 = (MapPurchaseProd) o;
-		return Objects.equals(id, o1.id);
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
+		return "MapPurchaseProd [product_id=" + product_id + ", purchases_id=" + purchases_id + ", quantity=" + quantity
+				+ "]";
 	}
 
 	public Long getProduct_id() {

@@ -43,6 +43,7 @@ public class ProductController {
 		product.setPrice(Integer.parseInt((String)param.get("price")));
 		product.setCategory((String)param.get("category"));
 		Member member = ms.selectByUsername((String)param.get("username"));
+		product.setSeller(member);
 		System.out.println(product);
 		ps.productRegister(product);
 	}
@@ -70,8 +71,8 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/SearchResult", method=RequestMethod.GET)
-	public List<Product> searchProduct(@RequestParam("key") String key) {
-		return ps.searchProduct(key);
+	public List<Product> searchProduct(@RequestParam("category") String category, @RequestParam("key") String key) {
+		return ps.searchProduct(category, key);
 	}
 	
 	@RequestMapping(value = "/details/{productId}", method=RequestMethod.GET)

@@ -26,8 +26,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> searchProduct(String key) {
-		return pm.searchProduct(key);
+	public List<Product> searchProduct(String category, String key) {
+		return pm.searchProduct(category, key);
 	}
 
 	@Override
