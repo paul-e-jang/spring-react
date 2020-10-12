@@ -3,6 +3,7 @@ import { NumericInput, HTMLSelect, InputGroup, FormGroup, Label, Button, FileInp
 import { Link } from 'react-router-dom'
 import '../css/form.scss'
 import RegistrationService from '../services/RegistrationService'
+import FileService from '../services/file'
 
 
 export default class MemberRegister extends React.Component {
@@ -101,7 +102,8 @@ export default class MemberRegister extends React.Component {
         this.setState({thumbImage: file})
         this.setState({thumbUrl: URL.createObjectURL(file)})
         const fm = new FormData()
-        fm.append('image', file)
+        fm.append('file', file)
+        FileService.Upload(fm)
       }
 
     SubmitPreventer = () => {

@@ -1,8 +1,8 @@
 import axios from 'axios'
-import errorParser from '@/utils/error-parser'
+import errorParser from '../utils/error-parser'
 
 export default {
-fileUpload (detail) {
+Upload (detail) {
     return new Promise((resolve, reject) => {
       axios({
         method: 'post',
