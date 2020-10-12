@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bashpound.marketplace.infra.repository.PurchaseMapper">
+
+	<resultMap type="bashpound.marketplace.domain.model.Purchase" id="purchaseResult">
+		<id column="purchase_id" property="id"/>
+		<result column="purchase_date" property="purchaseDate"/>
+		<result column="arrive" property="arrive"/>
+		<result column="is_purchased" property="purchased"/>
+		<association property="member"  resultMap="bashpound.marketplace.infra.repository.MemberMapper.memberResult"/>
+		<collection property="products" resultMap="bashpound.marketplace.infra.repository.ProductMapper.productResultMap"/>
+	</resultMap>
+	
+	<select id="selectJoin" resultMap="purchaseResult">
+		select * from PURCHASE c 
+		    left outer join member m
+		    on c.purchase_username = m.username
+		    left outer join m_purchase_prod mp
+		    on mp.mpp_purchases_id = c.purchase_id
+		    left outer join product p
+		    on mp.mpp_product_id = p.prod_id
+		     where m.username = #{username}
+	</select>
+	
+</mapper>

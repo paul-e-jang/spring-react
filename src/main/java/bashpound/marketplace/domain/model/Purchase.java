@@ -1,6 +1,5 @@
 package bashpound.marketplace.domain.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -9,18 +8,17 @@ import java.util.Objects;
 public class Purchase {
 	private Long id;
 	private Member member;
-	private Product product;
 	private Date purchaseDate;
 	private boolean arrive;
 	private List<MapPurchaseProd> products;
-	private ShippingInfomartion shippingInformations;
-	private boolean isPurchased;
+	private List<ShippingInfomartion> shippingInformations;
+	private boolean purchased;
 
 	@Override
 	public String toString() {
-		return "Purchase [id=" + id + ", member=" + member + ", product=" + product + ", purchaseDate=" + purchaseDate
-				+ ", arrive=" + arrive + ", products=" + products + ", shippingInformations=" + shippingInformations
-				+ ", isPurchased=" + isPurchased + "]";
+		return "Purchase [id=" + id + ", member=" + member + ", purchaseDate=" + purchaseDate + ", arrive=" + arrive
+				+ ", products=" + products + ", shippingInformations=" + shippingInformations + ", purchased="
+				+ purchased + "]";
 	}
 
 	@Override
@@ -30,10 +28,12 @@ public class Purchase {
 
 	@Override
 	public boolean equals(Object o) {
-	    if (this == o) return true;
-	    if (!(o instanceof Purchase)) return false;
-	    Purchase o1 = (Purchase) o;
-	    return Objects.equals(id, o1.id);
+		if (this == o)
+			return true;
+		if (!(o instanceof Purchase))
+			return false;
+		Purchase o1 = (Purchase) o;
+		return Objects.equals(id, o1.id);
 	}
 
 	public Long getId() {
@@ -50,14 +50,6 @@ public class Purchase {
 
 	public void setMember(Member member) {
 		this.member = member;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
 	}
 
 	public Date getPurchaseDate() {
@@ -84,19 +76,20 @@ public class Purchase {
 		this.products = products;
 	}
 
-	public ShippingInfomartion getShippingInformations() {
+	public List<ShippingInfomartion> getShippingInformations() {
 		return shippingInformations;
 	}
 
-	public void setShippingInformations(ShippingInfomartion shippingInformations) {
+	public void setShippingInformations(List<ShippingInfomartion> shippingInformations) {
 		this.shippingInformations = shippingInformations;
 	}
 
 	public boolean isPurchased() {
-		return isPurchased;
+		return purchased;
 	}
 
-	public void setPurchased(boolean isPurchased) {
-		this.isPurchased = isPurchased;
+	public void setPurchased(boolean purchased) {
+		this.purchased = purchased;
 	}
+
 }
