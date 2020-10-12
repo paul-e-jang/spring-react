@@ -17,6 +17,8 @@ interface RegisterGroupState {
     isPassword2Valid: string;
     emailAddress: string;
     isEmailAddressValid: string;
+    isOnLoad: boolean;
+    isButtonDisabled: boolean;
 }
 
 
@@ -31,19 +33,22 @@ class MemberRegister extends React.PureComponent<RouteComponentProps, RegisterGr
         password2: '',
         isPassword2Valid: 'no-val',
         emailAddress: '',
-        isEmailAddressValid: 'no-val'
+        isEmailAddressValid: 'no-val',
+        isOnLoad: false,
+        isButtonDisabled: false
     }
 
     
 
     render() {
+        const {isOnLoad} = this.state
 
         return (
             <section id="member-register">
                 <div id="logo">
                     <Link to="/"><img src={require('../assets/logo_white_h.svg')} alt="Logo"/></Link>
                 </div>
-                <FormGroup>
+                <FormGroup disabled={isOnLoad}>
                     <div className="bp3-card">
                         <h1>회원 가입</h1>
                         <Label className="input-wrapper">
@@ -75,12 +80,21 @@ class MemberRegister extends React.PureComponent<RouteComponentProps, RegisterGr
                         <Label className="input-wrapper">
                             <strong>비밀번호 재입력</strong>
                             <InputGroup name="password2" placeholder="비밀번호 재입력" type="password" intent={this.IntentParser(this.state.isPassword2Valid)}
+                            onKeyPress={this.handleKeyPress}
                             onChange={(e: React.ChangeEvent<HTMLInputElement>)=> this.setState({ password2: e.target.value, isPassword2Valid: this.state.password === e.target.value ? 'valid' : 'invalid' })} />
                             <Label>
                                 <h5 className={`${this.state.isPassword2Valid}`}>비밀번호가 일치하지 않습니다.</h5>
                             </Label>
                         </Label>
-                        <Button large className="bp3-fill" id="register-button" onClick={this.handleRegister}disabled={!this.SubmitPreventer()}> 회원 가입 </Button>
+                        <Button large
+                        className="bp3-fill"
+                        id="register-button"
+                        onClick={this.handleRegister}
+                        disabled={!this.SubmitPreventer()}
+                        loading={isOnLoad}
+                        >
+                        
+                        회원 가입 </Button>
                     </div>
                 </FormGroup>
             </section>
@@ -116,7 +130,11 @@ class MemberRegister extends React.PureComponent<RouteComponentProps, RegisterGr
         eventBus.remove('headerFooter')
     }
 
-
+    handleKeyPress = (e: any) => {
+        if(e.key === "Enter"){
+          this.handleRegister()
+        }
+    }
 
     handleRegister = () => {
         const f = new FormData()
@@ -124,11 +142,15 @@ class MemberRegister extends React.PureComponent<RouteComponentProps, RegisterGr
         f.append('password', this.state.password)
         f.append('emailAddress', this.state.emailAddress)
         const json = JSON.stringify(Object.fromEntries(f))
+        this.setState({isOnLoad: true})
+
         RegistrationService.MemberRegister(json).then(({history}) => {
           alert('등록 성공')
+          this.setState({isOnLoad: false})
           this.props.history.push('/login')
         }).catch((error) => {
             alert('등록 실패, 이유: '+error.message)
+            this.setState({isOnLoad: false})
         })
       }
 }

@@ -10,6 +10,7 @@ interface LoginGroupState {
   password: string;
   showPassword: boolean;
   disabled: boolean;
+  isOnLoad: boolean;
 }
 
 
@@ -19,7 +20,8 @@ class Login extends React.PureComponent<RouteComponentProps, LoginGroupState> {
       username: '',
       password: '',
       showPassword: false,
-      disabled: false
+      disabled: false,
+      isOnLoad: false
     }
 
 
@@ -38,13 +40,15 @@ class Login extends React.PureComponent<RouteComponentProps, LoginGroupState> {
             />
         </Tooltip>
     )
+    const {isOnLoad} = this.state
       return (
+        
         
         <section className="login-register">
           <div id="logo">
               <Link to="/"><img src={require('../assets/logo_white_h.svg')} alt="Logo"/></Link>
           </div>
-          <FormGroup>
+          <FormGroup disabled={isOnLoad}>
           <div className="bp3-card">
               <h1>로그인</h1>
               <Label className="input-wrapper">
@@ -61,9 +65,10 @@ class Login extends React.PureComponent<RouteComponentProps, LoginGroupState> {
                     rightElement={lockButton}
                     type={showPassword ? "text" : "password"}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({ password: e.target.value})}
+                    onKeyPress={this.handleKeyPress}
                 />
               
-              <Button large id="login-button" onClick={this.handleAuthenticate} disabled={!this.SubmitPreventer()} className="bp3-fill"> 로그인 </Button><br/>
+              <Button large id="login-button" onClick={this.handleAuthenticate} disabled={!this.SubmitPreventer()} loading={isOnLoad} className="bp3-fill"> 로그인 </Button><br/>
               <Link to="/register">회원가입</Link><br />
               <a href="/help">아이디/비밀번호 찾기</a> 
           </div>
@@ -76,14 +81,22 @@ class Login extends React.PureComponent<RouteComponentProps, LoginGroupState> {
       const f = new FormData()
       f.append('username', this.state.username)
       f.append('password', this.state.password)
+      this.setState({isOnLoad:true})
       const json = JSON.stringify(Object.fromEntries(f))
         AuthenticationService.login(json).then(() => {
           alert('로그인 성공')
           this.props.history.push('/')
         }).catch((error) => {
           alert('로그인 실패, 이유: '+error.message)
+          this.setState({isOnLoad:false})
         })
       }
+
+    handleKeyPress = (e: any) => {
+      if(e.key === 'Enter'){
+        this.handleAuthenticate()
+      }
+    }
 
       
 
