@@ -13,7 +13,7 @@ public interface ProductMapper {
 
 	public List<Product> listProductAll();
 
-	public List<Product> searchProduct(String key);
+	public List<Product> searchProduct(String category, String key);
 
 	public Map<String, String> productDetail(Long productId);
 }

@@ -90,6 +90,7 @@ create table purchase (
 	purchase_username 		varchar2(255),	--sm: username
 	purchase_date 			date,			--sm: purchaseDate
 	arrive 					number(1) default 0,--sm: char(1) DEFAULT 'F'
+	is_purchased			number(1) default 1,
 	primary key (purchase_id)
 );
 --username fk로 인한 인덱스
