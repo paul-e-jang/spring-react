@@ -1,9 +1,5 @@
  @import 'base.scss';
 
-a:hover {
-    text-decoration: none !important;
-}
-
 #header {
     position: relative;
     top: 0;
@@ -20,11 +16,46 @@ a:hover {
 }
 
 #upper-bar {
-    display: flex;
+    display: inline-flex;
     margin: auto;
+    width: 100%;
     padding: 10px;
     justify-content: space-between;
     background-color: $tc5;
+    &:focus {
+        border: 1px solid;
+    }
+
+    .search-bar{
+        width: 75%;
+    }
+
+    .search-bar-content{
+        height: 100%;
+    }
+
+    nav ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0px 0 0;
+    }
+
+    nav ul li {
+        display: inline-block;
+        font-size: 1em;
+        margin: 0 0px;
+    }
+
+    nav ul li a {
+        color: #eee;
+        font-weight: 500;
+    }
+
+    nav ul li a:hover {
+        border: solid 1px white;
+        text-decoration: none;
+        
+    }
 }
 
 #drawer {
@@ -37,7 +68,7 @@ a:hover {
 }
 
 .search-bar {
-    width: 65%;
+    width: 100%;
 }
 
 .shade {
@@ -58,28 +89,7 @@ header {
     box-sizing: border-box;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0px 0 0;
-}
 
-nav ul li {
-    display: inline-block;
-    font-size: 1em;
-    margin: 0 0px;
-}
-
-nav ul li a {
-    color: #eee;
-    font-weight: 500;
-}
-
-nav ul li a:hover {
-    border: solid 1px white;
-    text-decoration: none;
-    
-}
 
 #banner {
     * {

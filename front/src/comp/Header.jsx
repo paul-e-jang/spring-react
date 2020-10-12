@@ -4,7 +4,8 @@ import '../css/header.scss'
 import { Link } from 'react-router-dom'
 import Banner from './Banner'
 import eventBus from '../utils/eventBus'
-import authentication from '../services/authentication'
+import SearchBar from './UI/SearchBar'
+// import authentication from '../services/authentication'
 
 class Header extends React.Component {
 
@@ -28,7 +29,7 @@ class Header extends React.Component {
             <a href="/">
               <img id="banner" src={require('../assets/logo_dark.svg')} alt="Logo" className="Logo" />
             </a>
-            <input className="search-bar" type="text"></input>
+            <SearchBar />
             <nav className="upper-bar-right">
               <ul id="nav-menu-container">
                 <li>
@@ -72,11 +73,11 @@ class Header extends React.Component {
     eventBus.on("headerFooter", (data) =>
       this.setState({ headerOn: data.message })
     )
-    authentication.fetchUser().then(()=> {
+    /* authentication.fetchUser().then(()=> {
       eventBus.on("fetchUser", (data) =>
       this.setState({ user: data.message })
     )
-    })
+    }) */
   }
 }
 
