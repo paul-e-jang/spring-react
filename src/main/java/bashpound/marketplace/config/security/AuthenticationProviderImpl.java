@@ -28,7 +28,7 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 		
 		
 		  if(!passwordEncoder.matches(password, memberDetails.getPassword())) {
-			  throw new BadCredentialsException("Invalid Password"+password); 
+			  throw new BadCredentialsException("Invalid Password "+password); 
 		  }
 		
 		return new AuthenticationToken(memberDetails.getMember(), null, memberDetails.getAuthorities());

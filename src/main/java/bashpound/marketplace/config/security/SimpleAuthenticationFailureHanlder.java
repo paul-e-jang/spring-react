@@ -25,7 +25,7 @@ public class SimpleAuthenticationFailureHanlder implements AuthenticationFailure
 			AuthenticationException exception) throws IOException, ServletException {
 		String errorMessage = "Invalid Username or Password";
 		
-		response.setStatus(HttpStatus.UNAUTHORIZED.value());
+		response.setStatus(HttpStatus.BAD_REQUEST.value());
 		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 		
 		if(exception instanceof UsernameNotFoundException) {
