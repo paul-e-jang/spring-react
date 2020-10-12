@@ -19,7 +19,9 @@ interface RegisterGroupState {
     isEmailAddressValid: string;
 }
 
-class MemberRegister extends React.PureComponent<RegisterGroupState> {
+
+
+class MemberRegister extends React.PureComponent<RouteComponentProps, RegisterGroupState> {
 
     public state: RegisterGroupState =  {
         username: '',
@@ -31,6 +33,8 @@ class MemberRegister extends React.PureComponent<RegisterGroupState> {
         emailAddress: '',
         isEmailAddressValid: 'no-val'
     }
+
+    
 
     render() {
 
@@ -111,15 +115,17 @@ class MemberRegister extends React.PureComponent<RegisterGroupState> {
     eventBus.dispatch('headerFooter', { message: true })
     }
 
+
+
     handleRegister = () => {
         const f = new FormData()
         f.append('username', this.state.username)
         f.append('password', this.state.password)
         f.append('emailAddress', this.state.emailAddress)
         const json = JSON.stringify(Object.fromEntries(f))
-        RegistrationService.MemberRegister(json).then((props:RouteComponentProps) => {
+        RegistrationService.MemberRegister(json).then(({history}) => {
           alert('등록 성공')
-          props.history.replace('/')
+          this.props.history.push('/login')
         }).catch((error) => {
             alert('등록 실패, 이유: '+error.message)
         })

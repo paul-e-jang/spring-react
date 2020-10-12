@@ -1,5 +1,7 @@
-import {createBrowserHistory} from 'history'
+import { useHistory } from 'react-router-dom'
 
-const history = createBrowserHistory()
 
-export default history
+export default function handlePush(param) {
+  let history = useHistory()
+  history.push(param)
+}

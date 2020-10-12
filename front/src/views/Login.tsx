@@ -1,10 +1,9 @@
 import React from 'react'
 import {FormGroup, Label, InputGroup,  Button, Tooltip, Intent} from "@blueprintjs/core"
-import {Link} from 'react-router-dom'
 import '../css/form.scss'
 import eventBus from '../utils/eventBus'
 import AuthenticationService from '../services/authentication'
-import { RouteComponentProps } from 'react-router-dom'
+import { RouteComponentProps, Link } from 'react-router-dom'
 
 interface LoginGroupState {
   username: string;
@@ -14,7 +13,7 @@ interface LoginGroupState {
 }
 
 
-class Login extends React.PureComponent<LoginGroupState> {
+class Login extends React.PureComponent<RouteComponentProps, LoginGroupState> {
 
     public state: LoginGroupState = {
       username: '',
@@ -22,6 +21,8 @@ class Login extends React.PureComponent<LoginGroupState> {
       showPassword: false,
       disabled: false
     }
+
+
     render() {
 
       const { showPassword, disabled } = this.state;
@@ -75,9 +76,9 @@ class Login extends React.PureComponent<LoginGroupState> {
       f.append('username', this.state.username)
       f.append('password', this.state.password)
       const json = JSON.stringify(Object.fromEntries(f))
-        AuthenticationService.authenticate(json).then((props:RouteComponentProps) => {
+        AuthenticationService.authenticate(json).then(() => {
           alert('로그인 성공')
-          props.history.push('/')
+          this.props.history.push('/')
         }).catch((error) => {
           alert('로그인 실패, 이유: '+error.message)
         })
