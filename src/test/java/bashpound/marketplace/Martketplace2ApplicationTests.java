@@ -13,9 +13,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import bashpound.marketplace.domain.model.Delivery;
 import bashpound.marketplace.domain.model.Member;
+import bashpound.marketplace.domain.model.Product;
 import bashpound.marketplace.domain.model.Purchase;
 import bashpound.marketplace.infra.repository.DeliveryMapper;
 import bashpound.marketplace.infra.repository.MemberMapper;
+import bashpound.marketplace.infra.repository.ProductMapper;
 import bashpound.marketplace.infra.repository.PurchaseMapper;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,7 +31,10 @@ class Martketplace2ApplicationTests {
 
 	@Autowired
 	private DeliveryMapper deliveryMapper;
-
+	
+	@Autowired
+	private ProductMapper productMapper;
+	
 	@Autowired
 	private PurchaseMapper purchaseMapper;
 
@@ -61,9 +66,15 @@ class Martketplace2ApplicationTests {
 		}
 	}
 
-	@Test
+//	@Test
 	public void testPurchaseJoin() {
 		List<Purchase> list = purchaseMapper.selectJoin("doli0413");
 		list.forEach(purc -> System.out.println(purc));
+	}
+	
+	@Test
+	public void testCuration() {
+		List<Product> list = productMapper.selectCuration(1);
+		list.forEach( cur -> System.out.println(cur));
 	}
 }

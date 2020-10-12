@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,5 +79,11 @@ public class ProductController {
 	@RequestMapping(value = "/details/{productId}", method=RequestMethod.GET)
 	public Map<String, String> productDetail(@PathVariable Long productId) {
 		return ps.productDetail(productId);
+	}
+	
+	@RequestMapping(value = "/api/Curation/{pid}")
+	public ResponseEntity<Object> provideCuration(){
+		return null;
+		
 	}
 }

@@ -53,5 +53,19 @@
 	<select id="productDetail" parameterType="long" resultType="map">
 		select options from product where prod_id = #{productId}
 	</select>
+	
+	<select id="selectJoin" resultMap="productResultMap">
+		select p.* from product p
+    left outer join member m
+    on p.member_username = m.username
+    left outer join purchase c
+    on c.purchase_username = m.username
+    where username = #{username}
+	</select>
+	
+	<select id="selectCuration" resultMap="productResultMap" parameterType="Integer">
+	 select * from product p
+    	where p.category = (select category from product where prod_id = #{prodId})
+	</select>
 
 </mapper>
