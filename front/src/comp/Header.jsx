@@ -59,7 +59,7 @@ class Header extends React.Component {
                <Link to="/"><Banner main="Today's Deals" /></Link> 
             </div>
             <div className="under-banner">
-            <Link to="/"><Banner main="Customer Service" /></Link> 
+            <Link to="/CsMain"><Banner main="Customer Service" /></Link> 
             </div>
             <div className="under-banner">
             <Link to="/"><Banner main="Sell" /></Link> 
@@ -74,6 +74,7 @@ class Header extends React.Component {
     eventBus.on("headerFooter", (data) =>
       this.setState({ headerOn: data.message })
     )
+    document.title = 'Amaze Market'
     /* authentication.fetchUser().then(()=> {
       eventBus.on("fetchUser", (data) =>
       this.setState({ user: data.message })

@@ -29,7 +29,9 @@ export default class SearchBar extends React.PureComponent<InputGroupState> {
         const { cat, disabled, selected } = this.state
 
         const rightIcon = (
-            <Button icon="search" intent="warning" minimal />
+            <Link to="/searchResult">
+            <Button icon="search" intent="warning" minimal /> 
+            </Link>
         )
 
         const permissionsMenu = (
@@ -43,14 +45,15 @@ export default class SearchBar extends React.PureComponent<InputGroupState> {
                 disabled={disabled}
                 position={Position.BOTTOM_RIGHT}
             >
-                <Button disabled={disabled} minimal={true} rightIcon="caret-down">
+                <Button disabled={disabled} minimal={true} rightIcon="caret-down"> 
                     <h4>{selected === 'base' ? 'Category' : selected }</h4>
                 </Button>
             </Popover>
         )
+
         return (
             <div className="search-bar">
-                <Link to="searchResult" >
+                
                 <InputGroup
                     disabled={disabled}
                     large
@@ -60,7 +63,7 @@ export default class SearchBar extends React.PureComponent<InputGroupState> {
                     rightElement={rightIcon}
                     onChange={(e:React.ChangeEvent<HTMLInputElement>) => this.setState({keyword: e.target.value})}
                 />
-                </Link>
+                
             </div>
         )
     }

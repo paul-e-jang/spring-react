@@ -41,6 +41,7 @@ h5 {
         margin-right: 20px;
         a{
             color: white;
+            text-decoration: none;
         }
 
         &:hover {
@@ -50,6 +51,7 @@ h5 {
             -o-transition: all 0.2s ease-in;
             -webkit-transition: all 0.2s ease-in;
             transition: all 0.2s ease-in;
+            
         }
     }
 

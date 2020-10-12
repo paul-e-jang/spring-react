@@ -4,6 +4,7 @@ import Main from './Main'
 import Login from './Login'
 import MemberRegister from './MemberRegister'
 import SearchResult from './SearchResult'
+import CsMain from './CsMain'
 
 const Content = () => (
     <main>
@@ -12,6 +13,7 @@ const Content = () => (
         <Route path="/register" component={MemberRegister} exact={true} />
         <Route path="/" component={Main} exact={true} />
         <Route path="/searchResult" component={SearchResult} exact={true} />
+        <Route path="/CsMain" component={CsMain} exact={true} />
         </Switch>
     </main>
 )
