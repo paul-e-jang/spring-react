@@ -2,31 +2,30 @@ import React from 'react'
 import AliceCarousel from 'react-alice-carousel'
 import 'react-alice-carousel/lib/alice-carousel.css'
 import '../css/content.scss'
+import {Link} from 'react-router-dom'
 
-const responsive = {
-    0: { items: 1 },
-    568: { items: 2 },
-    1024: { items: 3 },
-};
+const style = { width: 300 }
 
 const items = [
-    <div className="item">1</div>,
-    <div className="item">2</div>,
-    <div className="item">3</div>,
-    <div className="item">4</div>,
-    <div className="item">5</div>,
-];
+    <div className="item" style={style}>1</div>,
+    <div className="item" style={style}>2</div>,
+    <div className="item" style={style}>3</div>,
+    <div className="item" style={style}>4</div>,
+    <div className="item" style={style}>5</div>
+]
 
-const Curation = () => (
+const Curation = ({subject}) => (
     <section id="curation">
+    <div className="session-wrapper">
+    <div className="subject"> {subject} <Link to="/" className="link show-more">Shop now</Link> </div>
     <AliceCarousel
         mouseTracking
         items={items}
-        responsive={responsive}
-        paddingLeft={50}
-        paddingRight={50}
         disableDotsControls
+        autoWidth
+        infinite
     />
+    </div>
     </section>
 )
 

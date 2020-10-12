@@ -17,7 +17,9 @@ class Main extends React.Component {
       return (
         <>
         <Carousel />
-        <Curation />
+        <Curation subject="AmazeMarket Top Sellers" />
+        <Curation subject="Trending in Apperals" />
+        <Curation subject="Popular Electronics" />
         <ProductRegister />
         </>
       )

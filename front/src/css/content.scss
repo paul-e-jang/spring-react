@@ -9,8 +9,34 @@ $transition-time: 0.4s !default;
 $play-btn-color: $clr-base !default;
 $play-btn-size: 32px !default;
 
+
+.show-more {
+    &:hover, &:focus {
+      text-decoration: $tc1 underline !important;
+      color: $tc1
+    }
+}
+
+
 #curation {
   position: relative;
+  //border: 1px solid; 
+
+  .session-wrapper {
+    padding: 20px;
+    .subject {
+      font-size: 25px;
+      margin-bottom: 10px;
+
+      .link {
+        font-size: 15px;
+        margin-left: 5px;
+        
+      } 
+    }
+  }
+
+  
 
   .item {
     min-height: 300px;
@@ -41,6 +67,7 @@ $play-btn-size: 32px !default;
     position: absolute;
     top: 40%;
     font-size: xx-large;
+    font-weight: 700;
   }
 
   .alice-carousel__next-btn {
@@ -50,6 +77,7 @@ $play-btn-size: 32px !default;
     font-size: xx-large;
     top: 40%;
     right: 0;
+    font-weight: 700;   
   }
 
   .alice-carousel__prev-btn-item,
@@ -58,10 +86,12 @@ $play-btn-size: 32px !default;
     cursor: pointer;
     padding: 5px;
     margin: 0;
+    transition: 0.4s ease-in-out;
 
-    color: $clr-base;
+    color: $tc2;
     &:hover {
-      color: $clr-accent;
+      text-shadow: 1px 0px 10px white;
+      transition: 0.4s ease-in-out;
     }
     &.__inactive {
       opacity: 0.4;

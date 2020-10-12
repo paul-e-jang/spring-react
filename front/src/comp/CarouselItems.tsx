@@ -25,7 +25,7 @@ class CarouselItems extends React.PureComponent<ItemsProp> {
             <img src={url} alt="API서버를 찾을 수 없습니다."/>
             </div>
             <div>
-              <Link to="/">{message}</Link>
+              <Link to="/" className="show-more">{message}</Link>
             </div>
           </div>
         </div>
