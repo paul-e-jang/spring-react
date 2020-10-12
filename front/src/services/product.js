@@ -1,25 +1,23 @@
 import axios from 'axios'
-import errorParser from '@/utils/error-parser'
-import eventBus from '@/event-bus'
+import errorParser from '../utils/error-parser'
 
 export default {
 
-  fetchArticles () {
+  Search (key, category) {
     return new Promise((resolve, reject) => {
-      axios.get('/getArticles').then(({ data }) => {
+      axios.get(`/SearchResult?key=${key}&category=${category}`).then(({ data }) => {
         resolve(data)
         console.log(data)
-        eventBus.$emit('articleLoad', data)
       }).catch((error) => {
         reject(errorParser.parse(error))
       })
     })
   },
-  writeArticle (detail) {
+  writeProduct (detail) {
     return new Promise((resolve, reject) => {
       axios({
         method: 'post',
-        url: '/writeArticle',
+        url: '/writeProduct',
         data: detail,
         headers: { 'content-type': 'application/json' }
       }).then(({ data }) => {
