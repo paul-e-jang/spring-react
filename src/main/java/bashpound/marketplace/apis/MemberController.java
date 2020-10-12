@@ -66,7 +66,6 @@ public class MemberController {
 		if (authentication instanceof AnonymousAuthenticationToken) {
 
 		}
-		System.out.println(authentication);// 인증 정보 나오는지 확인
 		AuthenticationToken authenticationToken = (AuthenticationToken)authentication;
 		boolean result = memberService.processSellerUpdate(authenticationToken);
 		return new ResponseEntity<>(HttpStatus.OK);
@@ -80,11 +79,11 @@ public class MemberController {
 		if(authentication instanceof AnonymousAuthenticationToken) {
 			resultMap.put("username", "anonymous");
 			resultMap.put("authenticate", false);
-			return new ResponseEntity<HashMap<String, Object>>(resultMap,HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<HashMap<String, Object>>(resultMap,HttpStatus.OK);
 		}
 		Member member = (Member)((AuthenticationToken)authentication).getPrincipal();
 		resultMap.put("username", member.getUsername());
-		resultMap.put("authenticated", member.isSeller());
+		resultMap.put("authenticated", true);
 		return new ResponseEntity<HashMap<String, Object>>(resultMap,HttpStatus.OK);		
 	}
 
