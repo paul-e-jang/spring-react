@@ -1,4 +1,5 @@
 import React from "react"
+import {Link} from 'react-router-dom'
 
 import {
     Button,
@@ -49,6 +50,7 @@ export default class SearchBar extends React.PureComponent<InputGroupState> {
         )
         return (
             <div className="search-bar">
+                <Link to="searchResult" >
                 <InputGroup
                     disabled={disabled}
                     large
@@ -58,6 +60,7 @@ export default class SearchBar extends React.PureComponent<InputGroupState> {
                     rightElement={rightIcon}
                     onChange={(e:React.ChangeEvent<HTMLInputElement>) => this.setState({keyword: e.target.value})}
                 />
+                </Link>
             </div>
         )
     }

@@ -1,9 +1,9 @@
 import React from 'react'
 
-class block extends React.Component {
+class SearchResult extends React.Component {
   render() {
-    return <div className="message-container">Hello world!</div>
+    return <div className="message-container">Search Result!</div>
   }
 }
 
-export default block
+export default SearchResult
