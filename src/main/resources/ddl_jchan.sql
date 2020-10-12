@@ -69,7 +69,7 @@ create table product (
 	price 					number(10) default 0,
 	options 				varchar2(255),
 	category				varchar2(255),
-	primary key (member_username) 					--sm: primary key(ProdNumber)
+	primary key (prod_id) 					--sm: primary key(ProdNumber)
 );
 --username fk 로 인한 인덱스
 --create index product_index on product(member_username);

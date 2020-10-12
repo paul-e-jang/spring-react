@@ -25,6 +25,8 @@ public class Member {
 	private boolean delFlag;
 	private String role;
 	private Date delDate;
+	
+	public Member() {} // association 을 위한 기본생성자
 
 	public String getUsername() {
 		return username;
