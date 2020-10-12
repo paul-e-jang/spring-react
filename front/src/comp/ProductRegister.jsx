@@ -14,7 +14,7 @@ export default class MemberRegister extends React.Component {
             productName: '',
             thumbImage: '',
             thumbUrl: 'noUrl',
-            username: 'null (로딩 실패)',
+            username: 'jchan',
             stock: '',
             price: '',
             category: ''
