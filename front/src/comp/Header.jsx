@@ -4,18 +4,20 @@ import '../css/header.scss'
 import { Link } from 'react-router-dom'
 import Banner from './Banner'
 import eventBus from '../utils/eventBus'
+import authentication from '../services/authentication'
 
 class Header extends React.Component {
 
   constructor(props) {
     super()
     this.state = {
-      headerOn: true
+      headerOn: true,
+      user: 'anonymous'
     }
 }
 
   render() {
-    const {headerOn} = this.state
+    const {headerOn, user} = this.state
 
     return (
         <header id="header" className={headerOn? 'headerfooter-on': 'headerfooter-off'}>
@@ -31,7 +33,7 @@ class Header extends React.Component {
               <ul id="nav-menu-container">
                 <li>
                   <Link to="/login">
-                    <Banner main="Hello, Sign in" sub="Accounts & Lists" />
+                    <Banner main={`Hello, ${user ==='anonymous' ? 'sign-in' : user}`} sub="Accounts & Lists" />
                   </Link>
                 </li>
                 <li>
@@ -70,6 +72,11 @@ class Header extends React.Component {
     eventBus.on("headerFooter", (data) =>
       this.setState({ headerOn: data.message })
     )
+    authentication.fetchUser().then(()=> {
+      eventBus.on("fetchUser", (data) =>
+      this.setState({ user: data.message })
+    )
+    })
   }
 }
 

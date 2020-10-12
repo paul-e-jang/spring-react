@@ -7,7 +7,7 @@ export default {
    * Authenticate a login request
    * @param {Object} detail login detail
    */
-  authenticate (detail) {
+  login (detail) {
     return new Promise((resolve, reject) => {
       axios.post('/login', detail).then(({ data }) => {
         resolve(data)
@@ -18,12 +18,12 @@ export default {
     })
   },
 
-  fetchuser () {
+  fetchUser () {
     return new Promise((resolve, reject) => {
-      axios.get('/user').then(({ data }) => {
+      axios.get('/fetchUser').then(({ data }) => {
         resolve(data)
-        eventBus.$emit('myDataFetched', data)
         console.log(data)
+        eventBus.dispatch('fetchUser', data.username)
       }).catch((error) => {
         reject(errorParser.parse(error))
       })

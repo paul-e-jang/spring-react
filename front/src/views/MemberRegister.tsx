@@ -112,7 +112,8 @@ class MemberRegister extends React.PureComponent<RouteComponentProps, RegisterGr
     }
 
     componentWillUnmount = () => {
-    eventBus.dispatch('headerFooter', { message: true })
+        eventBus.dispatch('headerFooter', { message: true })
+        eventBus.remove('headerFooter')
     }
 
 

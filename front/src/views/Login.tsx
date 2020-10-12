@@ -76,7 +76,7 @@ class Login extends React.PureComponent<RouteComponentProps, LoginGroupState> {
       f.append('username', this.state.username)
       f.append('password', this.state.password)
       const json = JSON.stringify(Object.fromEntries(f))
-        AuthenticationService.authenticate(json).then(() => {
+        AuthenticationService.login(json).then(() => {
           alert('로그인 성공')
           this.props.history.push('/')
         }).catch((error) => {
@@ -91,7 +91,8 @@ class Login extends React.PureComponent<RouteComponentProps, LoginGroupState> {
     }
 
     componentWillUnmount = () => {
-      eventBus.dispatch('headerFooter', { message: true })
+      eventBus.dispatch('headerFooter', {message: true})
+      eventBus.remove('headerFooter')
     }
 
     SubmitPreventer = () => {
