@@ -1,7 +1,7 @@
 import React from "react"
 
 import {
-    Button,
+    Icon,
     Classes,
     Drawer,
     Position
@@ -32,9 +32,17 @@ export default class NavigationDrawer extends React.PureComponent<DrawerState> {
     }
 
     public render() {
+
+        const style = {
+            color: 'white',
+            padding: '7px'
+        }
+
         return (
             <>  
-                <Button icon="list" onClick={this.handleOpen} />
+            <div className="icon-wrapper">
+                <Icon icon="list" style={style} iconSize={20} onClick={this.handleOpen} />
+                </div>
                 <Drawer
                     icon="user"
                     onClose={this.handleClose}

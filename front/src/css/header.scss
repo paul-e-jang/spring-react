@@ -28,6 +28,10 @@
 
     .search-bar{
         width: 75%;
+        &:focus{
+            border: none;
+            box-shadow: none;
+        }
     }
 
     .search-bar-content{
@@ -55,6 +59,15 @@
         border: solid 1px white;
         text-decoration: none;
         
+    }
+
+    .icon-wrapper {
+        border: solid 1px $tc4;
+        margin-left: 10px;
+        &:hover {
+          border: solid 1px white;
+          cursor: pointer;
+        }
     }
 }
 
