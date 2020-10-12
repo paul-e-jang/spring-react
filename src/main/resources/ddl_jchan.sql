@@ -74,6 +74,11 @@ create table product (
 --username fk 로 인한 인덱스
 --create index product_index on product(member_username);
 
+--더미데이터 
+insert into product (PROD_ID,prod_name,prod_thumb_nail, member_username,prod_reg_date,stock,price,options,category) values (
+    (select nvl(max(prod_id), 0) + 1 from product), '상품1','썸네일명1', 'doli0413', sysdate, 2, 100000,'상품내용입니다.' ,'가전제품'
+);
+
 create table review (
 	review_id				number(19,0) not null,
 	review_prod_id	 		number(19,0),		--sm: ProdNumber
@@ -90,11 +95,16 @@ create table purchase (
 	purchase_username 		varchar2(255),	--sm: username
 	purchase_date 			date,			--sm: purchaseDate
 	arrive 					number(1) default 0,--sm: char(1) DEFAULT 'F'
-	is_purchased			number(1) default 1,
+	is_purchased			number(1) default 0,
 	primary key (purchase_id)
 );
 --username fk로 인한 인덱스
 create index purchase_index on purchase(purchase_username);
+
+-- 더미데이터
+insert into purchase (purchase_id,purchase_username,purchase_date) values (
+    (select nvl(max(purchase_id), 0)  +1  from purchase), 'doli0413',sysdate
+);
 
 create table shipping_information (
 	shipping_id				number(19,0) not null,
@@ -111,4 +121,9 @@ create table m_purchase_prod (
 	mpp_purchases_id 		number(19,0) not null,
 	quantity				number(19,0) not null,
 	primary key (mpp_product_id,mpp_purchases_id)
+);
+	
+--더미데이터
+insert into M_PURCHASE_PROD values (
+1,1,10
 );

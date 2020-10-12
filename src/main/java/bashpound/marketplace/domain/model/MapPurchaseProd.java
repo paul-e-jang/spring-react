@@ -1,33 +1,32 @@
 package bashpound.marketplace.domain.model;
 
-import java.util.Objects;
 
 //김종찬 작성
 public class MapPurchaseProd {
-	private Long product_id;
-	private Long purchases_id;
+	private Long productId;
+	private Long purchasesId;
 	private Long quantity;
 
 	@Override
 	public String toString() {
-		return "MapPurchaseProd [product_id=" + product_id + ", purchases_id=" + purchases_id + ", quantity=" + quantity
+		return "MapPurchaseProd [productId=" + productId + ", purchasesId=" + purchasesId + ", quantity=" + quantity
 				+ "]";
 	}
 
-	public Long getProduct_id() {
-		return product_id;
+	public Long getProductId() {
+		return productId;
 	}
 
-	public void setProduct_id(Long product_id) {
-		this.product_id = product_id;
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 
-	public Long getPurchases_id() {
-		return purchases_id;
+	public Long getPurchasesId() {
+		return purchasesId;
 	}
 
-	public void setPurchases_id(Long purchases_id) {
-		this.purchases_id = purchases_id;
+	public void setPurchasesId(Long purchasesId) {
+		this.purchasesId = purchasesId;
 	}
 
 	public Long getQuantity() {
@@ -37,4 +36,5 @@ public class MapPurchaseProd {
 	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
 	}
+
 }
