@@ -9,13 +9,13 @@ public class Delivery {
 	private String nameOfDelivery;
 	private String address1;
 	private String address2;
-	private boolean isMainAddress;
+	private boolean mainAddress;
 	private Member member;
-	
+
 	@Override
 	public String toString() {
 		return "Delivery [id=" + id + ", zipcode=" + zipcode + ", nameOfDelivery=" + nameOfDelivery + ", address1="
-				+ address1 + ", address2=" + address2 + ", isMainAddress=" + isMainAddress + ", member=" + member + "]";
+				+ address1 + ", address2=" + address2 + ", mainAddress=" + mainAddress + ", member=" + member + "]";
 	}
 
 	@Override
@@ -74,11 +74,11 @@ public class Delivery {
 	}
 
 	public boolean isMainAddress() {
-		return isMainAddress;
+		return mainAddress;
 	}
 
-	public void setMainAddress(boolean isMainAddress) {
-		this.isMainAddress = isMainAddress;
+	public void setMainAddress(boolean mainAddress) {
+		this.mainAddress = mainAddress;
 	}
 
 	public Member getMember() {
