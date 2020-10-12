@@ -22,6 +22,7 @@
 		    left outer join product p
 		    on mp.mpp_product_id = p.prod_id
 		     where m.username = #{username}
+		     	and c.is_purchased != 1
 	</select>
 	
 </mapper>
