@@ -50,13 +50,10 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/fileUpload", method=RequestMethod.POST)
-	public void fileupload(MultipartFile file/*, @RequestParam("username") String username,
-			@RequestParam("pid") Long pid*/) {
-		//ClassPathResource classPath = new ClassPathResource("/src/main/resources/upload/"+username+"/"+pid);
-		ClassPathResource classPath = new ClassPathResource("/src/main/resources/upload/jchan/1");
+	public void fileupload(MultipartFile file, @RequestParam(value="category", defaultValue="category") String category) {
+		ClassPathResource classPath = new ClassPathResource("/src/main/resources/upload");
 		String dir = classPath.getPath().toString();
-		System.out.println(dir);
-		File uploadPath = new File(dir);
+		File uploadPath = new File(dir, category);
 		if (uploadPath.exists() == false) {
 			uploadPath.mkdirs();
 		}
