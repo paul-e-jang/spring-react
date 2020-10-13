@@ -6,7 +6,7 @@ $tc2: #37475A;
 $tc3: #232F3E;
 $tc4: #131A22;
 $tc5: #131921;
-
+$border: #d1d1d1;
 
 #logo {
   width: 250px;
@@ -54,9 +54,8 @@ body {
 }
 
 aside {
-  background-color: white;
-  border: solid 1px;
-  position: fixed;
+  background-color: transparent;
+  width: 100%;
   right:0;
 }
 

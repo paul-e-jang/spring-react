@@ -208,3 +208,36 @@ $play-btn-size: 32px !default;
 
   }
 }
+
+
+.cart-wrapper {
+  display: flex;
+  width: 100%;
+  align-content: stretch;
+  flex-direction: column;
+
+  .cart-header {
+    display: inline-flex;
+    text-align: center;
+
+    .cart-arrow {
+      position: fixed;
+      right: 4.3%;
+      top: 2%;
+    }
+    .cart-total {
+      position: relative;
+      padding: 15px;
+      font-weight: 500;
+      h5 {
+        color: crimson;
+      }
+    }
+  }
+  .cart-content {
+    border: solid 1px;
+  }
+}
+
+
+

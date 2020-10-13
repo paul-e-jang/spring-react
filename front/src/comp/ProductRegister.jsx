@@ -1,5 +1,5 @@
 import React from 'react'
-import { NumericInput, HTMLSelect, InputGroup, FormGroup, Label, Button, FileInput} from "@blueprintjs/core"
+import { NumericInput, HTMLSelect, InputGroup, FormGroup, Label, Button, FileInput} from '@blueprintjs/core'
 import { Link } from 'react-router-dom'
 import '../css/form.scss'
 import RegistrationService from '../services/RegistrationService'
@@ -129,6 +129,7 @@ export default class MemberRegister extends React.Component {
         }).then(()=>{
             const fm = new FormData()
             fm.append('file', this.state.thumbImage)
+            fm.append('category', this.state.category)
             FileService.Upload(fm)
         }).then(()=>{
             alert('파일 업로드 성공')

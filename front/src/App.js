@@ -4,6 +4,7 @@ import Footer from './comp/Footer'
 import './App.scss'
 import Content from './views/Content'
 import { FocusStyleManager } from '@blueprintjs/core'
+import CartComp from './comp/CartComp'
  
 FocusStyleManager.onlyShowFocusOnTabs()
 
@@ -20,7 +21,7 @@ function App() {
       </div>
     </div>
     <div id="cart" className="display-on">
-      Aside!
+      <CartComp />
     </div>
     </div>
     
