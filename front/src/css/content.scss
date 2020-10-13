@@ -244,4 +244,16 @@ $play-btn-size: 32px !default;
 }
 
 
-
+#search-result {
+  .search-result-{
+    &wrapper {
+      
+    }
+    &header{
+      height: 300px;
+    }
+    &content{
+      
+    }
+  }
+}

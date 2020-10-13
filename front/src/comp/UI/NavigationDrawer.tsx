@@ -1,4 +1,5 @@
 import React from "react"
+import eventBus from '../../utils/eventBus'
 
 import {
     Icon,
@@ -17,6 +18,7 @@ export interface DrawerState {
     position?: Position;
     size: string;
     usePortal: boolean;
+    currentUser: string
 }
 export default class NavigationDrawer extends React.PureComponent<DrawerState> {
     public state: DrawerState = {
@@ -29,9 +31,11 @@ export default class NavigationDrawer extends React.PureComponent<DrawerState> {
         position: Position.LEFT,
         size: Drawer.SIZE_SMALL,
         usePortal: true,
+        currentUser: 'anonymous'
     }
 
     public render() {
+        const {currentUser} = this.state
 
         const style = {
             color: 'white',
@@ -46,7 +50,7 @@ export default class NavigationDrawer extends React.PureComponent<DrawerState> {
                 <Drawer
                     icon="user"
                     onClose={this.handleClose}
-                    title="로그인 하세요"
+                    title={currentUser === 'anonymous' ? '로그인 하세요' : `${currentUser}님, 환영합니다.`}
                     {...this.state}
                 >
                     <div className={Classes.DRAWER_BODY}>
@@ -66,6 +70,14 @@ export default class NavigationDrawer extends React.PureComponent<DrawerState> {
             </>
         )
     }
+
+    componentDidMount() {
+        eventBus.on("fetchUser", (data: JSON) => {
+            this.setState({ currentUser: data })
+            console.log(data)
+          }
+        )
+      }
 
     private handleOpen = () => this.setState({ isOpen: true })
     private handleClose = () => this.setState({ isOpen: false })
