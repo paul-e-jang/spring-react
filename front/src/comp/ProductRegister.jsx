@@ -106,9 +106,6 @@ export default class MemberRegister extends React.Component {
         const file = e.target.files[0]
         this.setState({thumbImage: file})
         this.setState({thumbUrl: URL.createObjectURL(file)})
-        const fm = new FormData()
-        fm.append('file', file)
-        FileService.Upload(fm)
       }
 
     SubmitPreventer = () => {
@@ -128,7 +125,13 @@ export default class MemberRegister extends React.Component {
         f.append('username', this.state.username)
         const json = JSON.stringify(Object.fromEntries(f))
         RegistrationService.productRegister(json).then(() => {
-          alert('등록 성공')
+          alert('DB 등록 성공, 파일 업로드를 시작합니다.')
+        }).then(()=>{
+            const fm = new FormData()
+            fm.append('file', this.state.thumbImage)
+            FileService.Upload(fm)
+        }).then(()=>{
+            alert('파일 업로드 성공')
         }).catch((error) => {
           alert('등록 실패, 이유: '+error.message)
         })

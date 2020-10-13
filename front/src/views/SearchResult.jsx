@@ -2,7 +2,9 @@ import React from 'react'
 
 class SearchResult extends React.Component {
   render() {
-    return <div className="message-container">Search Result!</div>
+    return <section className="search-result">
+      Search Result!
+    </section>
   }
 }
 

@@ -10,11 +10,15 @@ FocusStyleManager.onlyShowFocusOnTabs()
 
 function App() {
   return (
+    <>
     <div id="app">
       <Header />
       <Content />
       <Footer />
+      <aside>aside</aside>
     </div>
+    
+    </>
   )
 }
 

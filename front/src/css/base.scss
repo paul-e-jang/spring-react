@@ -47,6 +47,17 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+aside {
+  display: block;
+  position: absolute;
+  width: 5%;
+  margin-left: 5%;
+  background-color: white;
+  right: 0;
+  border: solid 1px;
+  height: 100%;
+}
+
 
 footer {
   position: relative;
