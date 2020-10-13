@@ -15,7 +15,10 @@ import bashpound.marketplace.config.security.AuthenticationToken;
 import bashpound.marketplace.domain.model.Delivery;
 import bashpound.marketplace.domain.model.Member;
 import bashpound.marketplace.domain.model.MemberDetails;
+import bashpound.marketplace.domain.model.Product;
+import bashpound.marketplace.domain.model.Purchase;
 import bashpound.marketplace.infra.repository.MemberMapper;
+import bashpound.marketplace.infra.repository.PurchaseMapper;
 import bashpound.marketplace.services.member.exception.DuplicateMemberException;
 
 @Service
@@ -23,6 +26,9 @@ public class MemberDetailsServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberMapper memberMapper;
+
+	@Autowired
+	private PurchaseMapper purchaseMapper;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -70,9 +76,23 @@ public class MemberDetailsServiceImpl implements MemberService {
 
 	@Override
 	public boolean processSellerUpdate(AuthenticationToken authenticationToken) {
-		Member member = (Member)authenticationToken.getPrincipal();
+		Member member = (Member) authenticationToken.getPrincipal();
 		int result = memberMapper.update(member.getUsername());
-		return result == 1? true : false ;
+		return result == 1 ? true : false;
+	}
+
+	@Override
+	public List<Product> processGetCart(String username) {
+		List<Purchase> purchases = purchaseMapper.selectJoin(username);
+
+		List<Product> prods = new ArrayList<>();
+		if (purchases.isEmpty()) {
+			return prods;
+		}
+
+		purchases.forEach(purc -> prods.add(purc.getProducts()));
+		return prods;
+
 	}
 
 }

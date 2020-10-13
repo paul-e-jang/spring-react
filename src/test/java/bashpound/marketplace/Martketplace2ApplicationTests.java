@@ -1,6 +1,7 @@
 package bashpound.marketplace;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -66,13 +67,16 @@ class Martketplace2ApplicationTests {
 		}
 	}
 
-//	@Test
+	@Test
 	public void testPurchaseJoin() {
-		List<Purchase> list = purchaseMapper.selectJoin("doli0413");
-		list.forEach(purc -> System.out.println(purc));
+		List<Purchase> proc = purchaseMapper.selectJoin("jchan");
+		List<Product> result = new ArrayList<>();
+		proc.forEach( prc -> result.add(prc.getProducts()));
+		result.forEach( res -> System.out.println(res));
+		
 	}
 	
-	@Test
+//	@Test
 	public void testCuration() {
 		List<Product> list = productMapper.selectCuration(1);
 		list.forEach( cur -> System.out.println(cur));
