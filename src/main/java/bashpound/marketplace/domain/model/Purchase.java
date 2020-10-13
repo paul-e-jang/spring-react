@@ -10,14 +10,14 @@ public class Purchase {
 	private Member member;
 	private Date purchaseDate;
 	private boolean arrive;
-	private List<MapPurchaseProd> products;
+	private Product product; 
 	private List<ShippingInfomartion> shippingInformations;
 	private boolean purchased;
 
 	@Override
 	public String toString() {
 		return "Purchase [id=" + id + ", member=" + member + ", purchaseDate=" + purchaseDate + ", arrive=" + arrive
-				+ ", products=" + products + ", shippingInformations=" + shippingInformations + ", purchased="
+				+ ", product=" + product + ", shippingInformations=" + shippingInformations + ", purchased="
 				+ purchased + "]";
 	}
 
@@ -68,12 +68,12 @@ public class Purchase {
 		this.arrive = arrive;
 	}
 
-	public List<MapPurchaseProd> getProducts() {
-		return products;
+	public Product getProducts() {
+		return product;
 	}
 
-	public void setProducts(List<MapPurchaseProd> products) {
-		this.products = products;
+	public void setProducts(Product product) {
+		this.product = product;
 	}
 
 	public List<ShippingInfomartion> getShippingInformations() {

@@ -1,6 +1,7 @@
 package bashpound.marketplace.apis;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import bashpound.marketplace.config.security.AuthenticationToken;
 import bashpound.marketplace.domain.model.Delivery;
 import bashpound.marketplace.domain.model.Member;
+import bashpound.marketplace.domain.model.Product;
 import bashpound.marketplace.services.member.MemberService;
 import bashpound.marketplace.utils.Message;
 
@@ -53,7 +55,7 @@ public class MemberController {
 			member = memberService.processRegister(memberDto);
 		} catch (Exception e) {
 			Message message = new Message.Builder(e.getMessage()).build();
-			return new ResponseEntity<Message>(message, HttpStatus.CONFLICT);
+			return new ResponseEntity<Message>(message, HttpStatus.BAD_REQUEST);
 		}
 
 		return new ResponseEntity<Member>(member, HttpStatus.OK);
@@ -61,37 +63,40 @@ public class MemberController {
 
 	@RequestMapping(value = "/api/registerSeller", method = RequestMethod.POST)
 	public ResponseEntity registerSeller() {
-		Authentication authentication = SecurityContextHolder.getContext()
-				.getAuthentication();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (authentication instanceof AnonymousAuthenticationToken) {
 
 		}
-		AuthenticationToken authenticationToken = (AuthenticationToken)authentication;
+		AuthenticationToken authenticationToken = (AuthenticationToken) authentication;
 		boolean result = memberService.processSellerUpdate(authenticationToken);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
-	@RequestMapping(value = "/api/fetchUser",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
+
+	@RequestMapping(value = "/api/fetchUser", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<HashMap<String, Object>> loadUsername() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication(); 
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		HashMap<String, Object> resultMap = new HashMap<>();
-		if(authentication instanceof AnonymousAuthenticationToken) {
+		if (authentication instanceof AnonymousAuthenticationToken) {
 			resultMap.put("username", "anonymous");
 			resultMap.put("authenticate", false);
-			return new ResponseEntity<HashMap<String, Object>>(resultMap,HttpStatus.OK);
+			return new ResponseEntity<HashMap<String, Object>>(resultMap, HttpStatus.OK);
 		}
-		Member member = (Member)((AuthenticationToken)authentication).getPrincipal();
+		Member member = (Member) ((AuthenticationToken) authentication).getPrincipal();
 		resultMap.put("username", member.getUsername());
 		resultMap.put("authenticated", true);
-		return new ResponseEntity<HashMap<String, Object>>(resultMap,HttpStatus.OK);		
+		return new ResponseEntity<HashMap<String, Object>>(resultMap, HttpStatus.OK);
 	}
-
-	@RequestMapping(value = "/api/cart/{username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity getCartList(@PathVariable("username") String username) {
-
-		return null;
-	}
+	
+	@RequestMapping(value = "/api/getCart/{username}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<Object> getCartList(@PathVariable("username") String username) {
+			List<Product> cart = memberService.processGetCart(username);
+			if(cart.isEmpty()) {
+				return new ResponseEntity<Object>(cart,HttpStatus.OK);
+			}
+			return new ResponseEntity<Object>(cart,HttpStatus.OK);
+		}
+	
 
 	// 김종찬 추가
 	@RequestMapping("/api/getMember")
