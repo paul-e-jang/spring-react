@@ -23,6 +23,12 @@ $tc5: #131921;
   display: none;
 }
 
+header {
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
 
 section {
   background-color: white;
@@ -48,16 +54,11 @@ body {
 }
 
 aside {
-  display: block;
-  position: absolute;
-  width: 5%;
-  margin-left: 5%;
   background-color: white;
-  right: 0;
   border: solid 1px;
-  height: 100%;
+  position: fixed;
+  right:0;
 }
-
 
 footer {
   position: relative;
@@ -65,3 +66,5 @@ footer {
   width: 100%;
   text-align:center;
 }
+
+
