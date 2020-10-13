@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 import Banner from './Banner'
 import eventBus from '../utils/eventBus'
 import SearchBar from './UI/SearchBar'
-
-// import authentication from '../services/authentication'
+import User from './User'
+import authenticationService from '../services/authentication'
 
 class Header extends React.Component {
 
@@ -14,15 +14,17 @@ class Header extends React.Component {
     super()
     this.state = {
       headerOn: true,
-      user: 'anonymous'
+      currentUser: 'anomynous'
     }
 }
 
   render() {
-    const {headerOn, user} = this.state
+    const {headerOn, currentUser} = this.state
 
     return (
         <header id="header" className={headerOn? 'headerfooter-on': 'headerfooter-off'}>
+          <User />
+         
           <div id="upper-bar">
             <div id="drawer">
               <NavigationDrawer />
@@ -35,7 +37,7 @@ class Header extends React.Component {
               <ul id="nav-menu-container">
                 <li>
                   <Link to="/login">
-                    <Banner main={`Hello, ${user ==='anonymous' ? 'sign-in' : user}`} sub="Accounts & Lists" />
+                    <Banner main={currentUser} sub="Accounts & Lists" />
                   </Link>
                 </li>
                 <li>
@@ -52,6 +54,7 @@ class Header extends React.Component {
             </nav>
           </div>
           <div id="under-bar">
+          <h5>current user: {currentUser}</h5>
             <div className="under-banner">
                <Link to="/"><Banner sub="Delivery to: Somewhere!"/></Link> 
             </div>
@@ -71,6 +74,9 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
+    const user = authenticationService.fetchUser().username
+    this.setState({ currentUser: user})
+
     eventBus.on("headerFooter", (data) =>
       this.setState({ headerOn: data.message })
     )

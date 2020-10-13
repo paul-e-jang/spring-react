@@ -222,8 +222,10 @@ $play-btn-size: 32px !default;
 
     .cart-arrow {
       position: fixed;
+      display:none;
       right: 4.3%;
       top: 2%;
+      color: white;
     }
     .cart-total {
       position: relative;
@@ -236,6 +238,8 @@ $play-btn-size: 32px !default;
   }
   .cart-content {
     border: solid 1px;
+    padding: 10px;
+    margin-top: 10px;
   }
 }
 

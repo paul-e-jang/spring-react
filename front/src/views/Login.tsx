@@ -85,6 +85,7 @@ class Login extends React.PureComponent<RouteComponentProps, LoginGroupState> {
       const json = JSON.stringify(Object.fromEntries(f))
         AuthenticationService.login(json).then(() => {
           alert('로그인 성공')
+          AuthenticationService.fetchUser()
           this.props.history.push('/')
         }).catch((error) => {
           alert('로그인 실패, 이유: '+error.message)

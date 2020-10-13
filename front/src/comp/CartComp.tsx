@@ -22,9 +22,6 @@ class CartComp extends React.PureComponent<CartCompGroupState> {
     render() {
 
       const { total, displayOn } = this.state;
-      const style = {
-        color: 'white'
-      }
 
       const totalPrice = (
         <div>
@@ -32,11 +29,15 @@ class CartComp extends React.PureComponent<CartCompGroupState> {
         </div>
       )
 
+      const caret = (
+        <div className="cart-arrow"><Icon icon="caret-left" iconSize={20} className={displayOn? 'display-on': 'display:off'} /> </div>
+      )
+
       return (
         <aside className={displayOn? 'display-on' : 'display-off'}>
           <div className="cart-wrapper">
             <div className="cart-header">
-              <div className="cart-arrow"><Icon icon="caret-left" iconSize={20} style={style} /> </div>
+                {displayOn ? caret : null}
               <div className='cart-total' > {totalPrice} </div>
             </div>
             <div className="cart-content">
