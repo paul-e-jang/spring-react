@@ -100,21 +100,4 @@ public class MemberController {
 		System.out.println(username);
 		return memberService.selectByUsername(username);
 	}
-
-	// 김종찬 추가
-	@RequestMapping(value = "/api/delivery", method = RequestMethod.POST)
-	@ResponseBody
-	public void regDelivery(@RequestBody Map<String, Object> param) {
-		Member member = memberService.selectByUsername((String) param.get("username"));
-		Delivery delivery = new Delivery();
-		delivery.setMember(member);
-		delivery.setZipcode((String) param.get("zipcode"));
-		delivery.setNameOfDelivery((String) param.get("name_of_delivery"));
-		delivery.setAddress1((String) param.get("address1"));
-		delivery.setAddress2((String) param.get("address2"));
-		delivery.setMainAddress((boolean) param.get("is_main_address"));
-		System.out.println(delivery);
-		memberService.regDelivery(delivery);
-	}
-
 }

@@ -44,15 +44,5 @@
 	<update id="update">
 		update member set is_seller = 1 where username = #{username}
 	</update>
-	
-	<!-- 김종찬 작성 -->
-	<insert id="regDelivery" parameterType="delivery">
-		<selectKey keyProperty="id" order="BEFORE" resultType="long">
-			select nvl(max(delivery_id), 0) + 1 from delivery
-		</selectKey>
-		insert into delivery (delivery_id, zipcode, name_of_delivery, address1, address2, is_main_address, delivery_username) 
-		 values (#{id}, #{zipcode}, #{nameOfDelivery}, #{address1}, #{address2, jdbcType=VARCHAR}, 
-		 #{isMainAddress}, #{member.username})
-	</insert>
 
 </mapper>

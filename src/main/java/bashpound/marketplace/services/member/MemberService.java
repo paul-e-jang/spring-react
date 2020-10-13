@@ -13,8 +13,6 @@ public interface MemberService extends UserDetailsService {
 	Member processRegister(Member memberDto);
 
 	Member selectByUsername(String username);
-	
-	void regDelivery(Delivery delivery);
 
 	boolean processSellerUpdate(AuthenticationToken authenticationToken);
 
