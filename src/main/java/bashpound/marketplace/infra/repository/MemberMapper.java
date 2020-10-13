@@ -13,6 +13,4 @@ public interface MemberMapper {
 	public int insert(@Param("member")Member member);
 	
 	public int update(@Param("username") String username);
-
-	public void regDelivery(Delivery delivery);
 }

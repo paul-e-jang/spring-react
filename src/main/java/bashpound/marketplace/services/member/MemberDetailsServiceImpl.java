@@ -64,11 +64,6 @@ public class MemberDetailsServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void regDelivery(Delivery delivery) {
-		memberMapper.regDelivery(delivery);
-	}
-
-	@Override
 	public boolean processSellerUpdate(AuthenticationToken authenticationToken) {
 		Member member = (Member)authenticationToken.getPrincipal();
 		int result = memberMapper.update(member.getUsername());
