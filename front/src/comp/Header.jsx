@@ -13,7 +13,7 @@ class Header extends React.Component {
     super()
     this.state = {
       headerOn: true,
-      currentUser: 'anomynous'
+      currentUser: 'anonymous'
     }
 }
 
@@ -35,7 +35,7 @@ class Header extends React.Component {
             <nav className="upper-bar-right">
               <ul id="nav-menu-container">
                 <li>
-                  <Link to={currentUser === 'anonymous?' ? '/login' : '/'}>
+                  <Link to={currentUser === 'anonymous' ? '/login' : '/'}>
                     <Banner main={`Hello, ${currentUser === 'anonymous' ? 'sign-in' : currentUser}`} sub="Accounts & Lists" />
                   </Link>
                 </li>
@@ -72,6 +72,7 @@ class Header extends React.Component {
   }
 
   componentDidMount() {
+    console.log('currentUser = ' + this.state.currentUser)
     eventBus.on("fetchUser", (data) => {
         this.setState({ currentUser: data })
         console.log(data)
