@@ -13,7 +13,7 @@ public interface ProductService {
 
 	public List<Product> searchProduct(String category, String key);
 
-	public Map<String, String> productDetail(Long productId);
+	public Product productDetail(Long productId);
 
 	
 }

@@ -73,12 +73,13 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/SearchResult", method=RequestMethod.GET)
-	public List<Product> searchProduct(@RequestParam("category") String category, @RequestParam("key") String key) {
+	public List<Product> searchProduct(@RequestParam(value="category", defaultValue="") String category, 
+			@RequestParam(value="key", defaultValue="") String key) {
 		return ps.searchProduct(category, key);
 	}
 	
 	@RequestMapping(value = "/details/{productId}", method=RequestMethod.GET)
-	public Map<String, String> productDetail(@PathVariable Long productId) {
+	public Product productDetail(@PathVariable Long productId) {
 		return ps.productDetail(productId);
 	}
 	

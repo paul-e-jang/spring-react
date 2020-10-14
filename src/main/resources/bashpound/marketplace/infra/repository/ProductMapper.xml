@@ -50,8 +50,8 @@
 			(concat(prod_name, options) like '%' || #{key} || '%')
 	</select>
 	
-	<select id="productDetail" parameterType="long" resultType="map">
-		select options from product where prod_id = #{productId}
+	<select id="productDetail" parameterType="long" resultMap="productResultMap">
+		select * from product where prod_id = #{productId}
 	</select>
 	
 	<select id="selectJoin" resultMap="productResultMap">
