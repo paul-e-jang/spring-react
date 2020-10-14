@@ -31,7 +31,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Map<String, String> productDetail(Long productId) {
+	public Product productDetail(Long productId) {
 		return pm.productDetail(productId);
 	}
 	

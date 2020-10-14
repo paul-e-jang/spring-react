@@ -15,7 +15,7 @@ public interface ProductMapper {
 
 	public List<Product> searchProduct(String category, String key);
 
-	public Map<String, String> productDetail(Long productId);
+	public Product productDetail(Long productId);
 	
 	public List<Product> selectCuration(@Param("prodId")int prodId);
 }
