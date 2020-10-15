@@ -46,7 +46,12 @@
 	</select>
 	
 	<select id="searchProduct" parameterType="string" resultMap="productResultMap">
-		select * from product where (category like '%' || #{category} || '%') and 
+		select * from product where 
+		<trim suffix="and ">
+		<if test='category.toString() != "base"'>
+			 (category like '%' || #{category} || '%')
+		</if>
+		</trim>
 			(concat(prod_name, options) like '%' || #{key} || '%')
 	</select>
 	

@@ -3,6 +3,7 @@ package bashpound.marketplace.apis;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
 
@@ -75,7 +76,10 @@ public class ProductController {
 	@RequestMapping(value = "/SearchResult", method=RequestMethod.GET)
 	public List<Product> searchProduct(@RequestParam(value="category", defaultValue="") String category, 
 			@RequestParam(value="key", defaultValue="") String key) {
-		return ps.searchProduct(category, key);
+		
+		List<Product> list = ps.searchProduct(category, key);
+
+		return list;
 	}
 	
 	@RequestMapping(value = "/details/{productId}", method=RequestMethod.GET)
