@@ -51,7 +51,7 @@ public class ProductController {
 	
 	@RequestMapping(value = "/fileUpload", method=RequestMethod.POST)
 	public void fileupload(MultipartFile file, @RequestParam(value="category", defaultValue="category") String category) {
-		ClassPathResource classPath = new ClassPathResource("/src/main/resources/upload");
+		ClassPathResource classPath = new ClassPathResource("/src/main/resources/static/upload");
 		String dir = classPath.getPath().toString();
 		File uploadPath = new File(dir, category);
 		if (uploadPath.exists() == false) {

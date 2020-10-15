@@ -1,6 +1,5 @@
 import React from "react"
 import {Link} from 'react-router-dom'
-import productService from '../../services/product'
 
 import {
     Button,
@@ -21,16 +20,16 @@ export interface InputGroupState {
 class SearchBar extends React.PureComponent<InputGroupState> {
     public state: InputGroupState = {
         disabled: false,
-        selected: 'base',
+        selected: '',
         cat: ['electronics', 'clothes'],
-        key: 'base',
+        key: ''
     }
 
     public render() {
-        const { cat, disabled, selected } = this.state
+        const { cat, disabled, selected, key } = this.state
 
         const rightIcon = (
-            <Link to="/searchResult">
+            <Link to={`/searchResult?category=${selected}&keyword=${key}`}>
             <Button icon="search" intent="warning" onClick={this.handleSubmit} minimal /> 
             </Link>
         )
@@ -47,7 +46,7 @@ class SearchBar extends React.PureComponent<InputGroupState> {
                 position={Position.BOTTOM_RIGHT}
             >
                 <Button disabled={disabled} minimal={true} rightIcon="caret-down"> 
-                    <h4>{selected === 'base' ? 'Category' : selected }</h4>
+                    <h4>{selected === '' ? 'Category' : selected }</h4>
                 </Button>
             </Popover>
         )
@@ -69,8 +68,6 @@ class SearchBar extends React.PureComponent<InputGroupState> {
     }
 
     handleSubmit = () => {
-        const data = productService.Search(this.state.key, this.state.selected)
-        console.log(data)
     }
 
 }

@@ -7,7 +7,6 @@ export default {
     return new Promise((resolve, reject) => {
       axios.get(`/SearchResult?key=${key}&category=${category}`).then(({ data }) => {
         resolve(data)
-        console.log(data)
       }).catch((error) => {
         reject(errorParser.parse(error))
       })

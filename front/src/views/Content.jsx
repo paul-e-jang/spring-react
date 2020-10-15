@@ -12,7 +12,7 @@ const Content = () => (
         <Route path="/login" component={Login} exact={true} />
         <Route path="/register" component={MemberRegister} exact={true} />
         <Route path="/" component={Main} exact={true} />
-        <Route path="/searchResult" component={SearchResult} exact={true} />
+        <Route path="/searchResult" component={SearchResult} exact={false} />
         <Route path="/CsMain" component={CsMain} exact={true} />
         </Switch>
     </main>
