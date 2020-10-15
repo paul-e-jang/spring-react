@@ -3,6 +3,7 @@ package bashpound.marketplace.apis;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.URLDecoder;
 import java.util.List;
 import java.util.Map;
 
@@ -51,7 +52,7 @@ public class ProductController {
 	
 	@RequestMapping(value = "/fileUpload", method=RequestMethod.POST)
 	public void fileupload(MultipartFile file, @RequestParam(value="category", defaultValue="category") String category) {
-		ClassPathResource classPath = new ClassPathResource("/src/main/resources/upload");
+		ClassPathResource classPath = new ClassPathResource("/src/main/resources/static/upload");
 		String dir = classPath.getPath().toString();
 		File uploadPath = new File(dir, category);
 		if (uploadPath.exists() == false) {
@@ -75,7 +76,10 @@ public class ProductController {
 	@RequestMapping(value = "/SearchResult", method=RequestMethod.GET)
 	public List<Product> searchProduct(@RequestParam(value="category", defaultValue="") String category, 
 			@RequestParam(value="key", defaultValue="") String key) {
-		return ps.searchProduct(category, key);
+		
+		List<Product> list = ps.searchProduct(category, key);
+
+		return list;
 	}
 	
 	@RequestMapping(value = "/details/{productId}", method=RequestMethod.GET)
