@@ -245,15 +245,22 @@ $play-btn-size: 32px !default;
 
 
 #search-result {
-  .search-result-{
-    &wrapper {
+  display: flex;
+  object-fit: contain;
+  padding: 30px;
+
+  .product {
+    display: inline-flex;
+    flex-wrap: wrap;
+
+    .product-item{
+      width: 30%;
       
-    }
-    &header{
-      height: 300px;
-    }
-    &content{
-      
+      img {
+        width: auto;
+        height: 100px;
+      }
     }
   }
 }
+

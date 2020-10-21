@@ -2,6 +2,7 @@ import React from 'react'
 import qs from 'qs'
 import productService from '../services/product'
 import Product from '../comp/Product'
+import '../css/content.scss'
 
 
 class SearchResult extends React.Component {
@@ -28,7 +29,7 @@ class SearchResult extends React.Component {
         <div className="search-result-wrapper">
         <div className="search-result-header"><h1>Search Result for: {keyword===''? 'any' : keyword} {category===''? null : `in ${category}`} </h1>
         </div>
-        {arr}
+        <div class="product">{arr}</div>
         <div className="search-resuilt-content"></div>
         </div>
       </section>
