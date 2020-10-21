@@ -36,12 +36,6 @@ class SearchResult extends React.Component {
   
   }
 
-  componentDidUpdate(prevState) {
-    if(prevState.category !== this.state.category || prevState.keyword !== this.state.keyword) {
-      this.init()
-    }
-  }
-
   init () {
     const query = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true
@@ -58,6 +52,11 @@ class SearchResult extends React.Component {
     productService.Search(keyword, category).then((data) => {
       this.setState({plist: data})
     })
+    console.log(this.state.plist)
+  }
+
+  componentDidUpdate() {
+    
   }
 
   componentDidMount() {

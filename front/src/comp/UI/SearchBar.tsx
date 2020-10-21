@@ -1,6 +1,5 @@
 import React from "react"
 import {Link} from 'react-router-dom'
-
 import {
     Button,
     InputGroup,
@@ -14,7 +13,8 @@ export interface InputGroupState {
     disabled: boolean,
     selected: string,
     cat: Array<string>,
-    key: string
+    key: string,
+    plist: Array<string>
 }
 
 class SearchBar extends React.PureComponent<InputGroupState> {
@@ -22,14 +22,15 @@ class SearchBar extends React.PureComponent<InputGroupState> {
         disabled: false,
         selected: '',
         cat: ['electronics', 'clothes'],
-        key: ''
+        key: '',
+        plist: []
     }
 
     public render() {
         const { cat, disabled, selected, key } = this.state
 
         const rightIcon = (
-            <Link to={`/searchResult?category=${selected}&keyword=${key}`}>
+            <Link to={`/searchResult?category=${selected}&keyword=${key}`} >
             <Button icon="search" intent="warning" onClick={this.handleSubmit} minimal /> 
             </Link>
         )

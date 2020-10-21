@@ -76,7 +76,6 @@ public class ProductController {
 	@RequestMapping(value = "/SearchResult", method=RequestMethod.GET)
 	public List<Product> searchProduct(@RequestParam(value="category", defaultValue="") String category, 
 			@RequestParam(value="key", defaultValue="") String key) {
-		
 		List<Product> list = ps.searchProduct(category, key);
 
 		return list;
