@@ -62,12 +62,20 @@ class SearchBar extends React.PureComponent<InputGroupState> {
                     leftElement={permissionsMenu}
                     rightElement={rightIcon}
                     onChange={(e:any) => this.setState({key: e.target.value})}
+                    onKeyPress={(e:any) => this.handleKeyPress(e)}
                 />
             </div>
         )
     }
 
     handleSubmit = () => {
+    }
+
+    handleKeyPress = (e:any) => {
+        if (e.key === "Enter") {
+         let url = `/searchResult?category=${this.state.selected}&keyword=${this.state.key}`
+          window.location.href = url
+        }
     }
 
 }
