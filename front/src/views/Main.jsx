@@ -30,8 +30,8 @@ class Main extends React.Component {
         <>
         <Carousel />
         <Curation subject="AmazeMarket Top Sellers" items={plist} responsive={responsive} url={`/searchResult?category=&keyword=`} />
-        <Curation subject="Trending in Apperals" items={clothes} responsive={responsive} url={`/searchResult?category=의류&keyword=`}/>
-        <Curation subject="Popular Electronics" items={elec} responsive={responsive} url={`/searchResult?category=가전&keyword=`}/>
+        <Curation subject="Popular Electronics" items={clothes} responsive={responsive} url={`/searchResult?category=의류&keyword=`}/>
+        <Curation subject="Trending in Apperals" items={elec} responsive={responsive} url={`/searchResult?category=가전&keyword=`}/>
         </>
       )
     }
@@ -49,7 +49,6 @@ class Main extends React.Component {
       const elec = []
       const clothes = []
       const plist = []
-      const style = {'height': '300px', 'display' : 'block'}
       
 
       productService.Search('', '').then((data) => {
@@ -57,24 +56,24 @@ class Main extends React.Component {
         for(let i=0; i<data.length; i++){
           if(data[i].category==='의류'){
             elec.push(
-              <div className="item" style={style}>
+              <div className="item" >
                 <img src={`http://localhost:8090/static/upload/${data[i].category}/${data[i].thumbNail}`} alt="이미지 로딩 실패"/>
               </div>
             )
             plist.push(
-              <div className="item" style={style}>
+              <div className="item" >
                 <img src={`http://localhost:8090/static/upload/${data[i].category}/${data[i].thumbNail}`} alt="이미지 로딩 실패"/>
               </div>
             )
           }
           if(data[i].category==='가전'){
             clothes.push(
-              <div className="item" style={style}>
+              <div className="item" >
                 <img src={`http://localhost:8090/static/upload/${data[i].category}/${data[i].thumbNail}`} alt="이미지 로딩 실패"/>
               </div>
             )
             plist.push(
-              <div className="item" style={style}>
+              <div className="item" >
                 <img src={`http://localhost:8090/static/upload/${data[i].category}/${data[i].thumbNail}`} alt="이미지 로딩 실패"/>
               </div>
             )
