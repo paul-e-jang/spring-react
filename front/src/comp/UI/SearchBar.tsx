@@ -1,5 +1,4 @@
 import React from "react"
-import {Link} from 'react-router-dom'
 import {
     Button,
     InputGroup,
@@ -21,7 +20,7 @@ class SearchBar extends React.PureComponent<InputGroupState> {
     public state: InputGroupState = {
         disabled: false,
         selected: '',
-        cat: ['electronics', 'clothes'],
+        cat: ['가전', '의류'],
         key: '',
         plist: []
     }
@@ -30,9 +29,9 @@ class SearchBar extends React.PureComponent<InputGroupState> {
         const { cat, disabled, selected, key } = this.state
 
         const rightIcon = (
-            <Link to={`/searchResult?category=${selected}&keyword=${key}`} >
+            <a href={`/searchResult?category=${selected}&keyword=${key}`} >
             <Button icon="search" intent="warning" onClick={this.handleSubmit} minimal /> 
-            </Link>
+            </a>
         )
 
         const permissionsMenu = (

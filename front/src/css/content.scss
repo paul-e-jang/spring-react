@@ -264,3 +264,50 @@ $play-btn-size: 32px !default;
   }
 }
 
+.search-result-content {
+  display: flex;
+  
+  
+
+  .search-result-side-bar {
+    height: 100%;
+    min-width: 20%;
+    max-width: 60%;
+    padding: 10px;
+    margin-right: 30px;
+  }
+
+  .product {
+    height: 100%;
+    border-left: solid 2px rgb(226, 226, 226);
+  }
+
+  .side-bar-menu {
+    margin-bottom: 30px;
+    margin-top: 20px;
+    h4 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    li {
+      list-style: none;
+      transition: 0.2s ease-in-out;
+      margin-bottom: 3px;
+
+      &:hover {
+        color: $tc1;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+      }
+    }
+
+  }
+  
+}
+
+#search-result-content > div {
+  flex: 1; 
+}
+
+
+
