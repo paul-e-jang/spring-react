@@ -20,10 +20,11 @@ $play-btn-size: 32px !default;
 
 #curation {
   position: relative;
-  //border: 1px solid; 
+  //border: 1px solid;
 
   .session-wrapper {
     padding: 20px;
+
     .subject {
       font-size: 25px;
       margin-bottom: 10px;
@@ -31,7 +32,6 @@ $play-btn-size: 32px !default;
       .link {
         font-size: 15px;
         margin-left: 5px;
-        
       } 
     }
   }
@@ -39,9 +39,17 @@ $play-btn-size: 32px !default;
   
 
   .item {
-    min-height: 300px;
-    background-color: rgb(121, 177, 177);
-    border: solid 1px;
+    text-align: center;
+    background: rgb(212,212,212);
+    background: linear-gradient(0deg, rgba(212,212,212,0.25253851540616246) 0%, rgba(242,242,242,0.3449754901960784) 13%, rgba(255,255,255,0) 100%);
+    
+    img {
+      height: 200px;
+      width: auto;
+      padding: 20px;
+      margin-top: 25%;
+      transition: 0.3s ease-in-out;
+    }
   }
   .alice-carousel__prev-btn,
   .alice-carousel__next-btn {
@@ -90,6 +98,7 @@ $play-btn-size: 32px !default;
 
     color: $tc2;
     &:hover {
+      color: $tc1;
       text-shadow: 1px 0px 10px white;
       transition: 0.4s ease-in-out;
     }

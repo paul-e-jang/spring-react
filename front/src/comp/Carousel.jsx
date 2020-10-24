@@ -49,9 +49,9 @@ class Carousel extends React.Component {
         infinite
         />
         <div id="carousel-items-wrapper">
-        <CarouselItems subject="Clothes" image="sub_1.jpg" message="see more"/>
-        <CarouselItems subject="Amazon Basics" image="sub_2.jpg" message="see more" />
-        <CarouselItems subject="Electronics" image="sub_3.jpg" message="see more" />
+        <CarouselItems subject="Clothes" image="sub_1.jpg" message="see more" category="의류"/>
+        <CarouselItems subject="Amazon Basics" image="sub_2.jpg" message="see more" category=""/>
+        <CarouselItems subject="Electronics" image="sub_3.jpg" message="see more" category="가전"/>
         {currentUser === 'anonymous' ? loginSign : fourth}
         </div>
         </section>
