@@ -42,5 +42,23 @@ export default {
         reject(errorParser.parse(error))
       })
     })
+  },
+  addToCart (detail) {
+    return new Promise((resolve, reject) => {
+      axios.post('/addToCart', detail).then(({ data }) => {
+        resolve(data)
+      }).catch((error) => {
+        reject(errorParser.parse(error))
+      })
+    })
+  },
+  purchase (detail) {
+    return new Promise((resolve, reject) => {
+      axios.post('/purchase', detail).then(({ data }) => {
+        resolve(data)
+      }).catch((error) => {
+        reject(errorParser.parse(error))
+      })
+    })
   }
 }

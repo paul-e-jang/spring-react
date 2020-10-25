@@ -1,6 +1,7 @@
 import React  from 'react'
 import '../css/content.scss'
 import { NumericInput , Card, Button, Classes, Tooltip , AnchorButton, Intent, Dialog } from '@blueprintjs/core'
+import ProductService from '../services/product'
 
 class Product extends React.Component {
 
@@ -8,15 +9,18 @@ class Product extends React.Component {
     super()
     this.state = {
       isOpen: false,
-      value: 1
+      value: 1,
+      disabled: false,
+      disabled2: false
     }
   }
 
   render() {
     const {props} = this.props
-    const {value} = this.state
+    const { disabled, disabled2} = this.state
     const style = {'width' : '100%', 'padding': '10px', }
     const pStyle = { 'marginTop' : '10px' }
+    const id = props.id
 
   return (
   <>
@@ -44,7 +48,6 @@ class Product extends React.Component {
                     <li>가격: ₩{AddComma(props.price)}</li>
                     <li>재고: {props.stock}</li>
                     <li>판매자: {props.seller === null? '미등록(null)' : props.stock}</li>
-                    value: {value}
                 </strong>
             </p>
             <p>
@@ -62,14 +65,19 @@ class Product extends React.Component {
                 </Tooltip>
                 <AnchorButton
                     intent={Intent.PRIMARY}
-                    onClick={this.handleCartIn(props.id)}
+                    onClick={()=>this.handleCartIn(id)}
+                    disabled={disabled}
+                    loading={disabled}
                 >
-                    장바구니 담기
+                    {disabled? '등록 중..' : '장바구니 담기'}
                 </AnchorButton>
                 <Tooltip content="장바구니에 담지 않고 바로 결제">
                 <AnchorButton
                     intent={Intent.SUCCESS}
                     onClick={this.handle}
+                    disabled={disabled2}
+                    loading={disabled2}
+                    onClick={()=>this.handleDirectPurchase(id)}
                 >
                     바로 구매!
                 </AnchorButton>
@@ -90,10 +98,36 @@ class Product extends React.Component {
     const f = new FormData()
     f.append('pid', id)
     f.append('numberOfItems', this.state.value)
+    f.append('uid', 'eunhackjang')
+    this.setState({disabled: true})
+    const json = JSON.stringify(Object.fromEntries(f))
+    ProductService.addToCart(json).then(()=>{
+      this.setState({disabled: false})
+      alert('등록 성공!')
+      this.setState({isOpen: false})
+    }).catch((error)=>{
+      alert(error)
+      this.setState({disabled: false})
+    })
+
   }
 
-  handleDirectPurchase () {
-
+  handleDirectPurchase = (id) => {
+    const f = new FormData()
+    f.append('pid', id)
+    f.append('numberOfItems', this.state.value)
+    f.append('uid', 'eunhackjang')
+    f.append('purchase', true)
+    this.setState({disabled2: true})
+    const json = JSON.stringify(Object.fromEntries(f))
+    ProductService.purchase(json).then((data)=>{
+      this.setState({disabled2: false})
+      alert('구매에 성공하였습니다 ㅋㅋ')
+      this.setState({isOpen: false})
+    }).catch((error)=>{
+      alert(error)
+      this.setState({disabled2: false})
+    })
   }
 }
 
