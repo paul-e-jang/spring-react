@@ -60,5 +60,14 @@ export default {
         reject(errorParser.parse(error))
       })
     })
+  },
+  getCart (detail) {
+    return new Promise((resolve, reject) => {
+      axios.post('/getCart', detail).then(({ data }) => {
+        resolve(data)
+      }).catch((error) => {
+        reject(errorParser.parse(error))
+      })
+    })
   }
 }

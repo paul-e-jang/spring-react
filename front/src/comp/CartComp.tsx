@@ -1,23 +1,30 @@
-import React from 'react'
+import React, {Component} from 'react'
 import '../css/base.scss'
 import { Icon } from "@blueprintjs/core"
+import ProductService from '../services/product'
 //import {Link } from 'react-router-dom'
 
 interface CartCompGroupState {
-  //products: Array<any>;
   total: number;
   displayOn: boolean;
+  products: Array<any>
+}
+
+interface cartProps {
+  username?: string
 }
 
 
-class CartComp extends React.PureComponent<CartCompGroupState> {
-
-    public state: CartCompGroupState = {
-     // products: [],
-      total: 0,
-      displayOn: true
+class CartComp extends Component<cartProps, CartCompGroupState> {
+    
+    constructor(props: cartProps){
+      super(props)
+      this.state = {
+        products: [],
+        total: 0,
+        displayOn: false
+      }
     }
-
 
     render() {
 
@@ -52,7 +59,13 @@ class CartComp extends React.PureComponent<CartCompGroupState> {
     }
 
     componentDidMount = () => {
-      
+      if(this.props.username !== 'anonymous'){
+      ProductService.getCart(this.props.username).then((data)=>{
+        console.log(data)
+      }).catch((e)=>{
+        alert(e)
+      })
+    }
     }
 
     componentWillUnmount = () => {

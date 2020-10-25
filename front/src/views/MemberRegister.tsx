@@ -44,7 +44,7 @@ class MemberRegister extends React.PureComponent<RouteComponentProps, RegisterGr
         const {isOnLoad} = this.state
 
         return (
-            <section id="member-register">
+            <section className="login-register">
                 <div id="logo">
                     <Link to="/"><img src={require('../assets/logo_white_h.svg')} alt="Logo"/></Link>
                 </div>
