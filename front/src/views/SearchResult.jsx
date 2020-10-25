@@ -30,8 +30,6 @@ class SearchResult extends React.Component {
         priceList.push(<li key={i} onClick={() => this.filterByPrice(prices[i], prices[i+1])} >₩{this.AddComma(prices[i])}-{this.AddComma(prices[i+1])}</li>)
       }
 
-    
-
     return (
       <>
       <section id="search-result">
@@ -50,10 +48,14 @@ class SearchResult extends React.Component {
         </div>
         </div>
       </section>
+
+      
       </>
     )
   
   }
+
+
 
   orderBy(arg) {
     const filtered = this.state.filtered
@@ -118,7 +120,7 @@ class SearchResult extends React.Component {
   loadProducts (arr) {
     const arrs = []
     for (let i in arr) {
-      arrs.push(<Product props={arr[i]} key={i} />)
+      arrs.push(<Product props={arr[i]} key={i} onClick={()=>this.handleModalOpen()}/>)
     }
     return arrs
   }

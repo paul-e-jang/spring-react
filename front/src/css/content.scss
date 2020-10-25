@@ -1,4 +1,9 @@
 @import 'base.scss';
+@import "~@blueprintjs/docs-theme/lib/css/docs-theme.css";
+@import "~@blueprintjs/core/lib/css/blueprint.css";
+@import "~normalize.css/normalize.css";
+
+
 
 $clr-light: #e0e4fb !default;
 $clr-base: #465798 !default;
@@ -322,5 +327,12 @@ $play-btn-size: 32px !default;
   flex: 1; 
 }
 
-
-
+#product-detail-img {
+  background-color: white;
+  width: 90%;
+  display: flex;
+  margin-bottom: 30px;
+  justify-content: center;
+  img{ 
+  }
+}

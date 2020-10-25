@@ -58,7 +58,7 @@ class SearchBar extends React.PureComponent<InputGroupState> {
                     disabled={disabled}
                     large
                     fill
-                    placeholder="Promotions"
+                    placeholder="Promotions.."
                     leftElement={permissionsMenu}
                     rightElement={rightIcon}
                     onChange={(e:any) => this.setState({key: e.target.value})}

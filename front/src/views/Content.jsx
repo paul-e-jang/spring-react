@@ -5,6 +5,7 @@ import Login from './Login'
 import MemberRegister from './MemberRegister'
 import SearchResult from './SearchResult'
 import CsMain from './CsMain'
+import ProductDetail from './ProductDetail'
 
 const Content = () => (
     <main>
@@ -14,6 +15,7 @@ const Content = () => (
         <Route path="/" component={Main} exact={true} />
         <Route path="/searchResult" component={SearchResult} exact={false} />
         <Route path="/CsMain" component={CsMain} exact={true} />
+        <Route path="/productDetail/" component={ProductDetail} exact={false} />
         </Switch>
     </main>
 )
