@@ -132,6 +132,7 @@ class SearchResult extends React.Component {
   }
 
   init () {
+    console.log('Log: init start')
     const query = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true
     })
@@ -148,6 +149,7 @@ class SearchResult extends React.Component {
       
       let prices = [] 
       let categories = []
+      console.log(data)
 
       for (let i=0; i<data.length; i++){
         prices.push(data[i].price)
@@ -164,6 +166,9 @@ class SearchResult extends React.Component {
       while(i < data.length) {
         arr.push(prices[i])
         i += Math.floor(data.length/5)
+        if(i===0){
+          break;
+        }
       }
 
       arr.push(prices[data.length-1])

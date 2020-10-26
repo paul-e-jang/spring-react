@@ -1,6 +1,6 @@
 import React  from 'react'
 import '../css/content.scss'
-import { NumericInput , Card, Button, Classes, Tooltip , AnchorButton, Intent, Dialog } from '@blueprintjs/core'
+import { NumericInput , Card, Button, Classes, Tooltip , AnchorButton, Intent, Dialog, Toaster, Position } from '@blueprintjs/core'
 import ProductService from '../services/product'
 
 class Product extends React.Component {
@@ -20,6 +20,7 @@ class Product extends React.Component {
     const { disabled, disabled2} = this.state
     const style = {'width' : '100%', 'padding': '10px', }
     const pStyle = { 'marginTop' : '10px' }
+    
 
   return (
   <>
@@ -86,7 +87,6 @@ class Product extends React.Component {
   </>
   )
 }
-
   handleOpen  = () => this.setState({isOpen: true})
   handleClose  = () => this.setState({isOpen: false})
   handleValueChange = (_valueAsNumber, valueAsString) => {
@@ -118,18 +118,27 @@ class Product extends React.Component {
     f.append('pid', id)
     f.append('numberOfItems', this.state.value)
     f.append('uid', 'eunhackjang')
-    f.append('purchase', true)
+    f.append('is_purchased', true)
     this.setState({disabled2: true})
     const json = JSON.stringify(Object.fromEntries(f))
     ProductService.purchase(json).then((data)=>{
       this.setState({disabled2: false})
-      alert('구매에 성공하였습니다 ㅋㅋ')
+      this.toastShow('구매에 성공하였습니다. ㅋㅋ')
       this.setState({isOpen: false})
     }).catch((error)=>{
-      alert(error)
+      this.toastShow(error)
       this.setState({disabled2: false})
     })
   }
+
+  toastShow(message) {
+    const pop = Toaster.create({
+      intent: Intent.DANGER,
+      position: Position.TOP,
+  })
+    pop.show({message: message})
+  }
+  
 }
 
 
