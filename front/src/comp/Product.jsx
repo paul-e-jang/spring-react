@@ -123,21 +123,23 @@ class Product extends React.Component {
     const json = JSON.stringify(Object.fromEntries(f))
     ProductService.purchase(json).then((data)=>{
       this.setState({disabled2: false})
-      this.toastShow('구매에 성공하였습니다. ㅋㅋ')
+      const pop = Toaster.create({
+        intent: Intent.DANGER,
+        position: Position.TOP,
+    })
+      pop.show({message: '구매에 성공하였습니다.'})
       this.setState({isOpen: false})
     }).catch((error)=>{
-      this.toastShow(error)
+      const pop = Toaster.create({
+        intent: Intent.DANGER,
+        position: Position.TOP,
+    })
+      pop.show({message: `${error}`})
       this.setState({disabled2: false})
     })
   }
 
-  toastShow(message) {
-    const pop = Toaster.create({
-      intent: Intent.DANGER,
-      position: Position.TOP,
-  })
-    pop.show({message: message})
-  }
+  
   
 }
 
