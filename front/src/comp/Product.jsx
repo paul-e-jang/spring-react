@@ -31,7 +31,7 @@ class Product extends React.Component {
     </Card>
     <Dialog
         icon="inbox-search"
-        onClose={this.handleClose}
+        onClose={()=>this.handleClose()}
         title="상품 상세 정보"
         canOutsideClickClose={false}
         {... this.state}
@@ -61,7 +61,7 @@ class Product extends React.Component {
         <div className={Classes.DIALOG_FOOTER}>
             <div className={Classes.DIALOG_FOOTER_ACTIONS}>
                 <Tooltip content="클릭하면 창이 닫힙니다.">
-                    <Button onClick={this.handleClose} disabled={disabled}>닫기</Button>
+                    <Button onClick={()=>this.handleClose} disabled={disabled}>닫기</Button>
                 </Tooltip>
                 <AnchorButton
                     intent={Intent.PRIMARY}
@@ -74,7 +74,6 @@ class Product extends React.Component {
                 <Tooltip content="장바구니에 담지 않고 바로 결제">
                 <AnchorButton
                     intent={Intent.SUCCESS}
-                    onClick={this.handle}
                     disabled={disabled}
                     loading={disabled2}
                     onClick={()=>this.handleDirectPurchase(id)}

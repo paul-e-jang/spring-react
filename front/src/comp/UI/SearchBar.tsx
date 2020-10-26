@@ -26,12 +26,10 @@ class SearchBar extends React.PureComponent<InputGroupState> {
     }
 
     public render() {
-        const { cat, disabled, selected, key } = this.state
+        const { cat, disabled, selected } = this.state
 
         const rightIcon = (
-            <a href={`/searchResult?category=${selected}&keyword=${key}`} >
-            <Button icon="search" intent="warning" onClick={this.handleSubmit} minimal /> 
-            </a>
+            <Button icon="search" intent="warning" onClick={(e: any)=>this.handleSubmit()} minimal />
         )
 
         const permissionsMenu = (
@@ -69,6 +67,7 @@ class SearchBar extends React.PureComponent<InputGroupState> {
     }
 
     handleSubmit = () => {
+        window.location.href=`/searchResult?category=${this.state.selected}&keyword=${this.state.key}`
     }
 
     handleKeyPress = (e:any) => {

@@ -5,6 +5,7 @@ export default {
 
   Search (key, category) {
     return new Promise((resolve, reject) => {
+      console.log(`searchAPI 시작: key=${key}, category=${category}`)
       axios.get(`/SearchResult?key=${key}&category=${category}`).then(({ data }) => {
         resolve(data)
       }).catch((error) => {

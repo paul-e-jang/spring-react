@@ -22,7 +22,6 @@ export default {
     return new Promise((resolve, reject) => {
       axios.get('/fetchUser').then(({ data }) => {
         resolve(data)
-        eventBus.dispatch('fetchUser', data.username)
       }).catch((error) => {
         reject(errorParser.parse(error))
       })

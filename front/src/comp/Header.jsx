@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Banner from './Banner'
 import eventBus from '../utils/eventBus'
 import SearchBar from './UI/SearchBar'
-import User from './User'
+import AuthenticationService from '../services/authentication'
 
 class Header extends React.Component {
 
@@ -22,7 +22,6 @@ class Header extends React.Component {
 
     return (
         <header id="header" className={headerOn? 'headerfooter-on': 'headerfooter-off'}>
-          <User />
          
           <div id="upper-bar">
             <div id="drawer">
@@ -73,11 +72,12 @@ class Header extends React.Component {
 
   componentDidMount() {
     console.log('currentUser = ' + this.state.currentUser)
-    eventBus.on("fetchUser", (data) => {
-        this.setState({ currentUser: data })
-        console.log(data)
-      }
+    AuthenticationService.fetchUser().then((data)=>{
+      this.setState({currentUser: data.username})
+    }).catch((error) =>
+      alert(error)
     )
+    
 
     eventBus.on("headerFooter", (data) =>
       this.setState({ headerOn: data.message })
