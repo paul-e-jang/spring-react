@@ -1,5 +1,7 @@
 package bashpound.marketplace.services.cart;
 
+import bashpound.marketplace.services.cart.util.AddCartDTO;
+
 public interface CartService {
-	public boolean processRegister(Long pid, String uid, int numberOfItems);
+	public boolean processRegister(AddCartDTO addCartDTO);
 }
