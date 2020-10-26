@@ -12,11 +12,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import bashpound.marketplace.config.security.AuthenticationToken;
+import bashpound.marketplace.domain.model.Cart;
 import bashpound.marketplace.domain.model.Delivery;
 import bashpound.marketplace.domain.model.Member;
 import bashpound.marketplace.domain.model.MemberDetails;
 import bashpound.marketplace.domain.model.Product;
 import bashpound.marketplace.domain.model.Purchase;
+import bashpound.marketplace.infra.repository.CartMapper;
 import bashpound.marketplace.infra.repository.MemberMapper;
 import bashpound.marketplace.infra.repository.PurchaseMapper;
 import bashpound.marketplace.services.member.exception.DuplicateMemberException;
@@ -32,6 +34,9 @@ public class MemberDetailsServiceImpl implements MemberService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private CartMapper cartMapper;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -77,17 +82,11 @@ public class MemberDetailsServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<Product> processGetCart(String username) {
-		List<Purchase> purchases = purchaseMapper.selectJoin(username);
-
-		List<Product> prods = new ArrayList<>();
-		if (purchases.isEmpty()) {
-			return prods;
-		}
-
-		purchases.forEach(purc -> prods.add(purc.getProducts()));
-		return prods;
-
+	public List<Cart>processGetCart(String username) {
+		// 유저 이름으로 카트 빼오자.
+		List<Cart> cart = cartMapper.getCart(username);
+		System.out.println(cart == null);
+		return cart;
 	}
 
 }

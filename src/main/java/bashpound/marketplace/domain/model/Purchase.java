@@ -10,15 +10,15 @@ public class Purchase {
 	private Member member;
 	private Date purchaseDate;
 	private boolean arrive;
-	private Product product; 
+	private Product product;
 	private List<ShippingInfomartion> shippingInformations;
 	private boolean purchased;
 
 	@Override
 	public String toString() {
 		return "Purchase [id=" + id + ", member=" + member + ", purchaseDate=" + purchaseDate + ", arrive=" + arrive
-				+ ", product=" + product + ", shippingInformations=" + shippingInformations + ", purchased="
-				+ purchased + "]";
+				+ ", product=" + product + ", shippingInformations=" + shippingInformations + ", purchased=" + purchased
+				+ "]";
 	}
 
 	@Override

@@ -13,16 +13,11 @@
 		<collection property="products" resultMap="bashpound.marketplace.infra.repository.ProductMapper.productResultMap"/>
 	</resultMap>
 	
-	<select id="selectJoin" resultMap="purchaseResult">
-		select * from PURCHASE c 
-		    left outer join member m
-		    on c.purchase_username = m.username
-		    left outer join m_purchase_prod mp
-		    on mp.mpp_purchases_id = c.purchase_id
-		    left outer join product p
-		    on mp.mpp_product_id = p.prod_id
-		     where m.username = #{username}
-		     	and c.is_purchased != 1
-	</select>
+	<insert id="insert">
+		<selectKey order="BEFORE" keyProperty="purchase.id" keyColumn="purchase_id" resultType="Long">
+			select nvl(max(purchase_id),0) +1 from purchase
+		</selectKey>
+		insert into purchase (purchase_id,purchase_username) values (#{purchase.id}, #{username})
+	</insert>
 	
 </mapper>
