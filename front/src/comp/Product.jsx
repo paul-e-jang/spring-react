@@ -76,7 +76,7 @@ class Product extends React.Component {
                     intent={Intent.SUCCESS}
                     disabled={disabled}
                     loading={disabled2}
-                    onClick={()=>this.handleDirectPurchase()}
+                    onClick={()=>this.handleDirectPurchase(props.id)}
                 >
                     바로 구매!
                 </AnchorButton>
@@ -103,7 +103,12 @@ class Product extends React.Component {
     console.log(json)
     ProductService.addToCart(json).then(()=>{
       this.setState({disabled: false})
-      alert('등록 성공!')
+      alert('성공')
+      const pop = Toaster.create({
+        intent: Intent.DANGER,
+        position: Position.TOP,
+    })
+      pop.show({message: '카트에 저장되었습니다.'})
       this.setState({isOpen: false})
     }).catch((error)=>{
       alert(error)
@@ -112,22 +117,22 @@ class Product extends React.Component {
 
   }
 
-  handleDirectPurchase = () => {
-    const id = this.props.id    
+  handleDirectPurchase = (id) => {
+    console.log('pid: '+id )
     const f = new FormData()
     f.append('pid', id)
     f.append('numberOfItems', this.state.value)
     f.append('uid', 'eunhackjang')
-    f.append('is_purchased', true)
     this.setState({disabled2: true})
     const json = JSON.stringify(Object.fromEntries(f))
     ProductService.purchase(json).then((data)=>{
       this.setState({disabled2: false})
+      alert('구매를 해버렸습니다.')
       const pop = Toaster.create({
         intent: Intent.DANGER,
         position: Position.TOP,
     })
-      pop.show({message: '구매에 성공하였습니다.'})
+      pop.show({message: '구매 목록에서 확인 가능합니다.'})
       this.setState({isOpen: false})
     }).catch((error)=>{
       const pop = Toaster.create({
