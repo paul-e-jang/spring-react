@@ -20,7 +20,6 @@ class Product extends React.Component {
     const { disabled, disabled2} = this.state
     const style = {'width' : '100%', 'padding': '10px', }
     const pStyle = { 'marginTop' : '10px' }
-    const id = props.id
 
   return (
   <>
@@ -65,7 +64,7 @@ class Product extends React.Component {
                 </Tooltip>
                 <AnchorButton
                     intent={Intent.PRIMARY}
-                    onClick={()=>this.handleCartIn(id)}
+                    onClick={()=>this.handleCartIn(props.id)}
                     disabled={disabled}
                     loading={disabled}
                 >
@@ -76,7 +75,7 @@ class Product extends React.Component {
                     intent={Intent.SUCCESS}
                     disabled={disabled}
                     loading={disabled2}
-                    onClick={()=>this.handleDirectPurchase(id)}
+                    onClick={()=>this.handleDirectPurchase()}
                 >
                     바로 구매!
                 </AnchorButton>
@@ -94,12 +93,14 @@ class Product extends React.Component {
     this.setState({ value: valueAsString })
   }
   handleCartIn =  (id) => {
+    console.log('pid: ' +id)
     const f = new FormData()
     f.append('pid', id)
     f.append('numberOfItems', this.state.value)
     f.append('uid', 'eunhackjang')
     this.setState({disabled: true})
     const json = JSON.stringify(Object.fromEntries(f))
+    console.log(json)
     ProductService.addToCart(json).then(()=>{
       this.setState({disabled: false})
       alert('등록 성공!')
@@ -111,7 +112,8 @@ class Product extends React.Component {
 
   }
 
-  handleDirectPurchase = (id) => {
+  handleDirectPurchase = () => {
+    const id = this.props.id    
     const f = new FormData()
     f.append('pid', id)
     f.append('numberOfItems', this.state.value)
