@@ -26,7 +26,6 @@ import bashpound.marketplace.infra.repository.DeliveryMapper;
 import bashpound.marketplace.infra.repository.MemberMapper;
 import bashpound.marketplace.infra.repository.ProductMapper;
 import bashpound.marketplace.infra.repository.PurchaseMapper;
-import jdk.internal.org.jline.utils.Log;
 import junit.framework.Assert;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
@@ -57,11 +56,14 @@ class Martketplace2ApplicationTests {
 	public void testTx() {
 		Purchase purchase = new Purchase();
 		try {
-		int i = purchaseMapper.insert(purchase, "jchan", 10);
+		int i = purchaseMapper.insert(purchase, "jchan");
+		LOGGER.warn(String.valueOf(purchase.getId()));
+		// 11개 수량 넘겨받은 아이디 
+		int k = cartMapper.insert(9L, purchase.getId(), 11);
+		LOGGER.warn(String.valueOf(k));
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		LOGGER.warn(String.valueOf(purchase.getId()));
 	}
 	
 //	@Test

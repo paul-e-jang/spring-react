@@ -10,7 +10,7 @@ public interface CartMapper {
 
 	public List<Cart> getCart(@Param("username") String username);
 
-	public int insert(@Param("prodId") Long pid, @Param("purchaseId") int purchaseId,
+	public int insert(@Param("prodId") Long pid, @Param("purchaseId") Long purchaseId,
 			@Param("numberOfItems") int numberOfItems);
 
 }

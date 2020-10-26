@@ -17,7 +17,12 @@
 		<selectKey order="BEFORE" keyProperty="purchase.id" keyColumn="purchase_id" resultType="Long">
 			select nvl(max(purchase_id),0) +1 from purchase
 		</selectKey>
-		insert into purchase (purchase_id,purchase_username) values (#{purchase.id}, #{username})
+		<if test="purchase.purchased == false">		
+		insert into purchase (purchase_id,purchase_username,is_purchased) values (#{purchase.id}, #{username}, #{purchase.purchased})
+		</if>
+		<if test="purchase.purchased == true">		
+		insert into purchase (purchase_id,purchase_username,purchase_date,is_purchased) values (#{purchase.id}, #{username}, sysdate, #{purchase.purchased})
+		</if>
 	</insert>
 	
 </mapper>
