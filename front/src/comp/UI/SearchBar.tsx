@@ -29,7 +29,7 @@ class SearchBar extends React.PureComponent<InputGroupState> {
         const { cat, disabled, selected, key } = this.state
 
         const rightIcon = (
-            <a href={`/searchResult?category=${selected}&key=${key}`} >
+            <a href={`/searchResult?category=${selected}&keyword=${key}`} >
             <Button icon="search" intent="warning" onClick={this.handleSubmit} minimal /> 
             </a>
         )

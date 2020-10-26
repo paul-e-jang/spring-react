@@ -137,14 +137,14 @@ class SearchResult extends React.Component {
     })
 
     const category = query.category
-    const key = query.key
+    const keyword = query.keyword
     
     
     this.setState({category: category})
     this.setState({keyword: keyword})
     
 
-    productService.Search(key, category).then((data) => {
+    productService.Search(keyword, category).then((data) => {
       
       let prices = [] 
       let categories = []
