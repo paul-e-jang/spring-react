@@ -2,30 +2,41 @@ package bashpound.marketplace;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.List;import java.util.concurrent.ExecutionException;
+
+import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import bashpound.marketplace.domain.model.Cart;
 import bashpound.marketplace.domain.model.Delivery;
 import bashpound.marketplace.domain.model.Member;
 import bashpound.marketplace.domain.model.Product;
 import bashpound.marketplace.domain.model.Purchase;
+import bashpound.marketplace.infra.repository.CartMapper;
 import bashpound.marketplace.infra.repository.DeliveryMapper;
 import bashpound.marketplace.infra.repository.MemberMapper;
 import bashpound.marketplace.infra.repository.ProductMapper;
 import bashpound.marketplace.infra.repository.PurchaseMapper;
+import jdk.internal.org.jline.utils.Log;
+import junit.framework.Assert;
+import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT, classes = Martketplace2Application.class)
 @RunWith(SpringRunner.class)
 class Martketplace2ApplicationTests {
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(Martketplace2ApplicationTests.class);
 
 	@Autowired
 	private MemberMapper memberMapper;
@@ -38,7 +49,28 @@ class Martketplace2ApplicationTests {
 	
 	@Autowired
 	private PurchaseMapper purchaseMapper;
-
+	
+	@Autowired
+	private CartMapper cartMapper;
+	
+	@Test
+	public void testTx() {
+		Purchase purchase = new Purchase();
+		try {
+		int i = purchaseMapper.insert(purchase, "jchan", 10);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		LOGGER.warn(String.valueOf(purchase.getId()));
+	}
+	
+//	@Test
+	public void testCartMapper() {
+		List<Cart> list = cartMapper.getCart("jchan");
+		
+		list.forEach(i -> LOGGER.info(i.getUsername()+" / "+i.getProdName()+" / "+i.getQuantity()+" / "+i.getSellerName()+" / "+i.getStock()+" / "+i.getProdRegdate()+" / "+i.getPurchaseDate()));
+	}
+	
 //	@Test
 	public void testRepository() {
 		try {
@@ -65,15 +97,6 @@ class Martketplace2ApplicationTests {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Test
-	public void testPurchaseJoin() {
-		List<Purchase> proc = purchaseMapper.selectJoin("jchan");
-		List<Product> result = new ArrayList<>();
-		proc.forEach( prc -> result.add(prc.getProducts()));
-		result.forEach( res -> System.out.println(res));
-		
 	}
 	
 //	@Test

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bashpound.marketplace.infra.repository.CartMapper">
+	<resultMap type="bashpound.marketplace.domain.model.Cart" id="cartResult">
+		<id property="username" column="username"/>
+		<result property="prodName" column="prod_name"/>
+		<result property="sellerName" column="member_username"/>
+		<result property="prodRegdate" column="prod_reg_date"/>
+		<result property="stock" column="stock"/>
+		<result property="price" column="price"/>
+		<result property="purchaseDate" column="purchase_date"/>
+		<result property="quantity" column="quantity"/>
+	</resultMap>
+	
+	<select id="getCart" resultMap="cartResult">
+		select m.username,p.prod_name,p.member_username, p.prod_reg_date, p.stock, p.price, c.purchase_date, mpp.quantity from member m
+	    left outer join purchase c
+	    on m.username = c.purchase_username
+	    left outer join m_purchase_prod mpp
+	    on c.purchase_id = mpp.mpp_purchases_id
+	    left outer join product p
+	    on mpp.mpp_product_id = p.prod_id
+        where username = #{username} and is_purchased = 0
+	</select>
+	
+	<!-- pid , id , numberOfItems  m_purchase_prod 에 집어넣기. -->
+	<insert id="insert">
+		insert into M_PURCHASE_PROD values (#{prodId},#{purchaseId}, #{numberOfItems})
+	</insert>
+</mapper>

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import bashpound.marketplace.config.security.AuthenticationToken;
+import bashpound.marketplace.domain.model.Cart;
 import bashpound.marketplace.domain.model.Delivery;
 import bashpound.marketplace.domain.model.Member;
 import bashpound.marketplace.domain.model.Product;
@@ -90,11 +91,8 @@ public class MemberController {
 	
 	@RequestMapping(value = "/api/getCart/{username}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<Object> getCartList(@PathVariable("username") String username) {
-			List<Product> cart = memberService.processGetCart(username);
-			if(cart.isEmpty()) {
-				return new ResponseEntity<Object>(cart,HttpStatus.OK);
-			}
-			return new ResponseEntity<Object>(cart,HttpStatus.OK);
+			List<Cart> cart = memberService.processGetCart(username);
+			return new ResponseEntity<>(cart,HttpStatus.OK);
 		}
 	
 

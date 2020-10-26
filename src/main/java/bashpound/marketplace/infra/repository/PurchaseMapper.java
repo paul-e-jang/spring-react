@@ -1,9 +1,10 @@
 package bashpound.marketplace.infra.repository;
 
-import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
 
 import bashpound.marketplace.domain.model.Purchase;
 
 public interface PurchaseMapper {
-	public List<Purchase> selectJoin(String username);
+	public int insert(@Param("purchase")Purchase purchase,@Param("username")String uid,@Param("prodId")int pid);
 }
