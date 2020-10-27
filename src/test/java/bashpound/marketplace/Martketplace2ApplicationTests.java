@@ -66,12 +66,7 @@ class Martketplace2ApplicationTests {
 		}
 	}
 	
-//	@Test
-	public void testCartMapper() {
-		List<Cart> list = cartMapper.getCart("jchan");
-		
-		list.forEach(i -> LOGGER.info(i.getUsername()+" / "+i.getProdName()+" / "+i.getQuantity()+" / "+i.getSellerName()+" / "+i.getStock()+" / "+i.getProdRegdate()+" / "+i.getPurchaseDate()));
-	}
+
 	
 //	@Test
 	public void testRepository() {

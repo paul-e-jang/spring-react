@@ -2,27 +2,41 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="bashpound.marketplace.infra.repository.PurchaseMapper">
+<mapper
+	namespace="bashpound.marketplace.infra.repository.PurchaseMapper">
 
-	<resultMap type="bashpound.marketplace.domain.model.Purchase" id="purchaseResult">
-		<id column="purchase_id" property="id"/>
-		<result column="purchase_date" property="purchaseDate"/>
-		<result column="arrive" property="arrive"/>
-		<result column="is_purchased" property="purchased"/>
-		<association property="member"  resultMap="bashpound.marketplace.infra.repository.MemberMapper.memberResult"/>
-		<collection property="products" resultMap="bashpound.marketplace.infra.repository.ProductMapper.productResultMap"/>
+	<resultMap type="bashpound.marketplace.domain.model.Purchase"
+		id="purchaseResult">
+		<id column="purchase_id" property="id" />
+		<result column="purchase_date" property="purchaseDate" />
+		<result column="arrive" property="arrive" />
+		<result column="is_purchased" property="purchased" />
+		<association property="member"
+			resultMap="bashpound.marketplace.infra.repository.MemberMapper.memberResult" />
+		<collection property="products"
+			resultMap="bashpound.marketplace.infra.repository.ProductMapper.productResultMap" />
 	</resultMap>
-	
+
 	<insert id="insert">
-		<selectKey order="BEFORE" keyProperty="purchase.id" keyColumn="purchase_id" resultType="Long">
-			select nvl(max(purchase_id),0) +1 from purchase
+		<selectKey order="BEFORE" keyProperty="purchase.id"
+			keyColumn="purchase_id" resultType="Long">
+			select nvl(max(purchase_id),0) +1
+			from purchase
 		</selectKey>
-		<if test="purchase.purchased == false">		
-		insert into purchase (purchase_id,purchase_username,is_purchased) values (#{purchase.id}, #{username}, #{purchase.purchased})
+		<if test="purchase.purchased == false">
+			insert into purchase (purchase_id,purchase_username,is_purchased) values
+			(#{purchase.id}, #{username}, #{purchase.purchased})
 		</if>
-		<if test="purchase.purchased == true">		
-		insert into purchase (purchase_id,purchase_username,purchase_date,is_purchased) values (#{purchase.id}, #{username}, sysdate, #{purchase.purchased})
+		<if test="purchase.purchased == true">
+			insert into purchase
+			(purchase_id,purchase_username,purchase_date,is_purchased) values
+			(#{purchase.id}, #{username}, sysdate, #{purchase.purchased})
 		</if>
 	</insert>
-	
+
+	<update id="updateAll">
+		update purchase set IS_PURCHASED = 1,PURCHASE_DATE =
+		sysdate where PURCHASE_USERNAME = #{addCartDTO.uid}
+	</update>
+
 </mapper>

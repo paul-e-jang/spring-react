@@ -89,11 +89,6 @@ public class MemberController {
 		return new ResponseEntity<HashMap<String, Object>>(resultMap, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/api/getCart/{username}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<Object> getCartList(@PathVariable("username") String username) {
-			List<Cart> cart = memberService.processGetCart(username);
-			return new ResponseEntity<>(cart,HttpStatus.OK);
-		}
 	
 
 	// 김종찬 추가

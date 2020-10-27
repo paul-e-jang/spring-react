@@ -22,11 +22,26 @@
 	    on c.purchase_id = mpp.mpp_purchases_id
 	    left outer join product p
 	    on mpp.mpp_product_id = p.prod_id
-        where username = #{username} and is_purchased = 0
+        where username = #{addCartDTO.uid} and 
+        <if test="addCartDTO.purchased == false">
+        	is_purchased = 0
+        </if>
+        <if test="addCartDTO.purchased == true">
+        	is_purchased = 1
+        </if>
 	</select>
 	
 	<!-- pid , id , numberOfItems  m_purchase_prod 에 집어넣기. -->
 	<insert id="insert">
 		insert into M_PURCHASE_PROD values (#{prodId},#{purchaseId}, #{numberOfItems})
 	</insert>
+	
+	<delete id="deleteByUidAndPid" statementType="CALLABLE">
+		{ call deleteFromCart(#{uid,mode=IN,jdbcType=VARCHAR},#{pid,mode=IN,jdbcType=INTEGER})}
+	</delete>
+	
+	<update id="updateQtyByPidAndUid" statementType="CALLABLE">
+		{ call updateQtyFromCart(#{uid,mode=IN,jdbcType=VARCHAR},#{qty,mode=IN,jdbcType=INTEGER},#{pid,mode=IN,jdbcType=INTEGER})}
+	</update>
+	
 </mapper>
