@@ -44,9 +44,9 @@ class Header extends React.Component {
                   </a>
                 </li>
                 <li>
-                  <a href="/">
+                  <Link to="/cart">
                     <Banner main="Cart" />
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </nav>

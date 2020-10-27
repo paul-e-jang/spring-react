@@ -17,20 +17,5 @@
       position: relative;
     }
   }
-  #cart {
-    display: flex;
-    flex-direction: column;
-    position:relative;
-    width: 5%;
-    border-left: 1px solid $border;
-
-    .display-on{
-      display:flex;
-    }
-    
-    .display-off{
-      display:none;
-    }
-  }
 }
 
