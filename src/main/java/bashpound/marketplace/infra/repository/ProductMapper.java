@@ -18,4 +18,6 @@ public interface ProductMapper {
 	public Product productDetail(Long productId);
 	
 	public List<Product> selectCuration(@Param("prodId")int prodId);
+
+	public List<Product> selectInPid(List<Integer> pids);
 }

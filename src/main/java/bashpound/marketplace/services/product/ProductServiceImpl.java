@@ -14,7 +14,7 @@ import bashpound.marketplace.infra.repository.ProductMapper;
 public class ProductServiceImpl implements ProductService {
 	@Autowired
 	ProductMapper pm;
-	
+
 	@Override
 	public void productRegister(Product product) {
 		pm.productRegister(product);
@@ -29,8 +29,8 @@ public class ProductServiceImpl implements ProductService {
 	public List<Product> searchProduct(String category, String key) {
 		List<Product> list = null;
 
-			list = pm.searchProduct(category, key);
-			
+		list = pm.searchProduct(category, key);
+
 		return list;
 	}
 
@@ -38,5 +38,11 @@ public class ProductServiceImpl implements ProductService {
 	public Product productDetail(Long productId) {
 		return pm.productDetail(productId);
 	}
-	
+
+	@Override
+	public List<Product> processGetProductById(List<Integer> pids) {
+		List<Product> results = pm.selectInPid(pids);
+		return results;
+	}
+
 }

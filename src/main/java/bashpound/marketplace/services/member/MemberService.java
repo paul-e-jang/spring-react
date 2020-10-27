@@ -18,6 +18,4 @@ public interface MemberService extends UserDetailsService {
 
 	boolean processSellerUpdate(AuthenticationToken authenticationToken);
 
-	List<Cart> processGetCart(String username);
-
 }

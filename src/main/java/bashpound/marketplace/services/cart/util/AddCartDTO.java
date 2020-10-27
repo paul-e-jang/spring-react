@@ -3,13 +3,14 @@ package bashpound.marketplace.services.cart.util;
 public class AddCartDTO {
 	private Long pid;
 	private int numberOfItems;
+	private int qty;
 	private String uid;
-	private boolean purchase;
+	private boolean purchased;
 
 	@Override
 	public String toString() {
-		return "AddCartDTO [pid=" + pid + ", numberOfItems=" + numberOfItems + ", uid=" + uid + ", purchase="
-				+ purchase + "]";
+		return "AddCartDTO [pid=" + pid + ", numberOfItems=" + numberOfItems + ", qty=" + qty + ", uid=" + uid
+				+ ", purchased=" + purchased + "]";
 	}
 
 	public Long getPid() {
@@ -28,6 +29,14 @@ public class AddCartDTO {
 		this.numberOfItems = numberOfItems;
 	}
 
+	public int getQty() {
+		return qty;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+
 	public String getUid() {
 		return uid;
 	}
@@ -36,12 +45,12 @@ public class AddCartDTO {
 		this.uid = uid;
 	}
 
-	public boolean isPurchase() {
-		return purchase;
+	public boolean isPurchased() {
+		return purchased;
 	}
-	
-	public void setPurchase(boolean purchase) {
-		this.purchase = purchase;
+
+	public void setPurchased(boolean purchased) {
+		this.purchased = purchased;
 	}
 
 }

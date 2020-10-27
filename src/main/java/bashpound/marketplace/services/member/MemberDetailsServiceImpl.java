@@ -81,12 +81,5 @@ public class MemberDetailsServiceImpl implements MemberService {
 		return result == 1 ? true : false;
 	}
 
-	@Override
-	public List<Cart>processGetCart(String username) {
-		// 유저 이름으로 카트 빼오자.
-		List<Cart> cart = cartMapper.getCart(username);
-		System.out.println(cart == null);
-		return cart;
-	}
 
 }
