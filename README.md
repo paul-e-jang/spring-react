@@ -16,7 +16,8 @@
 ### 팀원: 정수민
 - Spring boot REST api 작성
 - ERD/Class/Use case Diagram 구성
-- 리액트 화면 디자인 구성/구현
+- Mybatis Mapper 작성
+- Spring Security 작성
 - SQL mapping 작업
 
 
