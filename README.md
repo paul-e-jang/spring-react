@@ -11,6 +11,7 @@
 ### 팀원: 김종찬
 - Spring boot REST api 작성
 - ERD/Class/Use case Diagram 구성
+- Mybatis Mapper 작성
 - SQL mapping 작업
 
 ### 팀원: 정수민
@@ -23,7 +24,7 @@
 
 ## 활용 모듈
 ### Back-end: Spring
-- Spring Dependencies: Boot, Security, Data JPA, Devtools, Mybatis, Batch
+- Spring Dependencies: Boot, Security, Devtools, Mybatis, Batch
 ### Front-end: React.js
 - React Expansion: Redux, React-router
 ### Network
@@ -39,4 +40,7 @@
 ![usecase.png](./diagrams/usecase.png)
 
 # ERD
+![](https://github.com/bashpound/spring-react/blob/master/src/main/resources/table/%ED%85%8C%EC%9D%B4%EB%B8%94%20ERD.JPG)
+
+# 개발 상황 
 ![](https://github.com/bashpound/spring-react/blob/master/src/main/resources/table/%ED%85%8C%EC%9D%B4%EB%B8%94%20ERD.JPG)
