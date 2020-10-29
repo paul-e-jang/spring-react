@@ -38,4 +38,4 @@
 ![usecase.png](./diagrams/usecase.png)
 
 # ERD
-![ERD_temp.JPG](https://github.com/soominJung0413/SpringWebProject/blob/master/ERD_temp.JPG)
+![](https://github.com/bashpound/spring-react/blob/master/src/main/resources/table/%ED%85%8C%EC%9D%B4%EB%B8%94%20ERD.JPG)
